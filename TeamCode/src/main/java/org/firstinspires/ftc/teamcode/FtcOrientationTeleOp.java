@@ -65,30 +65,34 @@ public class FtcOrientationTeleOp extends LinearOpMode {
 
         Claw = hardwareMap.servo.get("Claw"); // expansion hub servo port 2
         Claw.setPosition(0.7);
-//        ArmR = hardwareMap.servo.get("ArmR"); // expansion hub servo port 0
+        ArmR = hardwareMap.servo.get("ArmR"); // expansion hub servo port 0
         ArmL = hardwareMap.servo.get("ArmL"); // expansion hub servo port 1
         ArmL.setDirection(Servo.Direction.REVERSE);
         ArmL.setPosition(0.95);
         Wirst = hardwareMap.servo.get("Wirst"); // expansion hub servo port 3
-        Wirst.setDirection(Servo.Direction.REVERSE);
+//        Wirst.setDirection(Servo.Direction.REVERSE);
         waitForStart();
 
 
         while (opModeIsActive()) {
+            liftArmHigh();
             moveDriveTrain();
             if (gamepad1.right_trigger > 0.3) { //open
                 Claw.setPosition(0.5);
             }if (gamepad1.left_trigger > 0.3) { //close
-                Claw.setPosition(0.82);
+                Claw.setPosition(0.7);
 
 
-            }if (gamepad2.a  && !move) { //down
+            }if (gamepad2.a  && !move) { //up
                 ArmL.setPosition(0.95);
+                ArmR.setPosition(0.95);
             }
-            if (gamepad2.y && !move) { //up
+            if (gamepad2.y && !move) { //down
                 ArmL.setPosition(0);
+                ArmR.setPosition(0);
             }
             if (gamepad2.b && !move) { //up
+                Wirst.setDirection(Servo.Direction.REVERSE);
                 Wirst.setPosition(0);
             }
             if (gamepad2.x && !move) { //down
@@ -124,7 +128,7 @@ public class FtcOrientationTeleOp extends LinearOpMode {
 
     }
     public void liftArmHigh () {
-        double liftArm_y = gamepad2.left_stick_y;
+        double liftArm_y = -gamepad2.left_stick_y;
         liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotorL.setPower(liftArm_y*0.5);
