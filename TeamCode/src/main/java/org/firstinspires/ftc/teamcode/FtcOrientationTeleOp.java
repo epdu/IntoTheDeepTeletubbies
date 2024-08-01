@@ -28,8 +28,6 @@ public class FtcOrientationTeleOp extends LinearOpMode {
     Servo Wirst;
 
 
-
-
     boolean move = false;
 
 
@@ -65,7 +63,7 @@ public class FtcOrientationTeleOp extends LinearOpMode {
 
         Claw = hardwareMap.servo.get("Claw"); // expansion hub servo port 2
         Claw.setPosition(0.7);
-        ArmR = hardwareMap.servo.get("ArmR"); // expansion hub servo port 0
+//        ArmR = hardwareMap.servo.get("ArmR"); // expansion hub servo port 0
         ArmL = hardwareMap.servo.get("ArmL"); // expansion hub servo port 1
         ArmL.setDirection(Servo.Direction.REVERSE);
         ArmL.setPosition(0.95);
@@ -83,13 +81,12 @@ public class FtcOrientationTeleOp extends LinearOpMode {
                 Claw.setPosition(0.7);
 
 
-            }if (gamepad2.a  && !move) { //up
+            }if (gamepad2.y  && !move) { //down
                 ArmL.setPosition(0.95);
-                ArmR.setPosition(0.95);
             }
-            if (gamepad2.y && !move) { //down
+            if (gamepad2.a && !move) { //up
                 ArmL.setPosition(0);
-                ArmR.setPosition(0);
+
             }
             if (gamepad2.b && !move) { //up
                 Wirst.setDirection(Servo.Direction.REVERSE);
