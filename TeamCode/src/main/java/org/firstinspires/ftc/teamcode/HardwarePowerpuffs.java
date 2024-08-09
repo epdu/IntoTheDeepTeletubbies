@@ -74,14 +74,14 @@
             public DcMotor LFMotor;
             public DcMotor RBMotor;
             public DcMotor LBMotor;
-            public DcMotor liftMotorL;
-            public DcMotor liftMotorR;
-            public Servo ClawR;
-            public Servo ClawL;
-            public Servo Wrist;
-            public Servo ArmR;
-            public Servo ArmL;
-            public Servo Drone;
+//            public DcMotor liftMotorL;
+//            public DcMotor liftMotorR;
+//            public Servo ClawR;
+//            public Servo ClawL;
+//            public Servo Wrist;
+//            public Servo ArmR;
+//            public Servo ArmL;
+//            public Servo Drone;
 
             IMU imu;
             public static final double MID_SERVO       =  0.5 ;
@@ -113,18 +113,18 @@
                 LBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
                 RBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-                liftMotorL = hwMap.get(DcMotor.class, "liftMotorL");//02022024 control hub? port 1
-                liftMotorR = hwMap.get(DcMotor.class, "liftMotorR");//02022024 control hub? port 0
-
-                int positionL = liftMotorL.getCurrentPosition();
-                int positionR = liftMotorR.getCurrentPosition();
-                liftMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
-
-                liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-                liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-
-                liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                liftMotorL = hwMap.get(DcMotor.class, "liftMotorL");//02022024 control hub? port 1
+//                liftMotorR = hwMap.get(DcMotor.class, "liftMotorR");//02022024 control hub? port 0
+//
+//                int positionL = liftMotorL.getCurrentPosition();
+//                int positionR = liftMotorR.getCurrentPosition();
+//                liftMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
+//
+//                liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//                liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//
+//                liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//                liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
                 // Set all motors to zero power
                 setAllPower(0);
@@ -135,34 +135,34 @@
                 RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-                Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
-                Drone.setPosition(0);
-
-
+//                Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
+//                Drone.setPosition(0);
 //
-                ClawR = hwMap.get(Servo.class, "ClawR");//control hub port 2
-                ClawL = hwMap.get(Servo.class, "ClawL");//control hub port 3
-                ClawR.setPosition(0.71);
-//        ClawL.setPosition(0.4);
-                ClawL.setPosition(0.08);
-//        ClawL.setDirection(Servo.Direction.REVERSE);
-
-
-                Wrist = hwMap.get(Servo.class, "wrist");//control hub port 5
-                Wrist.setPosition(0.8);
-//        Wrist.setPosition(0.34);
-
-                ArmL = hwMap.get(Servo.class, "ArmL");//control hub port 1
-                ArmR = hwMap.get(Servo.class, "ArmR");//control hub port 0
-                ArmL.setDirection(Servo.Direction.REVERSE);
+//
+////
+//                ClawR = hwMap.get(Servo.class, "ClawR");//control hub port 2
+//                ClawL = hwMap.get(Servo.class, "ClawL");//control hub port 3
+//                ClawR.setPosition(0.71);
+////        ClawL.setPosition(0.4);
+//                ClawL.setPosition(0.08);
+////        ClawL.setDirection(Servo.Direction.REVERSE);
+//
+//
+//                Wrist = hwMap.get(Servo.class, "wrist");//control hub port 5
+//                Wrist.setPosition(0.8);
+////        Wrist.setPosition(0.34);
+//
+//                ArmL = hwMap.get(Servo.class, "ArmL");//control hub port 1
+//                ArmR = hwMap.get(Servo.class, "ArmR");//control hub port 0
+//                ArmL.setDirection(Servo.Direction.REVERSE);
 
 //
 
 
                 imu = hwMap.get(IMU.class, "imu");
                 IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                        RevHubOrientationOnRobot.LogoFacingDirection.FORWARD,
-                        RevHubOrientationOnRobot.UsbFacingDirection.UP));
+                        RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+                        RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
                 double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
 
                 imu.initialize(parameters);
