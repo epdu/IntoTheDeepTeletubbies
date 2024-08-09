@@ -303,13 +303,13 @@ public class AutonomousV5 extends LinearOpMode {
                 telemetry.update();
 
                 moveBackward(0.3, 40);
-                robot.Wrist.setPosition(0.08);//down
+//                robot.Wrist.setPosition(0.08);//down
                 strafeRight(0.3, 12);
-                robot.ClawL.setPosition(0.2);//open
+//                robot.ClawL.setPosition(0.2);//open
                 sleep(20);
-                robot.Wrist.setPosition(0.5);//up
-                robot.ClawL.setPosition(0.505);//close
-                robot.Wrist.setPosition(0.8);//up
+//                robot.Wrist.setPosition(0.5);//up
+//                robot.ClawL.setPosition(0.505);//close
+//                robot.Wrist.setPosition(0.8);//up
                 turnLeft(0.3, 14.5);
                 moveBackward(0.3, 8);
                 strafeRight(0.3, 24);
@@ -319,13 +319,13 @@ public class AutonomousV5 extends LinearOpMode {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
                 moveBackward(0.3, 28);
-                robot.Wrist.setPosition(0.08);//down
+//                robot.Wrist.setPosition(0.08);//down
                 turnLeft(0.3, 14.5);
-                robot.ClawL.setPosition(0.2);//open
+//                robot.ClawL.setPosition(0.2);//open
                 sleep(20);
-                robot.Wrist.setPosition(0.5);//up
-                robot.ClawL.setPosition(0.505);//close
-                robot.Wrist.setPosition(0.8);//up
+//                robot.Wrist.setPosition(0.5);//up
+//                robot.ClawL.setPosition(0.505);//close
+//                robot.Wrist.setPosition(0.8);//up
                 moveBackward(0.3, 8);
                 strafeLeft(0.3, 4);
                 dropPurplePixelDone = true;
@@ -333,12 +333,12 @@ public class AutonomousV5 extends LinearOpMode {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
                 moveBackward(0.3, 46);
-                robot.Wrist.setPosition(0.08);//down
-                robot.ClawL.setPosition(0.2);//open
-                sleep(20);
-                robot.Wrist.setPosition(0.5);//up
-                robot.ClawL.setPosition(0.505);//close
-                robot.Wrist.setPosition(0.8);//up
+//                robot.Wrist.setPosition(0.08);//down
+//                robot.ClawL.setPosition(0.2);//open
+//                sleep(20);
+//                robot.Wrist.setPosition(0.5);//up
+//                robot.ClawL.setPosition(0.505);//close
+//                robot.Wrist.setPosition(0.8);//up
 
                 turnLeft(0.3, 14.5);
                 moveBackward(0.3, 20);
@@ -354,21 +354,21 @@ public class AutonomousV5 extends LinearOpMode {
 
     public void  dropYellowPixel(){
         if(dropYellowPixelDone == false){
-            robot.Wrist.setPosition(0.08);//down
-            robot.ArmL.setPosition(0.5);
-            robot.ArmR.setPosition(0.5);
-            robot.Wrist.setPosition(0.95);//up
-            robot.ArmL.setPosition(0.95);
-            robot.ArmR.setPosition(0.95);
-            robot.ClawR.setPosition(0.2);//open
-            sleep(20);
-            moveForward(0.3, 4);
-            robot.ClawR.setPosition(0.505);//close
-            robot.ArmL.setPosition(0.5);
-            robot.ArmR.setPosition(0.5);
-            robot.Wrist.setPosition(0.8);//up
-            robot.ArmL.setPosition(0);
-            robot.ArmR.setPosition(0);
+//            robot.Wrist.setPosition(0.08);//down
+//            robot.ArmL.setPosition(0.5);
+//            robot.ArmR.setPosition(0.5);
+//            robot.Wrist.setPosition(0.95);//up
+//            robot.ArmL.setPosition(0.95);
+//            robot.ArmR.setPosition(0.95);
+//            robot.ClawR.setPosition(0.2);//open
+//            sleep(20);
+//            moveForward(0.3, 4);
+//            robot.ClawR.setPosition(0.505);//close
+//            robot.ArmL.setPosition(0.5);
+//            robot.ArmR.setPosition(0.5);
+//            robot.Wrist.setPosition(0.8);//up
+//            robot.ArmL.setPosition(0);
+//            robot.ArmR.setPosition(0);
             moveForward(0.3, 4);
             dropYellowPixelDone=true;
         }else if (dropYellowPixelDone==true){
