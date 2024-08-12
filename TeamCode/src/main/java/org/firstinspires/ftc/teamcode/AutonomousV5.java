@@ -182,10 +182,10 @@ public class AutonomousV5 extends LinearOpMode {
             }
 
             findteamPropLocations();
-            dropPurplePixel();
-            aprilTagOmni();
-            dropYellowPixel();
-            autoParking();
+//            dropPurplePixel();
+//            aprilTagOmni();
+//            dropYellowPixel();
+//            autoParking();
             if(autoParkingDone==true){
                 break;
             }
