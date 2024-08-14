@@ -301,7 +301,7 @@ public class AutonomousV5 extends LinearOpMode {
             if ( teamPropLocations.equals("Left")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
-                strafeLeft(0.3,3);
+                strafeRight(0.3,3);
 //                moveBackward(0.3, 40);
 ////                robot.Wrist.setPosition(0.08);//down
 //                strafeRight(0.3, 12);
@@ -318,7 +318,7 @@ public class AutonomousV5 extends LinearOpMode {
             } else if (teamPropLocations.equals("Right")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
-                strafeRight(0.3,3);
+                strafeLeft(0.3,3);
 //                moveBackward(0.3, 28);
 ////                robot.Wrist.setPosition(0.08);//down
 //                turnLeft(0.3, 14.5);
@@ -333,7 +333,7 @@ public class AutonomousV5 extends LinearOpMode {
             } else if (teamPropLocations.equals("Center")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
-                moveForward(0.3,3);
+                moveBackward(0.3,3);
 //                moveBackward(0.3, 46);
 ////                robot.Wrist.setPosition(0.08);//down
 ////                robot.ClawL.setPosition(0.2);//open
