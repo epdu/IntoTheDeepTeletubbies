@@ -36,8 +36,8 @@ import java.util.concurrent.TimeUnit;
 @Autonomous(name = "Auto VisionPortal V5 recover HSV")
 public class AutonomousV5 extends LinearOpMode {
     HardwarePowerpuffs robot = new HardwarePowerpuffs();   // Use a Powerpuffs's hardware
-    public String allianceColor="red";// "null" for init set to be "red" or "blue" for each match
-    //    public String allianceColor="blue";
+//    public String allianceColor="red";// "null" for init set to be "red" or "blue" for each match
+        public String allianceColor="blue";
     public String parkingSide="right";// "null" for init  set to be "left" or "right" for each match
     //    public String parkingSide="left";
     public double sleepingTime=0.0;// set to be any number if need to avoid collision with alliance
