@@ -302,6 +302,7 @@ public class AutonomousV5 extends LinearOpMode {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
                 strafeRight(0.3,3);
+
 //                moveBackward(0.3, 40);
 ////                robot.Wrist.setPosition(0.08);//down
 //                strafeRight(0.3, 12);
@@ -313,12 +314,14 @@ public class AutonomousV5 extends LinearOpMode {
 //                turnLeft(0.3, 14.5);
 //                moveBackward(0.3, 8);
 //                strafeRight(0.3, 24);
+
                 dropPurplePixelDone = true;
 
             } else if (teamPropLocations.equals("Right")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
                 strafeLeft(0.3,3);
+
 //                moveBackward(0.3, 28);
 ////                robot.Wrist.setPosition(0.08);//down
 //                turnLeft(0.3, 14.5);
@@ -329,11 +332,24 @@ public class AutonomousV5 extends LinearOpMode {
 ////                robot.Wrist.setPosition(0.8);//up
 //                moveBackward(0.3, 8);
 //                strafeLeft(0.3, 4);
+
                 dropPurplePixelDone = true;
             } else if (teamPropLocations.equals("Center")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
-                moveBackward(0.3,3);
+                moveBackward(0.3,31.5);
+                sleep(100);
+                moveForward(0.3, 3);
+                sleep(100);
+                turnRight(0.4, 15.5);
+                sleep(100);
+                moveForward(0.3,24);
+                sleep(100);
+                turnRight(0.3, 15.5);
+                sleep(100);
+                moveForward(0.3, 36);
+
+
 //                moveBackward(0.3, 46);
 ////                robot.Wrist.setPosition(0.08);//down
 ////                robot.ClawL.setPosition(0.2);//open
@@ -346,6 +362,7 @@ public class AutonomousV5 extends LinearOpMode {
 //                moveBackward(0.3, 20);
 //                strafeRight(0.3, 22);
 //                moveForward(0.3, 10);
+
                 dropPurplePixelDone = true;
             }
         }
