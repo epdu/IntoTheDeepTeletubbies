@@ -114,7 +114,7 @@ public class AutonomousV5 extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;
     private OpenCvVisionProcessor redTeamPropOpenCv;
     private OpenCvVisionProcessor blueTeamPropOpenCv;
-    final double DESIRED_DISTANCE = 6.0; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 10.0; //  orignal =6 this is how close the camera should get to the target (inches)
     //  Set the GAIN constants to control the relationship between the measured position error, and how much power is
     //  applied to the drive motors to correct the error.
     //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
@@ -183,12 +183,13 @@ public class AutonomousV5 extends LinearOpMode {
 
             findteamPropLocations();
             dropPurplePixel();
-//            aprilTagOmni();
-//            dropYellowPixel();
+            aprilTagOmni();
+            dropYellowPixel();
+            isStopRequested();
 //            autoParking();
-            if(autoParkingDone==true){
-                break;
-            }
+//            if(autoParkingDone==true){
+//                break;
+//            }
         }
         dashboard.stopCameraStream();
 //        controlHubCam.stopStreaming();
@@ -256,6 +257,8 @@ public class AutonomousV5 extends LinearOpMode {
             if( targetFound==true && abs(drive)<0.1 && abs(strafe)<0.05 && abs(turn)<0.05 ){
                 telemetry.addData("if for break drive", drive);
                 telemetry.update();
+//                sleep(5000);
+//                isStopRequested();
                 break;}  // don't look any further
         }
 //////////////////////
@@ -337,17 +340,20 @@ public class AutonomousV5 extends LinearOpMode {
             } else if (teamPropLocations.equals("Center")) {
                 telemetry.addData("teamPropLocations", teamPropLocations);
                 telemetry.update();
-                moveBackward(0.3,31.5);
+                //drives to the backdrop
+                moveBackward(0.3,31);
                 sleep(100);
                 moveForward(0.3, 3);
                 sleep(100);
-                turnRight(0.4, 15.5);
+                turnRight(0.4, 16.5);
                 sleep(100);
                 moveForward(0.3,24);
                 sleep(100);
-                turnRight(0.3, 15.5);
+                turnRight(0.3, 16.5);
                 sleep(100);
-                moveForward(0.3, 36);
+                moveForward(0.3, 48);
+                sleep(100);
+                turnRight(0.3, 16.5);
 
 
 //                moveBackward(0.3, 46);
@@ -388,7 +394,7 @@ public class AutonomousV5 extends LinearOpMode {
 //            robot.Wrist.setPosition(0.8);//up
 //            robot.ArmL.setPosition(0);
 //            robot.ArmR.setPosition(0);
-            moveForward(0.3, 4);
+//            strafeLeft(0.3, 4);
             dropYellowPixelDone=true;
         }else if (dropYellowPixelDone==true){
             //it`s done
