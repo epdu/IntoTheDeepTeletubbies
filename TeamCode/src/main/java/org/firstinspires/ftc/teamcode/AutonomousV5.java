@@ -114,7 +114,7 @@ public class AutonomousV5 extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;
     private OpenCvVisionProcessor redTeamPropOpenCv;
     private OpenCvVisionProcessor blueTeamPropOpenCv;
-    final double DESIRED_DISTANCE = 10.0; //  orignal =6 this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 6.0; //  orignal =6 this is how close the camera should get to the target (inches)
     //  Set the GAIN constants to control the relationship between the measured position error, and how much power is
     //  applied to the drive motors to correct the error.
     //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
@@ -186,10 +186,10 @@ public class AutonomousV5 extends LinearOpMode {
             aprilTagOmni();
             dropYellowPixel();
             isStopRequested();
-//            autoParking();
-//            if(autoParkingDone==true){
-//                break;
-//            }
+            autoParking();
+            if(autoParkingDone==true){
+                break;
+            }
         }
         dashboard.stopCameraStream();
 //        controlHubCam.stopStreaming();
@@ -394,7 +394,7 @@ public class AutonomousV5 extends LinearOpMode {
 //            robot.Wrist.setPosition(0.8);//up
 //            robot.ArmL.setPosition(0);
 //            robot.ArmR.setPosition(0);
-//            strafeLeft(0.3, 4);
+            strafeLeft(0.3, 4);
             dropYellowPixelDone=true;
         }else if (dropYellowPixelDone==true){
             //it`s done
@@ -485,7 +485,7 @@ public class AutonomousV5 extends LinearOpMode {
                 } else if (teamPropLocations.equals("Center")) {
                     moveForward(0.3, 5);
                     strafeLeft(0.3, 30);
-                    moveBackward(0.3, 10);
+                    moveBackward(0.3, 20);
                     autoParkingDone = true;
 
                 }
