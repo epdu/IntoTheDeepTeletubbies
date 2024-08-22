@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
@@ -17,16 +18,20 @@ public class HardWare {
     public DcMotor LFMotor;
     public DcMotor LBMotor;
 
+    public Servo zero;
+    public Servo one;
+
+
     IMU imu;
 
 
     public void init(HardwareMap ahwMap){
         ahwMap = hwMap;
 
-        RFMotor = hwMap.get(DcMotor.class, "RFMotor");
-        RBMotor = hwMap.get(DcMotor.class, "RBMotor");
-        LFMotor = hwMap.get(DcMotor.class, "LFMotor");
-        LBMotor = hwMap.get(DcMotor.class, "LBMotor");
+        RFMotor = hwMap.get(DcMotor.class, "RFMotor");//exp port 1
+        RBMotor = hwMap.get(DcMotor.class, "RBMotor");//exp port 0
+        LFMotor = hwMap.get(DcMotor.class, "LFMotor");//con port 1
+        LBMotor = hwMap.get(DcMotor.class, "LBMotor");//con port 0
 
         RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -37,6 +42,10 @@ public class HardWare {
         LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+        zero = hwMap.get(Servo.class, "zero");//exp port 0
+        one = hwMap.get(Servo.class, "one");//exp port 1
 
 
         imu = hwMap.get(IMU.class, "imu");
