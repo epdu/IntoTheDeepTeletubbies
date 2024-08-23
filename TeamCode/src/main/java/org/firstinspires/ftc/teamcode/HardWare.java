@@ -22,7 +22,7 @@ public class HardWare {
     public Servo one;
 
 
-    IMU imu;
+//    IMU imu;
 
 
     public void init(HardwareMap ahwMap){
@@ -46,16 +46,15 @@ public class HardWare {
 
         zero = hwMap.get(Servo.class, "zero");//exp port 0
         one = hwMap.get(Servo.class, "one");//exp port 1
-        zero.setPosition(0);
 
 
-        imu = hwMap.get(IMU.class, "imu");
-        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-
-        imu.initialize(parameters);
+//        imu = hwMap.get(IMU.class, "imu");
+//        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+//                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+//                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
+//        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+//
+//        imu.initialize(parameters);
 //        parameters.angleUnit           = IMU.AngleUnit.DEGREES;
 //        parameters.accelUnit           = IMU.AccelUnit.METERS_PERSEC_PERSEC;
 //        parameters.calibrationDataFile = "IMUCalibration.json"; // see the calibration sample opmode
