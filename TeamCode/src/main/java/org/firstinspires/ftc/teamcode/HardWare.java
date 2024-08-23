@@ -26,7 +26,7 @@ public class HardWare {
 
 
     public void init(HardwareMap ahwMap){
-        ahwMap = hwMap;
+         hwMap=ahwMap;
 
         RFMotor = hwMap.get(DcMotor.class, "RFMotor");//exp port 1
         RBMotor = hwMap.get(DcMotor.class, "RBMotor");//exp port 0
@@ -46,6 +46,7 @@ public class HardWare {
 
         zero = hwMap.get(Servo.class, "zero");//exp port 0
         one = hwMap.get(Servo.class, "one");//exp port 1
+        zero.setPosition(0);
 
 
         imu = hwMap.get(IMU.class, "imu");
