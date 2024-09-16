@@ -34,7 +34,7 @@ public class Gyro extends LinearOpMode{
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 //actions or stuff to do in the program
-        final int STAGE = 1;
+        final int STAGE = 2;
 //        final int STAGE = 2;
         if (STAGE == 1) {
             turn(90);
@@ -141,7 +141,7 @@ get robots angle and set that to the first angle
         // Checking lastSlope to make sure that it's not oscillating when it quits
         while (Math.abs(targetAngle - getAbsoluteAngle()) > 0.5 || pid.getLastSlope() > 0.75) {
             double motorPower = pid.update(getAbsoluteAngle());
-            robot.setMotorPower(-motorPower, +motorPower, -motorPower, motorPower);
+            robot.setMotorPower(-motorPower*0.6, +motorPower*0.6, -motorPower*0.6, motorPower*0.6);
 /*
 if the absoulute value of the target angle-the absoulute angle>0.5 AND the last slope >0.75 then
 new varaible mototPower,, pid new value absoulute angle=motor power
