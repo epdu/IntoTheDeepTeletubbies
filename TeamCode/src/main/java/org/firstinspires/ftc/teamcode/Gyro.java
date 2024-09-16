@@ -34,8 +34,8 @@ public class Gyro extends LinearOpMode{
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 //actions or stuff to do in the program
-//        final int STAGE = 1;
-        final int STAGE = 2;
+        final int STAGE = 1;
+//        final int STAGE = 2;
         if (STAGE == 1) {
             turn(90);
             sleep(3000);
@@ -47,7 +47,7 @@ public class Gyro extends LinearOpMode{
 
     // resets currAngle Value
     public void resetAngle() {
-        lastAngles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        lastAngles = robot.imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         currAngle = 0;
         //changes the last angle measureed to 0
     }
@@ -55,7 +55,7 @@ public class Gyro extends LinearOpMode{
     public double getAngle() {
 
         // Get current orientation
-        Orientation orientation = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        Orientation orientation = robot.imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         // Change in angle = current angle - previous angle,     helps it to the angles
         double deltaAngle = orientation.firstAngle - lastAngles.firstAngle;
@@ -92,7 +92,7 @@ and then stop
 */
         while (opModeIsActive() && Math.abs(error) > 2) {
             double motorPower = (error < 0 ? -0.3 : 0.3);
-            robot.setMotorPower(-motorPower, motorPower, -motorPower, motorPower);
+            robot.setMotorPower(-motorPower, +motorPower, -motorPower, +motorPower);
             error = degrees - getAngle();
             telemetry.addData("error", error);
             telemetry.update();
@@ -103,7 +103,7 @@ and then stop
 
     public void turnTo(double degrees){
 
-        Orientation orientation = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        Orientation orientation = robot.imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 /*
 new variable error. error = degrees- robots initial angle
 if angle(error)>180 then error=360-angle(error)
@@ -127,7 +127,7 @@ turn(degrees=error)
 /*
 get robots angle and set that to the first angle
  */
-        return robot.imu.getAngularOrientation(
+        return robot.imu.getRobotOrientation(
                 AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES
         ).firstAngle;
     }
@@ -141,7 +141,7 @@ get robots angle and set that to the first angle
         // Checking lastSlope to make sure that it's not oscillating when it quits
         while (Math.abs(targetAngle - getAbsoluteAngle()) > 0.5 || pid.getLastSlope() > 0.75) {
             double motorPower = pid.update(getAbsoluteAngle());
-            robot.setMotorPower(-motorPower, motorPower, -motorPower, motorPower);
+            robot.setMotorPower(-motorPower, +motorPower, -motorPower, motorPower);
 /*
 if the absoulute value of the target angle-the absoulute angle>0.5 AND the last slope >0.75 then
 new varaible mototPower,, pid new value absoulute angle=motor power
