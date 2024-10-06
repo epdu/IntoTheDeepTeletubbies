@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@TeleOp
 public class MecanumDrive extends LinearOpMode {
     DcMotor LFMotor;
     DcMotor LBMotor;
@@ -43,10 +45,10 @@ public class MecanumDrive extends LinearOpMode {
         double br = y + x - rx;
 
 
-        LFMotor.setPower(fl*0.5);
-        LBMotor.setPower(bl*0.5);
-        RFMotor.setPower(fr*0.5);
-        RBMotor.setPower(br*0.5);
+        LFMotor.setPower(fl*0.3);
+        LBMotor.setPower(bl*0.3);
+        RFMotor.setPower(fr*0.3);
+        RBMotor.setPower(br*0.3);
 
 
     }
