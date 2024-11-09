@@ -39,16 +39,17 @@ public class MecanumDrive extends LinearOpMode {
 
 
 
+
         double fl = y + x + rx;
         double bl = y - x + rx;
         double fr = y - x - rx;
         double br = y + x - rx;
 
 
-        LFMotor.setPower(fl*0.3);
-        LBMotor.setPower(bl*0.3);
-        RFMotor.setPower(fr*0.3);
-        RBMotor.setPower(br*0.3);
+        LFMotor.setPower(fl*1);
+        LBMotor.setPower(bl*1);
+        RFMotor.setPower(fr*1);
+        RBMotor.setPower(br*1);
 
 
     }
