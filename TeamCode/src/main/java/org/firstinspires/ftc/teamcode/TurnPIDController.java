@@ -11,7 +11,6 @@ public class TurnPIDController {
     private double accumulatedError = 0;
     private double lastTime = -1;
     private double lastSlope = 0;
-
     public TurnPIDController(double target, double p, double i, double d) {
         kP = p;
         kI = i;
