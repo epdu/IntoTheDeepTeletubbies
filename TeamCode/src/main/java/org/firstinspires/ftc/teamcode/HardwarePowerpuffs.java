@@ -158,11 +158,14 @@
 //
 ////
 
+               //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
+               // REV control hub build in imu
+
 
                imu = hwMap.get(IMU.class, "imu");
                IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                       RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                       RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
+                       RevHubOrientationOnRobot.LogoFacingDirection.LEFT,
+                       RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
                double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
 
                imu.initialize(parameters);

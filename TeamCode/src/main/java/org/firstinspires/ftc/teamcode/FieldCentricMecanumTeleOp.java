@@ -31,6 +31,9 @@ public class FieldCentricMecanumTeleOp extends LinearOpMode {
 //       LBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Retrieve the IMU from the hardware map
+        //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
+        // REV control hub build in imu
+        //     IMU imu = hardwareMap.get(IMU.class, "imuinternal");
         IMU imu = hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
