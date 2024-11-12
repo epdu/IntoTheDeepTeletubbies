@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-@TeleOp(name = "FtcOrientationTeleOpTeletubbies")
+@TeleOp(name = "A FtcOrientationTeleOpTeletubbies")
 public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER =  0.5 ;
     HardwareTeletubbies robot = new HardwareTeletubbies();
