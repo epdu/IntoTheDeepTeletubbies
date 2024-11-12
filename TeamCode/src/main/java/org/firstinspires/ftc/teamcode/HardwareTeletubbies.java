@@ -45,6 +45,7 @@
            public DcMotor LBMotor;
            public DcMotor liftMotorL;
            public DcMotor liftMotorR;
+           public Servo Claw;
            public Servo ClawR;
            public Servo ClawL;
            public Servo Wrist;
@@ -52,6 +53,7 @@
            public Servo ArmL;
  //          public Servo Drone;
            IMU imu;
+           public static final double DriveTrains_POWER       =  0.5 ;
            public static final double MID_SERVO       =  0.5 ;
            public static final double ARM_UP_POWER    =  0.45 ;
            public static final double ARM_DOWN_POWER  = -0.45 ;
@@ -93,7 +95,13 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//
+               Claw = hwMap.get(Servo.class, "Claw");//control hub port X
+               Claw.setPosition(0.71);
+               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+               Wrist.setPosition(0.8);
+
+////        ClawL.setDirection(Servo.Direction.REVERSE);
+               //
 //               Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
 //               Drone.setPosition(0);
 //               ClawR = hwMap.get(Servo.class, "ClawR");//control hub port 2
@@ -135,10 +143,10 @@
            //Set power to all motors
 
            public void setMotorPower(double lF, double rF, double lB, double rB){
-               LFMotor.setPower(lF);
-               LBMotor.setPower(lB);
-               RBMotor.setPower(rB);
-               RFMotor.setPower(rF);
+               LFMotor.setPower(lF*DriveTrains_POWER);
+               LBMotor.setPower(lB*DriveTrains_POWER);
+               RBMotor.setPower(rB*DriveTrains_POWER);
+               RFMotor.setPower(rF*DriveTrains_POWER);
            }
            public void setAllPower(double p){
                setMotorPower(p,p,p,p);
