@@ -41,7 +41,7 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-            liftArmHigh();
+         //   liftArmHigh();
             moveDriveTrain();
             if (gamepad1.right_trigger > 0.3) { //open
            //     robot.Claw.setPosition(0.5);
@@ -87,19 +87,19 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
         robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
 
     }
-    public void liftArmHigh () {
-        double liftArm_y = -gamepad2.left_stick_y;
-        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.liftMotorL.setPower(liftArm_y*0.5);
-        robot.liftMotorR.setPower(liftArm_y*0.5);
-        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        //up joystick makes the slides rotate clockwise on the out right side
-        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+//    public void liftArmHigh () {
+//        double liftArm_y = -gamepad2.left_stick_y;
+//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        robot.liftMotorL.setPower(liftArm_y*0.5);
+//        robot.liftMotorR.setPower(liftArm_y*0.5);
+//        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        //up joystick makes the slides rotate clockwise on the out right side
+//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+//    }
+//
 
-
-    }
 }
 
 
