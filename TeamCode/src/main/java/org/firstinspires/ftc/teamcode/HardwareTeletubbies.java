@@ -43,9 +43,10 @@
            public DcMotor LFMotor;
            public DcMotor RBMotor;
            public DcMotor LBMotor;
+           public Servo Claw;
 //           public DcMotor liftMotorL;
 //           public DcMotor liftMotorR;
-//           public Servo Claw;
+
 //           public Servo ClawR;
 //           public Servo ClawL;
 //           public Servo Wrist;
@@ -95,8 +96,8 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//               Claw = hwMap.get(Servo.class, "Claw");//control hub port X
-//               Claw.setPosition(0.71);
+               Claw = hwMap.get(Servo.class, "Claw");//control hub port 0
+               Claw.setPosition(0.71);
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
 //               Wrist.setPosition(0.8);
 
