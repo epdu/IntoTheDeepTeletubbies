@@ -44,26 +44,26 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
             liftArmHigh();
             moveDriveTrain();
             if (gamepad1.right_trigger > 0.3) { //open
-                robot.Claw.setPosition(0.5);
+           //     robot.Claw.setPosition(0.5);
             }if (gamepad1.left_trigger > 0.3) { //close
-                robot.Claw.setPosition(0.72);
+             //   robot.Claw.setPosition(0.72);
 
 
             }if (gamepad2.a  && !move) { //down
-                robot.Wrist.setPosition(1);
-                robot.ArmL.setPosition(0.927);
+               // robot.Wrist.setPosition(1);
+              //  robot.ArmL.setPosition(0.927);
             }
             if (gamepad2.y && !move) { // up
-                robot.ArmL.setPosition(0.1);
-                robot.Wrist.setPosition(0);
+                //robot.ArmL.setPosition(0.1);
+                //robot.Wrist.setPosition(0);
 
             }
             if (gamepad2.b && !move) { //up
-                robot.Wrist.setDirection(Servo.Direction.REVERSE);
-                robot.Wrist.setPosition(0);
+                //robot.Wrist.setDirection(Servo.Direction.REVERSE);
+                //robot.Wrist.setPosition(0);
             }
             if (gamepad2.x && !move) { //down
-                robot.Wrist.setPosition(1);
+                //robot.Wrist.setPosition(1);
             }
             //for up
 

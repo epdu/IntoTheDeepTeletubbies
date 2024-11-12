@@ -43,15 +43,15 @@
            public DcMotor LFMotor;
            public DcMotor RBMotor;
            public DcMotor LBMotor;
-           public DcMotor liftMotorL;
-           public DcMotor liftMotorR;
-           public Servo Claw;
-           public Servo ClawR;
-           public Servo ClawL;
-           public Servo Wrist;
-           public Servo ArmR;
-           public Servo ArmL;
- //          public Servo Drone;
+//           public DcMotor liftMotorL;
+//           public DcMotor liftMotorR;
+//           public Servo Claw;
+//           public Servo ClawR;
+//           public Servo ClawL;
+//           public Servo Wrist;
+//           public Servo ArmR;
+//           public Servo ArmL;
+// //          public Servo Drone;
            IMU imu;
            public static final double DriveTrains_POWER       =  0.5 ;
            public static final double MID_SERVO       =  0.5 ;
@@ -95,10 +95,10 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               Claw = hwMap.get(Servo.class, "Claw");//control hub port X
-               Claw.setPosition(0.71);
-               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
-               Wrist.setPosition(0.8);
+//               Claw = hwMap.get(Servo.class, "Claw");//control hub port X
+//               Claw.setPosition(0.71);
+//               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               Wrist.setPosition(0.8);
 
 ////        ClawL.setDirection(Servo.Direction.REVERSE);
                //
