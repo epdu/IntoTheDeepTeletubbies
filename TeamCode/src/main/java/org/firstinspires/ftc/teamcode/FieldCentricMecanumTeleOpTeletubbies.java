@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp(name = "A FieldCentricMecanumTeleOpTeletubbies")
 public class FieldCentricMecanumTeleOpTeletubbies extends LinearOpMode {
-    public static final double DriveTrains_ReducePOWER =  0.5 ;
+    public static final double DriveTrains_ReducePOWER =  0.9 ;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     @Override
