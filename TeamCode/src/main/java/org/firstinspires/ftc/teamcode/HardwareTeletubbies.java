@@ -106,7 +106,7 @@
 //               V4BL.setDirection(Servo.Direction.REVERSE);
 //               V4BL.setPosition(0.8);//  good
  //              V4BR.setPosition(0.8);// wrist good
-              Wrist.setPosition(0.52);// wrist good
+              Wrist.setPosition(0.5);// wrist good
 //                Claw.setPosition(0.9);// 3 prong claw good-
 
 
