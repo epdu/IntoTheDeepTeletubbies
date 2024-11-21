@@ -97,7 +97,7 @@
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                Claw = hwMap.get(Servo.class, "Claw");//control hub port 0
-               Claw.setPosition(0.5);// wrist
+               Claw.setPosition(0.52);// wrist
                //Claw.setPosition(0.828);// loony claw -
 //                Claw.setPosition(0.85);// 3 prong claw -
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
