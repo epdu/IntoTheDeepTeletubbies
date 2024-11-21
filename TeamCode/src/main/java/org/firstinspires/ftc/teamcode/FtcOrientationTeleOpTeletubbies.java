@@ -48,7 +48,8 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
  //               robot.V4BL.setPosition(0.2); //  V4B put down
  //               robot.V4BR.setPosition(0.2); //V4B put down
 //                robot.Wrist.setPosition(0.8); // WRIST left 45 degree
-                robot.Claw.setPosition(0.6); // 3 prong claw -open good
+ //               robot.Claw.setPosition(0.7); // too big opening 3 prong claw -open good
+                robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
                 // robot.Claw.setPosition(0.6); // loony claw -open good
             }if (gamepad1.right_trigger > 0.4) { //close
   //              robot.V4BL.setPosition(0.8); // V4BL.setPosition(0.8) they are always the same value V4B rise up
