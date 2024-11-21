@@ -104,7 +104,7 @@
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
                V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
                V4BL.setDirection(Servo.Direction.REVERSE);
-               V4BL.setPosition(0.2);//  good
+               V4BL.setPosition(0.8);//  good
  //              V4BR.setPosition(0.8);// wrist good
  //              Wrist.setPosition(0.52);// wrist good
                //Claw.setPosition(0.828);// loony claw good-
