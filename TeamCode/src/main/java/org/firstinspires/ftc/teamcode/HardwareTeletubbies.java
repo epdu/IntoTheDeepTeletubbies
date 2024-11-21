@@ -44,12 +44,15 @@
            public DcMotor RBMotor;
            public DcMotor LBMotor;
            public Servo Claw;
+           public Servo V4BL;
+           public Servo V4BR;
+//           public Servo ArmL;
 //           public DcMotor liftMotorL;
 //           public DcMotor liftMotorR;
 
 //           public Servo ClawR;
 //           public Servo ClawL;
-//           public Servo Wrist;
+           public Servo Wrist;
 //           public Servo ArmR;
 //           public Servo ArmL;
 // //          public Servo Drone;
@@ -96,10 +99,17 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               Claw = hwMap.get(Servo.class, "Claw");//control hub port 0
-               Claw.setPosition(0.52);// wrist
-               //Claw.setPosition(0.828);// loony claw -
-//                Claw.setPosition(0.85);// 3 prong claw -
+//               Claw = hwMap.get(Servo.class, "Claw");//control hub port 0 good
+                 Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
+//               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
+//               V4BL.setDirection(Servo.Direction.REVERSE);
+               Wrist.setPosition(0.52);// wrist good
+               //Claw.setPosition(0.828);// loony claw good-
+//                Claw.setPosition(0.85);// 3 prong claw good-
+
+
+
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
 //               Wrist.setPosition(0.8);
 
