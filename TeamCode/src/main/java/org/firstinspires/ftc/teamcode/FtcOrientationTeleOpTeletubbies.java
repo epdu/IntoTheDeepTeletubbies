@@ -10,6 +10,12 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     boolean move = false;
+    //    private static final int POSITION_Y = -600;
+    private static final int POSITION_Y = 1600;//horizontal  slides all the way out
+    private static final int POSITION_A = 100; // horizontal  slides all the way in
+    private static final int POSITION_PrepareForPicking = 1600; //horizontal  slides all the way out
+    private static final double SLIDE_POWER = 0.8; // Adjust as needed
+
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
@@ -72,7 +78,18 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
             }
             if (gamepad2.x && !move) { //down
                 //robot.Wrist.setPosition(1);
+            }if (gamepad2.a && !move) { //all the way in
+ //               moveHSlideToPosition(POSITION_A);
+                moveVSlideToPosition(POSITION_A);
             }
+            if (gamepad2.y && !move) { // out controlled
+ //               moveHSlideToPosition(POSITION_Y);
+                moveVSlideToPosition(POSITION_Y);
+            }
+            if (gamepad2.dpad_left && !move) { //out controlled
+                moveHSlideToPosition(POSITION_PrepareForPicking);
+            }
+
             //for up
 
 
@@ -95,18 +112,60 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
         robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
 
     }
-//    public void liftArmHigh () {
-//        double liftArm_y = -gamepad2.left_stick_y;
-//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.liftMotorL.setPower(liftArm_y*0.5);
-//        robot.liftMotorR.setPower(liftArm_y*0.5);
-//        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        //up joystick makes the slides rotate clockwise on the out right side
-//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
-//    }
-//
+    private void moveHSlideToPosition ( int targetPosition){
+//            robot.liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//            robot.liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        telemetry.addData("targetPosition", targetPosition);
+        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
+        telemetry.update();
+        robot.HSMotor.setTargetPosition(-targetPosition);
+         robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.HSMotor.setPower(+SLIDE_POWER);
+
+        move = true;
+
+        while (robot.HSMotor.isBusy() &&  move) {
+            // Wait until the motor reaches the target position
+        }
+
+        robot.HSMotor.setPower(0);
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        move = false;
+    }
+
+    private void moveVSlideToPosition ( int targetPosition){
+//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        telemetry.addData("targetPosition", targetPosition);
+       // telemetry.addData("liftMotorR.getCurrentPosition()",robot.VSMotorL.getCurrentPosition());
+       telemetry.addData("liftMotorR.getCurrentPosition()",robot.VSMotorR.getCurrentPosition());
+        telemetry.update();
+     //   robot.VSMotorL.setTargetPosition(-targetPosition);
+        robot.VSMotorR.setTargetPosition(-targetPosition);
+     //   robot.VSMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+     //   robot.VSMotorL.setPower(+SLIDE_POWER);
+        robot.VSMotorR.setPower(+SLIDE_POWER);
+
+        move = true;
+
+//        while (robot.VSMotorL.isBusy() && robot.VSMotorR.isBusy() && move) {
+//            // Wait until the motor reaches the target position
+//        }
+        while (robot.VSMotorR.isBusy() && move) {
+            // Wait until the motor reaches the target position
+        }
+
+ //       robot.VSMotorL.setPower(0);
+        robot.VSMotorR.setPower(0);
+   //     robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+   robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        move = false;
+    }
 
 }
 

@@ -44,15 +44,20 @@
            public DcMotor RBMotor;
            public DcMotor LBMotor;
            public Servo Claw;
+           public Servo Wrist;
            public Servo V4BL;
            public Servo V4BR;
+           public DcMotor HSMotor; //horizontal Slides motor  extruder
+           public DcMotor VSMotorL; //vertical Slides motor left
+           public DcMotor VSMotorR; //vertical Slides motor right
+
 //           public Servo ArmL;
 //           public DcMotor liftMotorL;
 //           public DcMotor liftMotorR;
 
 //           public Servo ClawR;
 //           public Servo ClawL;
-           public Servo Wrist;
+
 //           public Servo ArmR;
 //           public Servo ArmL;
 // //          public Servo Drone;
@@ -82,7 +87,22 @@
                LBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
                RBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-//               liftMotorL = hwMap.get(DcMotor.class, "liftMotorL");//02022024 control hub? port 1
+//               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub? port 4
+//               int positionH = HSMotor.getCurrentPosition();
+//               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub? port 4
+//               int positionVL = VSMotorL.getCurrentPosition();
+//               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
+
+               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub? port 4
+               int positionVR = VSMotorR.getCurrentPosition();
+               VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+
+
+
+//               liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//               liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //               liftMotorR = hwMap.get(DcMotor.class, "liftMotorR");//02022024 control hub? port 0
 //               int positionL = liftMotorL.getCurrentPosition();
 //               int positionR = liftMotorR.getCurrentPosition();
@@ -93,6 +113,7 @@
 //               liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                // Set all motors to zero power
                setAllPower(0);
+
                // Set all motors to run without encoders.
                // May want to use RUN_USING_ENCODERS if encoders are installed.
                LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -100,13 +121,13 @@
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 //               Claw = hwMap.get(Servo.class, "Claw");//control hub port 0 good
-               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
 //               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
 //               V4BL.setDirection(Servo.Direction.REVERSE);
 //               V4BL.setPosition(0.8);//  good
  //              V4BR.setPosition(0.8);// wrist good
-              Wrist.setPosition(0.5);// wrist good
+ //             Wrist.setPosition(0.5);// wrist good
 //                Claw.setPosition(0.9);// 3 prong claw good-
 
 
