@@ -50,6 +50,8 @@
            public DcMotor HSMotor; //horizontal Slides motor  extruder
            public DcMotor VSMotorL; //vertical Slides motor left
            public DcMotor VSMotorR; //vertical Slides motor right
+           public Servo ArmL;
+           public Servo ArmR;
 
 //           public Servo ArmL;
 //           public DcMotor liftMotorL;
@@ -105,14 +107,14 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//               Claw = hwMap.get(Servo.class, "Claw");//control hub port 0 good
+               Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
                Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
-//               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
-//               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
-//               V4BL.setDirection(Servo.Direction.REVERSE);
-//               V4BL.setPosition(0.2);//  good
-//               V4BR.setPosition(0.2);//
-              Wrist.setPosition(0.5);// wrist good
+               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
+               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
+               V4BL.setDirection(Servo.Direction.REVERSE);
+//               V4BL.setPosition(0.32);//  good
+//               V4BR.setPosition(0.32);//
+ //             Wrist.setPosition(0.5);// wrist good
 //                Claw.setPosition(0.9);// 3 prong claw good-
 
 
@@ -136,9 +138,9 @@
 //               Wrist = hwMap.get(Servo.class, "wrist");//control hub port 5
 //               Wrist.setPosition(0.8);
 ////        Wrist.setPosition(0.34);
-//               ArmL = hwMap.get(Servo.class, "ArmL");//control hub port 1
-//               ArmR = hwMap.get(Servo.class, "ArmR");//control hub port 0
-//               ArmL.setDirection(Servo.Direction.REVERSE);
+//               ArmL = hwMap.get(Servo.class, "ArmL");
+//               ArmR = hwMap.get(Servo.class, "ArmR");
+//               ArmL.setDirection(Servo.Direction.REVERSE);0000
 
                //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
                // REV control hub build in imu
@@ -146,7 +148,7 @@
 
                imu = hwMap.get(IMU.class, "imu");
                IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                       RevHubOrientationOnRobot.LogoFacingDirection.LEFT,
+                       RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
                        RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
                double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
 

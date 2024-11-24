@@ -2,20 +2,19 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
-@TeleOp(name = "A FtcOrientationTeleOpTeletubbies")
-public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
-    public static final double DriveTrains_ReducePOWER =  0.5 ;
+
+@TeleOp(name = "IntoTheDeepTeleOpTeletubbies")
+public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
+    public static final double DriveTrains_ReducePOWER =  0.75 ;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     boolean move = false;
     //    private static final int POSITION_Y = -600;
     private static final int POSITION_A_IN = 100; // horizontal  slides all the way in
     private static final int POSITION_Y_EXTRUDE = 800;//horizontal  slides all the way out
-    private static final int POSITION_Y_EXTRUDE_MORE = 1000; //horizontal  slides all the way out
+    private static final int POSITION_X_EXTRUDE_MORE = 1000; //horizontal  slides all the way out
     private static final int POSITION_A_BOTTOM = 100; //horizontal  slides all the way out
-    private static final int POSITION_Y_LOW = 800; // horizontal  slides all the way in
+    private static final int POSITION_X_LOW = 800; // horizontal  slides all the way in
     private static final int POSITION_Y_HIGH = 1600;//horizontal  slides all the way out
 
 
@@ -53,41 +52,76 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-         //   liftArmHigh();
+//            liftVertSlidesHigh();
             moveDriveTrain();
             // 3 prong claw
             if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.V4BL.setPosition(0.8); //  V4B put down
 //               robot.V4BR.setPosition(0.8); //V4B put down
-                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
-
-//                robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
-                // robot.Claw.setPosition(0.6); // loony claw -open good
+//                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
+                robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
+//                 robot.Claw.setPosition(0.6); // loony claw -open good
          //       robot.Wrist.setPosition(0.8); // WRIST left 45 degree
-            }if (gamepad1.right_trigger > 0.4) { //close
+            }if (gamepad1.right_trigger > 0.3) { //close
 //                robot.V4BL.setPosition(0.2); // V4BL.setPosition(0.2) they are always the same value V4B rise up
 //                robot.V4BR.setPosition(0.2); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
-               robot.Wrist.setPosition(0.35); // WRIST right 45 degree
-//                robot.Claw.setPosition(0.9); // 3 prong claw -close good
-                // robot.Claw.setPosition(0.828); // loony claw -close 835  max good
+//               robot.Wrist.setPosition(0.35); // WRIST right 45 degree
+                robot.Claw.setPosition(0.9); // 3 prong claw -close good
+//                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
          //       robot.Wrist.setPosition(0.2); // WRIST right 45 degree
 
-            }if (gamepad2.a  && !move) { //down
-               // robot.Wrist.setPosition(1);
-              //  robot.ArmL.setPosition(0.927);
+            }if (gamepad1.a  && !move) { //down
+                robot.V4BL.setPosition(0.49); //  V4B put down
+                robot.V4BR.setPosition(0.49); //V4B put down
+                // robot.Wrist.setPosition(1);
+                //  robot.ArmL.setPosition(0.927);
             }
             if (gamepad2.y && !move) { // up
+                robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
+                robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
                 //robot.ArmL.setPosition(0.1);
                 //robot.Wrist.setPosition(0);
-
             }
-            if (gamepad2.b && !move) { //up
+            if (gamepad1.b && !move) { //right
+                robot.Wrist.setPosition(0.35); // WRIST right 45 degree
                 //robot.Wrist.setDirection(Servo.Direction.REVERSE);
                 //robot.Wrist.setPosition(0);
             }
-            if (gamepad2.x && !move) { //down
+            if (gamepad1.x && !move) { //left
+                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
                 //robot.Wrist.setPosition(1);
-            }//if (gamepad2.a && !move) { //all the way in
+            }
+            if (gamepad1.right_bumper && !move) { //left
+                robot.Wrist.setPosition(0.5); // WRIST left 45 degree
+                //robot.Wrist.setPosition(1);
+            }
+            if (gamepad2.a && !move) { //left
+                robot.V4BL.setPosition(0.4);
+                robot.V4BR.setPosition(0.4);
+
+            }
+
+
+//            if (gamepad2.left_trigger > 0.3) { //down
+//            robot.ArmL.setPosition(0);
+//            robot.ArmR.setPosition(0);
+//               // robot.Wrist.setPosition(1);
+//              //  robot.ArmL.setPosition(0.927);
+//            }
+//            if (gamepad2.right_trigger > 0.3) { // up
+//                robot.ArmL.setPosition(0.8);
+//                robot.ArmR.setPosition(0.8);
+//                //robot.ArmL.setPosition(0.1);
+//                //robot.Wrist.setPosition(0);
+//            }
+
+//            if (gamepad2.b && !move) { //up
+//                //robot.Wrist.setDirection(Servo.Direction.REVERSE);
+//                //robot.Wrist.setPosition(0);
+//            }
+//
+
+//            if (gamepad2.a && !move) { //all the way in
 // //               moveHSlideToPosition(POSITION_A_IN);
 //                moveVSlideToPosition(POSITION_A_BOTTOM);
 //            }
@@ -95,9 +129,9 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
 // //               moveHSlideToPosition(POSITION_Y_EXTRUDE);
 //                moveVSlideToPosition(POSITION_Y_HIGH);
 //            }
-//            if (gamepad2.dpad_left && !move) { //out controlled
-//                moveHSlideToPosition(POSITION_Y_EXTRUDE_MORE);
-//                moveVSlideToPosition(POSITION_Y_LOW);
+//            if (gamepad2.x && !move) { //out controlled
+//                moveHSlideToPosition(POSITION_X_EXTRUDE_MORE);
+//                moveVSlideToPosition(POSITION_X_LOW);
 //            }
  //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
 
@@ -113,7 +147,7 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
     public void moveDriveTrain() {
         double y = gamepad1.left_stick_y;
         double x =- gamepad1.left_stick_x;
-        double rx = -gamepad1.right_stick_x;
+        double rx = (-gamepad1.right_stick_x*0.5);
         double fl = y + x + rx;
         double bl = y - x + rx;
         double fr = y - x - rx;
@@ -175,6 +209,20 @@ public class FtcOrientationTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         move = false;
+    }
+
+    public void liftVertSlidesHigh () {
+        double liftVertSlides_y = -gamepad2.left_stick_y;
+        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.VSMotorL.setPower(liftVertSlides_y*0.45);
+        robot.VSMotorR.setPower(liftVertSlides_y*0.45);
+        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        //up joystick makes the slides rotate clockwise on the out right side
+        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+
+
     }
 
 }
