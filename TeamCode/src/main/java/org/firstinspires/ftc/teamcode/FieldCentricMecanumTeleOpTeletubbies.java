@@ -9,9 +9,14 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name = "A FieldCentricMecanumTeleOpTeletubbies")
+@TeleOp(name = "FieldCentricMecanumTeleOpTeletubbies")
 public class FieldCentricMecanumTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER =  0.9 ;
+    private static final int POSITION_Y = 1600;//1322 //1000 one stage
+    private static final int POSITION_A = 100;
+    private static final int POSITION_PrepareForHing = 1600;
+    private static final int POSITION_ForHing = 400;
+    private static final double SLIDE_POWER = 0.8; // Adjust as needed
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     @Override

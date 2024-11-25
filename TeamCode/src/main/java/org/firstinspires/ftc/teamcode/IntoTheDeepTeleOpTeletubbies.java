@@ -3,102 +3,57 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "IntoTheDeepTeleOpTeletubbies")
+@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 11252024")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER =  0.75 ;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     boolean move = false;
-    //    private static final int POSITION_Y = -600;
-    private static final int POSITION_A_IN = 100; // horizontal  slides all the way in
-    private static final int POSITION_Y_EXTRUDE = 800;//horizontal  slides all the way out
-    private static final int POSITION_X_EXTRUDE_MORE = 1000; //horizontal  slides all the way out
-    private static final int POSITION_A_BOTTOM = 100; //horizontal  slides all the way out
-    private static final int POSITION_X_LOW = 800; // horizontal  slides all the way in
-    private static final int POSITION_Y_HIGH = 1600;//horizontal  slides all the way out
-
-
+   private static final int POSITION_A_IN = 100; // horizontal slides all the way in
+    private static final int POSITION_Y_EXTRUDE = 800;//horizontal slides  out
+    private static final int POSITION_X_EXTRUDE_MORE = 1000; //horizontal slides all the way out
+    private static final int POSITION_A_BOTTOM = 100; //horizontal  slides all the way in
+    private static final int POSITION_X_LOW = 800; // horizontal  slides up
+    private static final int POSITION_Y_HIGH = 1600;//horizontal  slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.6; // Adjust as needed
 
-
     @Override public void runOpMode() {
         robot.init(hardwareMap);
-//        robot.LFMotor = hardwareMap.dcMotor.get("LFMotor"); //control hub port 1
-//        robot.LBMotor = hardwareMap.dcMotor.get("LBMotor"); //control hub port 0
-//        robot.RFMotor = hardwareMap.dcMotor.get("RFMotor"); // expansion hub port 1
-//        robot.RBMotor = hardwareMap.dcMotor.get("RBMotor"); // expansion hub port 0
-//        robot.RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-//        robot.RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-//        robot.liftMotorL = hardwareMap.get(DcMotor.class, "liftMotorL"); //control hub ort 2
-//        robot.liftMotorR = hardwareMap.get(DcMotor.class, "liftMotorR");
-//        int positionL = robot.liftMotorL.getCurrentPosition();
-//        int positionR = robot.liftMotorR.getCurrentPosition();
-//        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        robot.liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        robot.liftMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
-//        robot.Claw = hardwareMap.servo.get("Claw"); // expansion hub servo port 2
-//        robot.Claw.setPosition(0.72);
-//        robot.ArmR = hardwareMap.servo.get("ArmR"); // expansion hub servo port 0
-//        robot.ArmL = hardwareMap.servo.get("ArmL"); // expansion hub servo port 1
-//        robot.ArmL.setDirection(Servo.Direction.REVERSE);
-//        robot.ArmL.setPosition(0.927);
-//        robot.Wrist = hardwareMap.servo.get("Wrist"); // expansion hub servo port 3
-//        robot.Wrist.setPosition(1);
-//        robot.Wrist.setDirection(Servo.Direction.REVERSE);
+
         waitForStart();
 
-
         while (opModeIsActive()) {
-//            liftVertSlidesHigh();
+
             moveDriveTrain();
             // 3 prong claw
             if (gamepad1.left_trigger > 0.3 ) { //open
-//                robot.V4BL.setPosition(0.8); //  V4B put down
-//               robot.V4BR.setPosition(0.8); //V4B put down
-//                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
                 robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
-         //       robot.Wrist.setPosition(0.8); // WRIST left 45 degree
+
             }if (gamepad1.right_trigger > 0.3) { //close
-//                robot.V4BL.setPosition(0.2); // V4BL.setPosition(0.2) they are always the same value V4B rise up
-//                robot.V4BR.setPosition(0.2); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
-//               robot.Wrist.setPosition(0.35); // WRIST right 45 degree
                 robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
-         //       robot.Wrist.setPosition(0.2); // WRIST right 45 degree
-
             }if (gamepad1.a  && !move) { //down
                 robot.V4BL.setPosition(0.49); //  V4B put down
                 robot.V4BR.setPosition(0.49); //V4B put down
-                // robot.Wrist.setPosition(1);
-                //  robot.ArmL.setPosition(0.927);
             }
             if (gamepad2.y && !move) { // up
                 robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
                 robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
-                //robot.ArmL.setPosition(0.1);
-                //robot.Wrist.setPosition(0);
             }
             if (gamepad1.b && !move) { //right
                 robot.Wrist.setPosition(0.35); // WRIST right 45 degree
-                //robot.Wrist.setDirection(Servo.Direction.REVERSE);
-                //robot.Wrist.setPosition(0);
             }
             if (gamepad1.x && !move) { //left
                 robot.Wrist.setPosition(0.65); // WRIST left 45 degree
-                //robot.Wrist.setPosition(1);
             }
             if (gamepad1.right_bumper && !move) { //left
                 robot.Wrist.setPosition(0.5); // WRIST left 45 degree
-                //robot.Wrist.setPosition(1);
             }
             if (gamepad2.a && !move) { //left
                 robot.V4BL.setPosition(0.4);
                 robot.V4BR.setPosition(0.4);
-
             }
 
 
