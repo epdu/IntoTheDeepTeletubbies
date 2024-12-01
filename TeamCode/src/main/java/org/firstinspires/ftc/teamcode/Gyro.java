@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 public class Gyro extends LinearOpMode{
 
     /* Declare OpMode members. */
-    HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
+    HardwareTeletubbies         robot   = new HardwareTeletubbies();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
