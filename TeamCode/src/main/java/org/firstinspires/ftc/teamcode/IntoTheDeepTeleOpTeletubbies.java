@@ -34,20 +34,33 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain();
             // 3 prong claw
             telemetry.addData("Servo Position before if ", servoPosition);
+            telemetry.update();
             if (gamepad1.left_trigger > 0.3) {
+                telemetry.addData("Servo Position1", servoPosition);
+                telemetry.addData("SERVO_STEP1", SERVO_STEP);
+                telemetry.update();
+                sleep(100);
                 servoPosition =servoPosition+SERVO_STEP;
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
+                telemetry.addData("Servo Position2", servoPosition);
+                telemetry.addData("SERVO_STEP2", SERVO_STEP);
+                telemetry.update();
+                sleep(100);
                 if (servoPosition > 1.0) {
-                    servoPosition = 0.99; // 限制最大值
+                    servoPosition = 0.99;
                 }
                 robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
+                telemetry.addData("Servo Position3", servoPosition);
                 telemetry.update();
             }if (gamepad1.right_trigger > 0.3) {
-                servoPosition = servoPosition-SERVO_STEP;
-                telemetry.addData("Servo Position", servoPosition);
+                telemetry.addData("Servo PositionN1", servoPosition);
                 telemetry.addData("SERVO_STEP", SERVO_STEP);
+                telemetry.update();
+                sleep(100);
+                servoPosition = servoPosition-SERVO_STEP;
+                telemetry.addData("Servo PositionN2", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
+                telemetry.update();
+                sleep(100);
                 if (servoPosition < 0.0) {
                     servoPosition = 0.01; // 限制最小值
                 }
