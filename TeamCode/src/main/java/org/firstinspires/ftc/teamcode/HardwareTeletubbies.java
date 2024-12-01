@@ -43,28 +43,34 @@
            public DcMotor LFMotor;
            public DcMotor RBMotor;
            public DcMotor LBMotor;
-           public Servo Claw;
-           public Servo Wrist;
-           public Servo V4BL;
-           public Servo V4BR;
-           public DcMotor HSMotor; //horizontal Slides motor  extruder
+//           public Servo IClaw;
+//           public Servo OClaw;
+//           public Servo Wrist;
+//           public Servo IArmL;
+//           public Servo IArmR;
+//           public Servo OArmL;
+//           public Servo OArmR;
+
+//           public DcMotor HSMotor; //horizontal Slides motor  extruder
            public DcMotor VSMotorL; //vertical Slides motor left
            public DcMotor VSMotorR; //vertical Slides motor right
-           public DcMotor TMotor; // For testing
-           public Servo ArmL;
-           public Servo ArmR;
-           public Servo TServo;
+//           public Servo TServo; // For testing
+//           public DcMotor TMotor; // For testing
+
+
 
 //           public Servo ArmL;
+//           public Servo ArmR;
+//           public Servo V4BL;
+//           public Servo V4BR;
 //           public DcMotor liftMotorL;
 //           public DcMotor liftMotorR;
-
+//           public Servo ArmL;
 //           public Servo ClawR;
 //           public Servo ClawL;
-
 //           public Servo ArmR;
 //           public Servo ArmL;
-// //          public Servo Drone;
+//           public Servo Drone;
            IMU imu;
            public static final double DriveTrains_POWER       =  0.5 ;
            public static final double MID_SERVO       =  0.5 ;
@@ -76,12 +82,12 @@
            public void init(HardwareMap ahwMap) {
                // Save reference to Hardware map
                hwMap = ahwMap;
-               // Define and Initialize Motors
+
+//Begin Definition and Initialization of Drivetrain Motors
                LFMotor   = hwMap.get(DcMotor.class, "LFMotor");//02022024 control hub port 0
                RFMotor  = hwMap.get(DcMotor.class, "RFMotor"); //02022024 control hub port 1
                LBMotor   = hwMap.get(DcMotor.class, "LBMotor");//02022024 control hub port 2
                RBMotor  = hwMap.get(DcMotor.class, "RBMotor");//02022024 control hub port 3
-//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 
                RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
                RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -91,9 +97,27 @@
                LBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
                RBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+               // Set all motors to run without encoders.
+               // May want to use RUN_USING_ENCODERS if encoders are installed.
+               LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+               RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+               LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+               RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+ // End Definition and Initialization of Drivetrain Motors
+
+
+//Begin Definition and Initialization of Horizontal Slides  Motor
+
 //               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub? port 4
 //               int positionH = HSMotor.getCurrentPosition();
 //               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+
+//End Definition and Initialization of Horizontal Slides  Motor
+
+
+//Begin Definition and Initialization of Vertical Slides Motors
+
                VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub? port 0
                int positionVL = VSMotorL.getCurrentPosition();
                VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
@@ -102,47 +126,82 @@
                int positionVR = VSMotorR.getCurrentPosition();
                VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
+//End Definition and Initialization of Vertical Slides Motors
+
                // Set all motors to zero power
                setAllPower(0);
 
-               // Set all motors to run without encoders.
-               // May want to use RUN_USING_ENCODERS if encoders are installed.
-               LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//Begin Definition and Initialization of Testing Motors and Servos
 
 //               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-//               TServo.setPosition(0.5);//  good
+//               TServo.setPosition(0.5);// for safe
+//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //               TMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-               // Set all motors to run without encoders.
-               // May want to use RUN_USING_ENCODERS if encoders are installed.
 
+//End Definition and Initialization of Testing Motors and Servos
 
-//               Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
+//Begin Definition and Initialization of intake Claw Servo
+
+//               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port  good
+//               IClaw.setPosition(0.9);// 3 prong claw good-
+
+//End Definition and Initialization of intake Claw Servo
+
+//Begin Definition and Initialization of Wrist Servo
+
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               Wrist.setPosition(0.5);// wrist good
+
+//End Definition and Initialization of Wrist Servo
+
+
+
+
+//Begin Definition and Initialization of intake ArmL and ArmR Servos
+
+//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+//               IArmL.setDirection(Servo.Direction.REVERSE);
+//               IArmL.setPosition(0.32);//  good
+//               IArmR.setPosition(0.32);//
+
+//End Definition and Initialization of intake ArmL and ArmR Servos
+
+
+//Begin Definition and Initialization of outtake Claw Servo
+
+//               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  good
+//               OClaw.setPosition(0.9);// 3 prong claw good-
+
+//End Definition and Initialization of outtake Claw Servo
+
+//Begin Definition and Initialization of outtake ArmL and ArmR Servos
+
+//               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
+//               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
+//               OArmL.setDirection(Servo.Direction.REVERSE);
+//               OArmL.setPosition(0.32);//  good
+//               OArmR.setPosition(0.32);//
+
+//End Definition and Initialization of outtake ArmL and ArmR Servos
+
+
+
+//Begin Definition and Initialization of V4B Servos
+
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
 //               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
 //               V4BL.setDirection(Servo.Direction.REVERSE);
-
-
 //               V4BL.setPosition(0.32);//  good
 //               V4BR.setPosition(0.32);//
- //             Wrist.setPosition(0.5);// wrist good
-//                Claw.setPosition(0.9);// 3 prong claw good-
 
-
-               //Claw.setPosition(0.828);// loony claw good-
+//End Definition and Initialization of V4B Servos
 
 
 
-//               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
-//               Wrist.setPosition(0.8);
 
-////        ClawL.setDirection(Servo.Direction.REVERSE);
-               //
 //               Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
 //               Drone.setPosition(0);
 //               ClawR = hwMap.get(Servo.class, "ClawR");//control hub port 2
@@ -158,8 +217,9 @@
 //               ArmR = hwMap.get(Servo.class, "ArmR");
 //               ArmL.setDirection(Servo.Direction.REVERSE);0000
 
-               //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
-               // REV control hub build in imu
+
+//inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
+// REV control hub build in imu
 
 
                imu = hwMap.get(IMU.class, "imu");

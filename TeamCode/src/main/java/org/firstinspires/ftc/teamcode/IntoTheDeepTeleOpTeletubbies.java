@@ -36,15 +36,17 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         while (opModeIsActive()) {
 
             moveDriveTrain();
-            // 3 prong claw
+//Begin Definition and Initialization of gamepad
+
             if (gamepad1.left_trigger > 0.3) { //open
                 moveVSlideToPosition(POSITION_A_BOTTOM);
             }
             if (gamepad1.right_trigger > 0.3) { //close
                 moveVSlideToPosition(POSITION_Y_LOW);
             }
-            //           if (gamepad1.left_trigger > 0.3 ) { //open
 
+
+//           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
 //            }if (gamepad1.right_trigger > 0.3) { //close
@@ -73,49 +75,59 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.V4BR.setPosition(0.4);
 //            }
 
-        //debug for servo with step 0.05
-        /**
-         * This code snippet controls the position of a servo motor using the gamepad triggers.
-         *
-         * **Purpose**:
-         * - The left trigger (`gamepad1.left_trigger`) increases the servo's position by a fixed step (`SERVO_STEP`).
-         * - The right trigger (`gamepad1.right_trigger`) decreases the servo's position by a fixed step (`SERVO_STEP`).
-         * - The servo position is constrained between 0.01 (minimum) and 0.99 (maximum) to prevent invalid values.
-         * - The current servo position is displayed on the telemetry for real-time monitoring.
-         *
-         * **Usage Instructions**:
-         * 1. Press the **left trigger** (`gamepad1.left_trigger`) to move the servo incrementally towards its maximum position.
-         * 2. Press the **right trigger** (`gamepad1.right_trigger`) to move the servo incrementally towards its minimum position.
-         * 3. The servo's position is updated with a small delay (`sleep(200)` milliseconds) to prevent rapid changes from multiple trigger presses.
-         * 4. Adjust `SERVO_STEP` as needed to control the increment size for finer or coarser adjustments.
-         *
-         * **Setup**:
-         * - Ensure the servo is connected to the correct port and initialized in the `robot.TServo` variable.
-         * - Configure the `SERVO_STEP` variable to determine how much the position changes with each trigger press.
-         * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
-         */
 
-        if (gamepad1.left_trigger > 0.3) {
-            servoPosition = servoPosition + SERVO_STEP;
-            if (servoPosition >= 1.0) {
-                servoPosition = 0.99; // 限制最大值
-            }
-            robot.TServo.setPosition(servoPosition);
-            telemetry.addData("Servo Position", servoPosition);
-            telemetry.update();
-            sleep(200);
-        }
-        if (gamepad1.right_trigger > 0.3) {
-            servoPosition = servoPosition - SERVO_STEP;
-            if (servoPosition <= 0.0) {
-                servoPosition = 0.01; // 限制最小值
-            }
-            robot.TServo.setPosition(servoPosition);
-            telemetry.addData("Servo Position", servoPosition);
-            telemetry.update();
-            sleep(200);
-        }
-//end of debug for servo with step 0.05
+//End Definition and Initialization of gamepad
+
+//Begin debugging with a step increment of 0.05
+
+/**
+ * This code snippet controls the position of a servo motor using the gamepad triggers.
+ *
+ * **Purpose**:
+ * - The left trigger (`gamepad1.left_trigger`) increases the servo's position by a fixed step (`SERVO_STEP`).
+ * - The right trigger (`gamepad1.right_trigger`) decreases the servo's position by a fixed step (`SERVO_STEP`).
+ * - The servo position is constrained between 0.01 (minimum) and 0.99 (maximum) to prevent invalid values.
+ * - The current servo position is displayed on the telemetry for real-time monitoring.
+ *
+ * **Usage Instructions**:
+ * 1. Press the **left trigger** (`gamepad1.left_trigger`) to move the servo incrementally towards its maximum position.
+ * 2. Press the **right trigger** (`gamepad1.right_trigger`) to move the servo incrementally towards its minimum position.
+ * 3. The servo's position is updated with a small delay (`sleep(200)` milliseconds) to prevent rapid changes from multiple trigger presses.
+ * 4. Adjust `SERVO_STEP` as needed to control the increment size for finer or coarser adjustments.
+ *
+ * **Setup**:
+ * - Ensure the servo is connected to the correct port and initialized in the `robot.TServo` variable.
+ * - Configure the `SERVO_STEP` variable to determine how much the position changes with each trigger press.
+ * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
+ */
+
+
+//            if (gamepad1.left_trigger > 0.3) {
+//                servoPosition = servoPosition + SERVO_STEP;
+//                if (servoPosition >= 1.0) {
+//                    servoPosition = 0.99; // 限制最大值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+//            if (gamepad1.right_trigger > 0.3) {
+//                servoPosition = servoPosition - SERVO_STEP;
+//                if (servoPosition <= 0.0) {
+//                    servoPosition = 0.01; // 限制最小值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+
+
+
+//End debugging with a step increment of 0.05
+
+
         //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
         //for up
         //for down
@@ -136,29 +148,37 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
 
     }
-    private void moveHSlideToPosition ( int targetPosition){
-//            robot.liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//            robot.liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        telemetry.addData("targetPosition", targetPosition);
-        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
-        telemetry.update();
-        robot.HSMotor.setTargetPosition(-targetPosition);
-        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.HSMotor.setPower(+SLIDE_POWER_H);
 
-        move = true;
+//Begin Definition and Initialization of Horizontal Slides
 
-        while (robot.HSMotor.isBusy() &&  move) {
-            // Wait until the motor reaches the target position
-        }
 
-        robot.HSMotor.setPower(0);
-        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        move = false;
-    }
+//    private void moveHSlideToPosition ( int targetPosition){
+//
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        telemetry.addData("targetPosition", targetPosition);
+//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
+//        telemetry.update();
+//        robot.HSMotor.setTargetPosition(-targetPosition);
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.HSMotor.setPower(+SLIDE_POWER_H);
+//
+//        move = true;
+//
+//        while (robot.HSMotor.isBusy() &&  move) {
+//            // Wait until the motor reaches the target position
+//        }
+//
+//        robot.HSMotor.setPower(0);
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        move = false;
+//    }
 
+
+//End Definition and Initialization of Horizontal Slides
+
+
+//Begin Definition and Initialization of Vertical Slides
     private void moveVSlideToPosition ( int targetPosition){
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -188,6 +208,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         move = false;
     }
+
+//End Definition and Initialization of Vertical Slides
 
     public void liftVertSlidesHigh () {
         double liftVertSlides_y = -gamepad2.left_stick_y;
