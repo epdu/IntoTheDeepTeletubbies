@@ -33,7 +33,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             moveDriveTrain();
             // 3 prong claw
-
+            telemetry.addData("Servo Position before if ", servoPosition);
             if (gamepad1.left_trigger > 0.3) {
                 servoPosition += SERVO_STEP;
                 telemetry.addData("Servo Position", servoPosition);
