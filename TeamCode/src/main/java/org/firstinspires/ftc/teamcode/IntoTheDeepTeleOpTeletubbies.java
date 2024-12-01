@@ -21,8 +21,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private double ServoNegative =1.0; // Adjust as needed
     private static final double SERVO_STEP = 0.05; // 每次调整的伺服步长
     private double servoPosition = 0.5; // 初始化伺服位置为中间值
-    private static final double ServoStepPostive = 0.1; // Adjust as needed
-    private static final double ServoStepNegative = -0.1; // Adjust as needed
+    private static final double ServoStepPostive = 0.05; // Adjust as needed
+    private static final double ServoStepNegative = -0.05; // Adjust as needed
 //    boolean leftTriggerPressed = false;
 //    boolean rightTriggerPressed = false;
 
@@ -36,43 +36,35 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain();
             // 3 prong claw
 
-//            telemetry.addData("Servo Position before press trigger", servoPosition);
-//            telemetry.update();
-//            sleep(1000);
             if (gamepad1.left_trigger > 0.3) {
-//                telemetry.addData("Servo Position TriggerPressed", servoPosition);
-//                telemetry.addData("SERVO_STEP", SERVO_STEP);
-//                telemetry.update();
-//                sleep(1000);
-                servoPosition =servoPosition+SERVO_STEP;
-//                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
-//                telemetry.addData("SERVO_STEP", SERVO_STEP);
-//                telemetry.update();
-//                sleep(1000);
-                if (servoPosition >=1.0) {
-                    servoPosition = 0.99; // 限制最大值
-                }
-                robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
+                ServoDebugPositive(servoPosition);
                 sleep(200);
             }if (gamepad1.right_trigger > 0.3 ) {
-//                telemetry.addData("Servo Position TriggerPressed", servoPosition);
-//                telemetry.addData("SERVO_STEP", SERVO_STEP);
-//                telemetry.update();
-//                sleep(1000);
-                servoPosition = servoPosition-SERVO_STEP;
-//                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
-//                telemetry.addData("SERVO_STEP", SERVO_STEP);
-//                telemetry.update();
-                if (servoPosition <=0.0) {
-                    servoPosition = 0.01; // 限制最小值
-                }
-                robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
+                ServoDebugPositive(servoPosition);
                 sleep(200);
-            }//if (gamepad1.left_trigger > 0.3 ) { //open
+            }
+//debug for servo with step 0.05
+//            if (gamepad1.left_trigger > 0.3) {
+//                servoPosition =servoPosition+SERVO_STEP;
+//                if (servoPosition >=1.0) {
+//                    servoPosition = 0.99; // 限制最大值
+//                }
+//                robot.Claw.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }if (gamepad1.right_trigger > 0.3 ) {
+//                servoPosition = servoPosition-SERVO_STEP;
+//                if (servoPosition <=0.0) {
+//                    servoPosition = 0.01; // 限制最小值
+//                }
+//                robot.Claw.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+//end of debug for servo with step 0.05
+            //if (gamepad1.left_trigger > 0.3 ) { //open
 
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
@@ -106,22 +98,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             //for down
         }
     }
-//    public double ServoDebugPositive(double ServoStepNow) {
-//        ServoStepNow=ServoStepNow+ServoStepPostive;
-//        telemetry.addData("ServoStepNow", ServoStepNow);
-//        telemetry.addData("ServoStepPostive",ServoStepPostive);
-//        telemetry.update();
-//        if (ServoStepNow > 1.0) { // 确保不超过最大值
-//            ServoStepNow = 0.99;
-//        }if (ServoStepNow < 0.0) { // 确保不超过最大值
-//            ServoStepNow = 0.01;
-//        }
-//        telemetry.addData("ServoStepNow", ServoStepNow);
-//        telemetry.addData("ServoStepPostive",ServoStepPostive);
-//        telemetry.update();
-//        robot.Claw.setPosition(ServoStepNow);
-//        return ServoStepNow;
-//    }
+    public double ServoDebugPositive(double ServoStepNow) {
+        ServoStepNow=ServoStepNow+ServoStepPostive;
+        if (ServoStepNow >= 1.0) { // 确保不超过最大值
+            ServoStepNow = 0.99;
+        }if (ServoStepNow <= 0.0) { // 确保不超过最大值
+            ServoStepNow = 0.01;
+        }
+        telemetry.addData("ServoStepNow", ServoStepNow);
+        telemetry.addData("ServoStepPostive",ServoStepPostive);
+        telemetry.update();
+        robot.Claw.setPosition(ServoStepNow);
+        sleep(200);
+        return ServoStepNow;
+    }
 //    public double ServoDebugNegativre(double ServoStepNow) {
 //        ServoStepNow=ServoStepNow+ServoStepNegative;
 //        telemetry.addData("ServoStepNow", ServoStepNow);
