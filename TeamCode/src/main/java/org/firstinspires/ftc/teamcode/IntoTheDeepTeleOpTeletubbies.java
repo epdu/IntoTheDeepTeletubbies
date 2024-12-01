@@ -23,8 +23,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private double servoPosition = 0.5; // 初始化伺服位置为中间值
     private static final double ServoStepPostive = 0.1; // Adjust as needed
     private static final double ServoStepNegative = -0.1; // Adjust as needed
-    boolean leftTriggerPressed = false;
-    boolean rightTriggerPressed = false;
+//    boolean leftTriggerPressed = false;
+//    boolean rightTriggerPressed = false;
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
@@ -39,7 +39,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             telemetry.addData("Servo Position before press trigger", servoPosition);
             telemetry.update();
             sleep(1000);
-            if (gamepad1.left_trigger > 0.3 && !leftTriggerPressed) {
+            if (gamepad1.left_trigger > 0.3) {
                 telemetry.addData("Servo Position TriggerPressed", servoPosition);
                 telemetry.addData("SERVO_STEP", SERVO_STEP);
                 telemetry.update();
@@ -51,16 +51,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 sleep(1000);
                 if (servoPosition > 1.0) {
                     servoPosition = 0.99; // 限制最大值
-                    leftTriggerPressed = true;
-                }else if (gamepad1.left_trigger <= 0.3) {
-                    leftTriggerPressed = false; // 释放触发器标记
                 }
                 robot.Claw.setPosition(servoPosition);
-                leftTriggerPressed = true;
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.update();
                 sleep(200);
-            }if (gamepad1.right_trigger > 0.3 && !rightTriggerPressed) {
+            }if (gamepad1.right_trigger > 0.3 ) {
                 telemetry.addData("Servo Position TriggerPressed", servoPosition);
                 telemetry.addData("SERVO_STEP", SERVO_STEP);
                 telemetry.update();
@@ -71,11 +67,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 telemetry.update();
                 if (servoPosition < 0.0) {
                     servoPosition = 0.01; // 限制最小值
-                }else if (gamepad1.left_trigger <= 0.3) {
-                    rightTriggerPressed= false; // 释放触发器标记
                 }
                 robot.Claw.setPosition(servoPosition);
-                rightTriggerPressed = true;
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.update();
                 sleep(200);
