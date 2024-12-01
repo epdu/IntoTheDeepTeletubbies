@@ -30,64 +30,34 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad1.left_trigger > 0.3 ) { //open
                 robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
-
             }if (gamepad1.right_trigger > 0.3) { //close
                 robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
-            }if (gamepad1.a  && !move) { //down
-                robot.V4BL.setPosition(0.49); //  V4B put down
-                robot.V4BR.setPosition(0.49); //V4B put down
-            }
-            if (gamepad2.y && !move) { // up
-                robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
-                robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
-            }
-            if (gamepad1.b && !move) { //right
-                robot.Wrist.setPosition(0.35); // WRIST right 45 degree
-            }
-            if (gamepad1.x && !move) { //left
-                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
-            }
-            if (gamepad1.right_bumper && !move) { //left
-                robot.Wrist.setPosition(0.5); // WRIST left 45 degree
-            }
-            if (gamepad2.a && !move) { //left
-                robot.V4BL.setPosition(0.4);
-                robot.V4BR.setPosition(0.4);
-            }
-
-
-//            if (gamepad2.left_trigger > 0.3) { //down
-//            robot.ArmL.setPosition(0);
-//            robot.ArmR.setPosition(0);
-//               // robot.Wrist.setPosition(1);
-//              //  robot.ArmL.setPosition(0.927);
+            }//if (gamepad1.a  && !move) { //down
+//                robot.V4BL.setPosition(0.49); //  V4B put down
+//                robot.V4BR.setPosition(0.49); //V4B put down
 //            }
-//            if (gamepad2.right_trigger > 0.3) { // up
-//                robot.ArmL.setPosition(0.8);
-//                robot.ArmR.setPosition(0.8);
-//                //robot.ArmL.setPosition(0.1);
-//                //robot.Wrist.setPosition(0);
+//            if (gamepad2.y && !move) { // up
+//                robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
+//                robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
+//            }
+//            if (gamepad1.b && !move) { //right
+//                robot.Wrist.setPosition(0.35); // WRIST right 45 degree
+//            }
+//            if (gamepad1.x && !move) { //left
+//                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
+//            }
+//            if (gamepad1.right_bumper && !move) { //left
+//                robot.Wrist.setPosition(0.5); // WRIST left 45 degree
+//            }
+//            if (gamepad2.a && !move) { //left
+//                robot.V4BL.setPosition(0.4);
+//                robot.V4BR.setPosition(0.4);
 //            }
 
-//            if (gamepad2.b && !move) { //up
-//                //robot.Wrist.setDirection(Servo.Direction.REVERSE);
-//                //robot.Wrist.setPosition(0);
-//            }
-//
 
-//            if (gamepad2.a && !move) { //all the way in
-// //               moveHSlideToPosition(POSITION_A_IN);
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad2.y && !move) { // out controlled
-// //               moveHSlideToPosition(POSITION_Y_EXTRUDE);
-//                moveVSlideToPosition(POSITION_Y_HIGH);
-//            }
-//            if (gamepad2.x && !move) { //out controlled
-//                moveHSlideToPosition(POSITION_X_EXTRUDE_MORE);
-//                moveVSlideToPosition(POSITION_X_LOW);
-//            }
+
+
  //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
 
 

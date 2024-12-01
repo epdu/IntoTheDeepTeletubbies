@@ -108,10 +108,12 @@
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
-               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
-               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
-               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
-               V4BL.setDirection(Servo.Direction.REVERSE);
+//               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
+//               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
+//               V4BL.setDirection(Servo.Direction.REVERSE);
+
+
 //               V4BL.setPosition(0.32);//  good
 //               V4BR.setPosition(0.32);//
  //             Wrist.setPosition(0.5);// wrist good
