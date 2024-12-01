@@ -36,20 +36,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain();
             // 3 prong claw
 
-            telemetry.addData("Servo Position before press trigger", servoPosition);
-            telemetry.update();
-            sleep(1000);
+//            telemetry.addData("Servo Position before press trigger", servoPosition);
+//            telemetry.update();
+//            sleep(1000);
             if (gamepad1.left_trigger > 0.3) {
-                telemetry.addData("Servo Position TriggerPressed", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                sleep(1000);
+//                telemetry.addData("Servo Position TriggerPressed", servoPosition);
+//                telemetry.addData("SERVO_STEP", SERVO_STEP);
+//                telemetry.update();
+//                sleep(1000);
                 servoPosition =servoPosition+SERVO_STEP;
-                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                sleep(1000);
-                if (servoPosition > 1.0) {
+//                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
+//                telemetry.addData("SERVO_STEP", SERVO_STEP);
+//                telemetry.update();
+//                sleep(1000);
+                if (servoPosition >=1.0) {
                     servoPosition = 0.99; // 限制最大值
                 }
                 robot.Claw.setPosition(servoPosition);
@@ -57,15 +57,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 telemetry.update();
                 sleep(200);
             }if (gamepad1.right_trigger > 0.3 ) {
-                telemetry.addData("Servo Position TriggerPressed", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                sleep(1000);
+//                telemetry.addData("Servo Position TriggerPressed", servoPosition);
+//                telemetry.addData("SERVO_STEP", SERVO_STEP);
+//                telemetry.update();
+//                sleep(1000);
                 servoPosition = servoPosition-SERVO_STEP;
-                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                if (servoPosition < 0.0) {
+//                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
+//                telemetry.addData("SERVO_STEP", SERVO_STEP);
+//                telemetry.update();
+                if (servoPosition <=0.0) {
                     servoPosition = 0.01; // 限制最小值
                 }
                 robot.Claw.setPosition(servoPosition);
