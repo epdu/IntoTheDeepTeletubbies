@@ -59,7 +59,29 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.V4BL.setPosition(0.4);
 //                robot.V4BR.setPosition(0.4);
 //            }
-            //debug for servo with step 0.05
+
+ //debug for servo with step 0.05
+            /**
+             * This code snippet controls the position of a servo motor using the gamepad triggers.
+             *
+             * **Purpose**:
+             * - The left trigger (`gamepad1.left_trigger`) increases the servo's position by a fixed step (`SERVO_STEP`).
+             * - The right trigger (`gamepad1.right_trigger`) decreases the servo's position by a fixed step (`SERVO_STEP`).
+             * - The servo position is constrained between 0.01 (minimum) and 0.99 (maximum) to prevent invalid values.
+             * - The current servo position is displayed on the telemetry for real-time monitoring.
+             *
+             * **Usage Instructions**:
+             * 1. Press the **left trigger** (`gamepad1.left_trigger`) to move the servo incrementally towards its maximum position.
+             * 2. Press the **right trigger** (`gamepad1.right_trigger`) to move the servo incrementally towards its minimum position.
+             * 3. The servo's position is updated with a small delay (`sleep(200)` milliseconds) to prevent rapid changes from multiple trigger presses.
+             * 4. Adjust `SERVO_STEP` as needed to control the increment size for finer or coarser adjustments.
+             *
+             * **Setup**:
+             * - Ensure the servo is connected to the correct port and initialized in the `robot.TServo` variable.
+             * - Configure the `SERVO_STEP` variable to determine how much the position changes with each trigger press.
+             * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
+             */
+
             if (gamepad1.left_trigger > 0.3) {
                 servoPosition =servoPosition+SERVO_STEP;
                 if (servoPosition >=1.0) {
@@ -168,7 +190,52 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 
     }
+// start of backup
+//
+//    public void liftArmHigh () {
+//        double liftArm_y = gamepad2.left_stick_y;
+//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        robot.liftMotorL.setPower(liftArm_y);
+//        robot.liftMotorR.setPower(liftArm_y);
+//        //up joystick makes the slides rotate clockwise on the out right side
+//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+//
+//    }
+//
+//    private void moveSlideToPosition ( int targetPosition){
+////            robot.liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+////            robot.liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        telemetry.addData("targetPosition", targetPosition);
+//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.liftMotorR.getCurrentPosition());
+//        telemetry.addData("liftMotorL.getCurrentPosition()",robot.liftMotorL.getCurrentPosition());
+//        telemetry.update();
+//        robot.liftMotorL.setTargetPosition(-targetPosition);
+//        robot.liftMotorR.setTargetPosition(-targetPosition);
+//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.liftMotorR.setPower(+SLIDE_POWER);
+//        robot.liftMotorL.setPower(+SLIDE_POWER);
+//        move = true;
+//
+//        while (robot.liftMotorL.isBusy() && robot.liftMotorR.isBusy() && move) {
+//            // Wait until the motor reaches the target position
+//        }
+//
+//        robot.liftMotorL.setPower(0);
+//        robot.liftMotorR.setPower(0);
+//
+//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        move = false;
+//    }
 
+
+// end of backup
 }
 
 
