@@ -109,6 +109,7 @@
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+               TServo.setPosition(0.5);//  good
 //               Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port

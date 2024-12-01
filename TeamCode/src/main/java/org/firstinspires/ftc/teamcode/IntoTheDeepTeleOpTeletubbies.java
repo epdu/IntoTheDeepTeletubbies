@@ -17,20 +17,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_Y_HIGH = 1600;//horizontal  slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.6; // Adjust as needed
-    private double ServoPostive = 0.0; // Adjust as needed
-    private double ServoNegative =1.0; // Adjust as needed
     private static final double SERVO_STEP = 0.05; // 每次调整的伺服步长
-    private double servoInitPosition = 0.5; // 初始化伺服位置为中间值
     double servoPosition=0.5;
-    private static final double ServoStepPostive = 0.05; // Adjust as needed
-    private static final double ServoStepNegative = -0.05; // Adjust as needed
-//    boolean leftTriggerPressed = false;
-//    boolean rightTriggerPressed = false;
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
-        robot.TServo.setPosition(servoInitPosition);
-        // for servo debug safety set servo name to be TS    TServo= hwMap.get(Servo.class, "TS");//control hub port  good
 
         waitForStart();
 
