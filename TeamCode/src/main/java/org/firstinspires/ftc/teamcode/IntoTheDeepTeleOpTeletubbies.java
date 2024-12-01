@@ -18,6 +18,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.6; // Adjust as needed
     private double ServoPostive = 0.0; // Adjust as needed
+    private double ServoNegative =1.0; // Adjust as needed
     private static final double ServoStepPostive = 0.1; // Adjust as needed
     private static final double ServoStepNegative = -0.1; // Adjust as needed
 
@@ -35,7 +36,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
             }if (gamepad1.right_trigger > 0.3) { //close
-                ServoDebugNegativre(ServoPostive);
+                ServoDebugNegativre(ServoNegative);
 //                robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
             }//if (gamepad1.a  && !move) { //down
@@ -59,29 +60,40 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.V4BL.setPosition(0.4);
 //                robot.V4BR.setPosition(0.4);
 //            }
-
-
-
-
  //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
-
-
             //for up
-
-
-
-
             //for down
         }
     }
-
     public double ServoDebugPositive(double ServoStepNow) {
         ServoStepNow=ServoStepNow+ServoStepPostive;
+        telemetry.addData("ServoStepNow", ServoStepNow);
+        telemetry.addData("ServoStepPostive",ServoStepPostive);
+        telemetry.update();
+        if (ServoStepNow > 1.0) { // 确保不超过最大值
+            ServoStepNow = 0.99;
+        }if (ServoStepNow < 0.0) { // 确保不超过最大值
+            ServoStepNow = 0.01;
+        }
+        telemetry.addData("ServoStepNow", ServoStepNow);
+        telemetry.addData("ServoStepPostive",ServoStepPostive);
+        telemetry.update();
         robot.Claw.setPosition(ServoStepNow);
         return ServoStepNow;
     }
     public double ServoDebugNegativre(double ServoStepNow) {
         ServoStepNow=ServoStepNow+ServoStepNegative;
+        telemetry.addData("ServoStepNow", ServoStepNow);
+        telemetry.addData("ServoStepPostive",ServoStepNegative);
+        telemetry.update();
+        if (ServoStepNow > 1.0) { // 确保不超过最大值
+            ServoStepNow = 0.99;
+        }if (ServoStepNow < 0.0) { // 确保不超过最大值
+            ServoStepNow = 0.01;
+        }
+        telemetry.addData("ServoStepNow", ServoStepNow);
+        telemetry.addData("ServoStepPostive",ServoStepNegative);
+        telemetry.update();
         robot.Claw.setPosition(ServoStepNow);
         return ServoStepNow;
     }
