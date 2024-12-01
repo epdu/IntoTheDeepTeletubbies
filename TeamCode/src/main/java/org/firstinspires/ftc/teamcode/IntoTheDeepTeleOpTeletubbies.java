@@ -17,6 +17,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_Y_HIGH = 1600;//horizontal  slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.6; // Adjust as needed
+    private double ServoPostive = 0.0; // Adjust as needed
+    private static final double ServoStepPostive = 0.1; // Adjust as needed
+    private static final double ServoStepNegative = -0.1; // Adjust as needed
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
@@ -28,10 +31,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain();
             // 3 prong claw
             if (gamepad1.left_trigger > 0.3 ) { //open
-                robot.Claw.setPosition(0.6); // too big opening 3 prong claw -open good
+                ServoDebugPositive(ServoPostive);
+//                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
             }if (gamepad1.right_trigger > 0.3) { //close
-                robot.Claw.setPosition(0.9); // 3 prong claw -close good
+                ServoDebugNegativre(ServoPostive);
+//                robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
             }//if (gamepad1.a  && !move) { //down
 //                robot.V4BL.setPosition(0.49); //  V4B put down
@@ -69,6 +74,19 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             //for down
         }
     }
+
+    public double ServoDebugPositive(double ServoStepNow) {
+        ServoStepNow=ServoStepNow+ServoStepPostive;
+        robot.Claw.setPosition(ServoStepNow);
+        return ServoStepNow;
+    }
+    public double ServoDebugNegativre(double ServoStepNow) {
+        ServoStepNow=ServoStepNow+ServoStepNegative;
+        robot.Claw.setPosition(ServoStepNow);
+        return ServoStepNow;
+    }
+
+
     public void moveDriveTrain() {
         double y = gamepad1.left_stick_y;
         double x =- gamepad1.left_stick_x;
