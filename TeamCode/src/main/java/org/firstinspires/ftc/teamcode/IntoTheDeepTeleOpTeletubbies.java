@@ -23,6 +23,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private double servoPosition = 0.5; // 初始化伺服位置为中间值
     private static final double ServoStepPostive = 0.1; // Adjust as needed
     private static final double ServoStepNegative = -0.1; // Adjust as needed
+    boolean leftTriggerPressed = false;
+    boolean rightTriggerPressed = false;
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
@@ -33,40 +35,50 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             moveDriveTrain();
             // 3 prong claw
-            telemetry.addData("Servo Position before if ", servoPosition);
+
+            telemetry.addData("Servo Position before press trigger", servoPosition);
             telemetry.update();
-            if (gamepad1.left_trigger > 0.3) {
-                telemetry.addData("Servo Position1", servoPosition);
-                telemetry.addData("SERVO_STEP1", SERVO_STEP);
+            sleep(1000);
+            if (gamepad1.left_trigger > 0.3 && !leftTriggerPressed) {
+                telemetry.addData("Servo Position TriggerPressed", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
                 telemetry.update();
-                sleep(100);
+                sleep(1000);
                 servoPosition =servoPosition+SERVO_STEP;
-                telemetry.addData("Servo Position2", servoPosition);
-                telemetry.addData("SERVO_STEP2", SERVO_STEP);
+                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
                 telemetry.update();
-                sleep(100);
+                sleep(1000);
                 if (servoPosition > 1.0) {
-                    servoPosition = 0.99;
+                    servoPosition = 0.99; // 限制最大值
+                    leftTriggerPressed = true;
+                }else if (gamepad1.left_trigger <= 0.3) {
+                    leftTriggerPressed = false; // 释放触发器标记
                 }
                 robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position3", servoPosition);
-                telemetry.update();
-            }if (gamepad1.right_trigger > 0.3) {
-                telemetry.addData("Servo PositionN1", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                sleep(100);
-                servoPosition = servoPosition-SERVO_STEP;
-                telemetry.addData("Servo PositionN2", servoPosition);
-                telemetry.addData("SERVO_STEP", SERVO_STEP);
-                telemetry.update();
-                sleep(100);
-                if (servoPosition < 0.0) {
-                    servoPosition = 0.01; // 限制最小值
-                }
-                robot.Claw.setPosition(servoPosition);
+                leftTriggerPressed = true;
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.update();
+                sleep(200);
+            }if (gamepad1.right_trigger > 0.3 && !rightTriggerPressed) {
+                telemetry.addData("Servo Position TriggerPressed", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
+                telemetry.update();
+                sleep(1000);
+                servoPosition = servoPosition-SERVO_STEP;
+                telemetry.addData("Servo Position after SERVO_STEP", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
+                telemetry.update();
+                if (servoPosition < 0.0) {
+                    servoPosition = 0.01; // 限制最小值
+                }else if (gamepad1.left_trigger <= 0.3) {
+                    rightTriggerPressed= false; // 释放触发器标记
+                }
+                robot.Claw.setPosition(servoPosition);
+                rightTriggerPressed = true;
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.update();
+                sleep(200);
             }//if (gamepad1.left_trigger > 0.3 ) { //open
 
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
