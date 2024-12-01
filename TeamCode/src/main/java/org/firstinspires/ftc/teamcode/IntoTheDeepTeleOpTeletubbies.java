@@ -36,6 +36,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             if (gamepad1.left_trigger > 0.3) {
                 servoPosition += SERVO_STEP;
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
                 if (servoPosition > 1.0) {
                     servoPosition = 0.99; // 限制最大值
                 }
@@ -44,6 +46,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 telemetry.update();
             }if (gamepad1.right_trigger > 0.3) {
                 servoPosition -= SERVO_STEP;
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.addData("SERVO_STEP", SERVO_STEP);
                 if (servoPosition < 0.0) {
                     servoPosition = 0.01; // 限制最小值
                 }
