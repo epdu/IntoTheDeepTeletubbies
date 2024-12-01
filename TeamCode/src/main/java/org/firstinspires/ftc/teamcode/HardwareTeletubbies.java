@@ -81,7 +81,7 @@
                RFMotor  = hwMap.get(DcMotor.class, "RFMotor"); //02022024 control hub port 1
                LBMotor   = hwMap.get(DcMotor.class, "LBMotor");//02022024 control hub port 2
                RBMotor  = hwMap.get(DcMotor.class, "RBMotor");//02022024 control hub port 3
-               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
+//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 
                RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
                RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -94,13 +94,13 @@
 //               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub? port 4
 //               int positionH = HSMotor.getCurrentPosition();
 //               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub? port 4
-//               int positionVL = VSMotorL.getCurrentPosition();
-//               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
-//               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub? port 4
-//               int positionVR = VSMotorR.getCurrentPosition();
-//               VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub? port 0
+               int positionVL = VSMotorL.getCurrentPosition();
+               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
+               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub? port 3
+               int positionVR = VSMotorR.getCurrentPosition();
+               VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
                // Set all motors to zero power
                setAllPower(0);
@@ -108,14 +108,15 @@
                // Set all motors to run without encoders.
                // May want to use RUN_USING_ENCODERS if encoders are installed.
                LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+               LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+               RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-               TServo.setPosition(0.5);//  good
-               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
-               RBMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-               RBMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               TServo.setPosition(0.5);//  good
+//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
+//               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//               TMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                // Set all motors to run without encoders.
                // May want to use RUN_USING_ENCODERS if encoders are installed.
 
