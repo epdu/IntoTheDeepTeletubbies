@@ -35,7 +35,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             // 3 prong claw
             telemetry.addData("Servo Position before if ", servoPosition);
             if (gamepad1.left_trigger > 0.3) {
-                servoPosition += SERVO_STEP;
+                servoPosition =servoPosition+SERVO_STEP;
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.addData("SERVO_STEP", SERVO_STEP);
                 if (servoPosition > 1.0) {
@@ -45,7 +45,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.update();
             }if (gamepad1.right_trigger > 0.3) {
-                servoPosition -= SERVO_STEP;
+                servoPosition = servoPosition-SERVO_STEP;
                 telemetry.addData("Servo Position", servoPosition);
                 telemetry.addData("SERVO_STEP", SERVO_STEP);
                 if (servoPosition < 0.0) {
