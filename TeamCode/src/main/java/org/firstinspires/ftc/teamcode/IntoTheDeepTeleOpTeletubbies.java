@@ -9,7 +9,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric="robot";
     boolean move = false;
-   private static final int POSITION_A_IN = 100; // horizontal slides all the way in
+    private static final int POSITION_A_IN = 100; // horizontal slides all the way in
     private static final int POSITION_Y_EXTRUDE = 800;//horizontal slides  out
     private static final int POSITION_X_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 100; //horizontal  slides all the way in
@@ -29,7 +29,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
-        robot.Claw.setPosition(servoInitPosition);        // for servo debug safety
+        robot.TServo.setPosition(servoInitPosition);
+        // for servo debug safety set servo name to be TS    TServo= hwMap.get(Servo.class, "TS");//control hub port  good
 
         waitForStart();
 
@@ -37,27 +38,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             moveDriveTrain();
             // 3 prong claw
-//debug for servo with step 0.05
-            if (gamepad1.left_trigger > 0.3) {
-                servoPosition =servoPosition+SERVO_STEP;
-                if (servoPosition >=1.0) {
-                    servoPosition = 0.99; // 限制最大值
-                }
-                robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
-                sleep(200);
-            }if (gamepad1.right_trigger > 0.3 ) {
-                servoPosition = servoPosition-SERVO_STEP;
-                if (servoPosition <=0.0) {
-                    servoPosition = 0.01; // 限制最小值
-                }
-                robot.Claw.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
-                sleep(200);
-            }
-//end of debug for servo with step 0.05
+
             //if (gamepad1.left_trigger > 0.3 ) { //open
 
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
@@ -87,6 +68,27 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.V4BL.setPosition(0.4);
 //                robot.V4BR.setPosition(0.4);
 //            }
+            //debug for servo with step 0.05
+            if (gamepad1.left_trigger > 0.3) {
+                servoPosition =servoPosition+SERVO_STEP;
+                if (servoPosition >=1.0) {
+                    servoPosition = 0.99; // 限制最大值
+                }
+                robot.TServo.setPosition(servoPosition);
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.update();
+                sleep(200);
+            }if (gamepad1.right_trigger > 0.3 ) {
+                servoPosition = servoPosition-SERVO_STEP;
+                if (servoPosition <=0.0) {
+                    servoPosition = 0.01; // 限制最小值
+                }
+                robot.TServo.setPosition(servoPosition);
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.update();
+                sleep(200);
+            }
+//end of debug for servo with step 0.05
  //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
             //for up
             //for down

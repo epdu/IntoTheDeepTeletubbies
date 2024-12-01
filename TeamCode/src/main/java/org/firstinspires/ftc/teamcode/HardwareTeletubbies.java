@@ -52,6 +52,7 @@
            public DcMotor VSMotorR; //vertical Slides motor right
            public Servo ArmL;
            public Servo ArmR;
+           public Servo TServo;
 
 //           public Servo ArmL;
 //           public DcMotor liftMotorL;
@@ -107,7 +108,8 @@
                LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-               Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
+               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               Claw = hwMap.get(Servo.class, "Claw");//control hub port  good
 //               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
 //               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
