@@ -22,7 +22,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_Y_LOW = 150; // Vertical slides up
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
-    private static final double SLIDE_POWER_V = 0.6; // Adjust as needed
+    private static final double SLIDE_POWER_V = 0.3; // Adjust as needed
     private static final double SERVO_STEP = 0.05; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
