@@ -19,7 +19,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_B_EXTRUDE = 800;//horizontal slides  out
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 100; //Vertical  slides all the way in
-    private static final int POSITION_Y_LOW = 150; // Vertical slides up
+    private static final int POSITION_Y_LOW = 200; // Vertical slides up
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.3; // Adjust as needed
