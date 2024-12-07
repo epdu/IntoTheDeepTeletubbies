@@ -52,8 +52,8 @@
 //           public Servo OArmR;
 
 //           public DcMotor HSMotor; //horizontal Slides motor  extruder
-           public DcMotor VSMotorL; //vertical Slides motor left
-           public DcMotor VSMotorR; //vertical Slides motor right
+//           public DcMotor VSMotorL; //vertical Slides motor left
+//           public DcMotor VSMotorR; //vertical Slides motor right
 //           public Servo TServo; // For testing
 //           public DcMotor TMotor; // For testing
 
