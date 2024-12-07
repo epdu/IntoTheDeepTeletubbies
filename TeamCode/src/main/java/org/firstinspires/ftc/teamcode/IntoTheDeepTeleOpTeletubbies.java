@@ -6,6 +6,8 @@ import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbie
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -25,12 +27,26 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER_V = 0.3; // Adjust as needed
     private static final double SERVO_STEP = 0.05; // 每次调整的伺服步长
     double servoPosition = 0.5;
+    double motorPower = 0.0;
+    double MOTOR_POWER_STEP=0.1;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
+    private ElapsedTime timer = new ElapsedTime();
 
 
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
+        // Reset the motor encoder so that it reads zero ticks
+        robot.LFMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.RFMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.LBMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.RBMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // Turn the motor back on, required if you use STOP_AND_RESET_ENCODER
+        robot.LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
         waitForStart();
 
@@ -38,15 +54,71 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             moveDriveTrain();
 //Begin Definition and Initialization of gamepad
+            // Reset the motor encoder so that it reads zero ticks
+            robot.LFMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.RFMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.LBMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.RBMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            // Turn the motor back on, required if you use STOP_AND_RESET_ENCODER
+            robot.LFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.RFMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.LBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            if (gamepad1.left_trigger > 0.3) { //open
-                moveVSlideToPosition(POSITION_A_BOTTOM);
+            int LFMotorlastPosition = robot.LFMotor.getCurrentPosition(); // Initial encoder position
+            timer.reset(); // Start the timer
+
+//Begin debugging with a step increment of power 0.1 for Goblida motors
+
+            if (gamepad1.left_trigger > 0.3) {
+                motorPower = motorPower + MOTOR_POWER_STEP;
+                if (motorPower > 1.0) {
+                    servoPosition =1.00; // 限制最大值
+                }
+            robot.LFMotor.setPower(motorPower);
+            robot.LBMotor.setPower(motorPower);
+            robot.RFMotor.setPower(motorPower);
+            robot.RBMotor.setPower(motorPower);
+            double elapsedTime = timer.seconds(); // Time elapsed since the last calculation
+            int LFMotorcurrentPosition = robot.LFMotor.getCurrentPosition(); // Current encoder position
+            double ticksPerRevolution = 537.7; // GoBILDA 5202 motor encoder ticks per revolution (adjust for your motor)
+            double LFMotorticksMoved = LFMotorcurrentPosition - LFMotorlastPosition; // Encoder ticks moved since the last calculation
+            double LFMotorrevolutions =LFMotorticksMoved / ticksPerRevolution; // Convert ticks to revolutions
+            double LFMotorrpm = (LFMotorrevolutions / elapsedTime) * 60; // Calculate RPM
+
+                // Display RPM on telemetry
+            telemetry.addData("LFMotor RPM", LFMotorrpm);
+            telemetry.addData("Elapsed Time", elapsedTime);
+            telemetry.addData("LFMotor Ticks Moved", LFMotorticksMoved);
+            telemetry.update();
+
+                // Reset for the next calculation
+            LFMotorlastPosition = LFMotorcurrentPosition;
+            timer.reset();
+
+            sleep(100); // Small delay to stabilize readings
+
             }
-            if (gamepad1.right_trigger > 0.3) { //close
-                moveVSlideToPosition(POSITION_Y_LOW);
-            }
+//            if (gamepad1.right_trigger > 0.3) {
+//                servoPosition = servoPosition - SERVO_STEP;
+//                if (motorPower <= 0.0) {
+//                    servoPosition = 0.01; // 限制最小值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+
+//End debugging with a step increment of power 0.1 for Goblida motors
 
 
+//            if (gamepad1.left_trigger > 0.3) { //open
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad1.right_trigger > 0.3) { //close
+//                moveVSlideToPosition(POSITION_Y_LOW);
+//            }
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
