@@ -43,18 +43,17 @@
            public DcMotor LFMotor;
            public DcMotor RBMotor;
            public DcMotor LBMotor;
-//           public Servo IClaw;
-//           public Servo OClaw;
-//           public Servo Wrist;
-//           public Servo IArmL;
-//           public Servo IArmR;
-//           public Servo OArmL;
-//           public Servo OArmR;
-
-//           public DcMotor HSMotor; //horizontal Slides motor  extruder
+           public Servo IClaw;
+           public Servo OClaw;
+           public Servo Wrist;
+           public Servo IArmL;
+           public Servo IArmR;
+           public Servo OArmL;
+           public Servo OArmR;
+           public DcMotor HSMotor; //horizontal Slides motor  extruder
            public DcMotor VSMotorL; //vertical Slides motor left
            public DcMotor VSMotorR; //vertical Slides motor right
-//           public Servo TServo; // For testing
+           public Servo TServo; // For testing
 //           public DcMotor TMotor; // For testing
 
 
@@ -109,7 +108,7 @@
 
 //Begin Definition and Initialization of Horizontal Slides  Motor
 
-//               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub? port 4
+//               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub  port 3
 //               int positionH = HSMotor.getCurrentPosition();
 //               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
@@ -118,11 +117,11 @@
 
 //Begin Definition and Initialization of Vertical Slides Motors
 
-               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub? port 0
+               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub port 0
                int positionVL = VSMotorL.getCurrentPosition();
                VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
                VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
-               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub? port 3
+               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
                int positionVR = VSMotorR.getCurrentPosition();
                VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 

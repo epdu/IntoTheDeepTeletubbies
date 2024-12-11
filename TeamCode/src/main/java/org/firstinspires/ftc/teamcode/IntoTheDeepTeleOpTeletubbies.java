@@ -19,11 +19,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_B_EXTRUDE = 800;//horizontal slides  out
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 5; //Vertical  slides all the way in
-    private static final int POSITION_Y_LOW = 400; // Vertical slides up
+    private static final int POSITION_Y_LOW = 800; // Vertical slides up
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.3; // Adjust as needed
-    private static final double SERVO_STEP = 0.05; // 每次调整的伺服步长
+    private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
 
@@ -38,6 +38,14 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
             moveDriveTrain();
 //Begin Definition and Initialization of gamepad
+
+//                        if (gamepad1.left_trigger > 0.3) { //open
+//                            robot.TServo.setPosition(0.67);
+//            }
+//            if (gamepad1.right_trigger > 0.3) { //close
+//                robot.TServo.setPosition(0.45);
+//            }
+
 
             if (gamepad1.left_trigger > 0.3) { //open
                 moveVSlideToPosition(POSITION_A_BOTTOM);
@@ -102,7 +110,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
  * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
  */
 
-
+//
 //            if (gamepad1.left_trigger > 0.3) {
 //                servoPosition = servoPosition + SERVO_STEP;
 //                if (servoPosition >= 1.0) {
@@ -123,7 +131,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                telemetry.update();
 //                sleep(200);
 //            }
-
+//
 
 
 //End debugging with a step increment of 0.05
