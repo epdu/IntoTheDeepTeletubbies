@@ -46,6 +46,16 @@
            public Servo IClaw;
            public Servo OClaw;
            public Servo Wrist;
+           public Servo Wristzyaw;
+           public Servo Wristxpitch;
+/*
+       x right side of the robot
+       y forward
+       z celling
+       z--yaw
+       x--pitch
+       y-- roll
+*/
            public Servo IArmL;
            public Servo IArmR;
            public Servo OArmL;
@@ -148,12 +158,22 @@
 
 //End Definition and Initialization of intake Claw Servo
 
-//Begin Definition and Initialization of Wrist Servo
+//Begin Definition and Initialization of Wristzyaw Servo
 
-//               Wrist = hwMap.get(Servo.class, "Wrist");//control hub port x
+//               Wrist = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
 //               Wrist.setPosition(0.5);// wrist good
 
 //End Definition and Initialization of Wrist Servo
+
+
+//Begin Definition and Initialization of Wristxpitch Servo
+
+//               Wrist = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+//               Wrist.setPosition(0.5);// wrist good
+
+//End Definition and Initialization of Wrist Servo
+
+
 
 
 
