@@ -53,7 +53,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 moveVSlideToPosition(POSITION_Y_LOW);
             }
 
-
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
