@@ -118,9 +118,9 @@
 
 //Begin Definition and Initialization of Horizontal Slides  Motor
 
-//               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub  port 3
-//               int positionH = HSMotor.getCurrentPosition();
-//               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+               HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub  port 3
+               int positionH = HSMotor.getCurrentPosition();
+               HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
 //End Definition and Initialization of Horizontal Slides  Motor
 
@@ -132,6 +132,7 @@
                VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
                VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
                VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
+               VSMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
                int positionVR = VSMotorR.getCurrentPosition();
                VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 

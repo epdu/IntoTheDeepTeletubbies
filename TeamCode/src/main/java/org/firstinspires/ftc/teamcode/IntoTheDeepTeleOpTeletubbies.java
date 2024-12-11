@@ -197,7 +197,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setTargetPosition(-targetPosition);
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.VSMotorL.setPower(+SLIDE_POWER_V);
+ //       robot.VSMotorL.setPower(+SLIDE_POWER_V);
         robot.VSMotorR.setPower(+SLIDE_POWER_V);
         move = true;
         while (robot.VSMotorL.isBusy() && robot.VSMotorR.isBusy() && move) {
