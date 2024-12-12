@@ -131,14 +131,14 @@
 
 //Begin Definition and Initialization of Vertical Slides Motors
 
-//               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub port 0
-//               int positionVL = VSMotorL.getCurrentPosition();
-//               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
+               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub port 0
+               int positionVL = VSMotorL.getCurrentPosition();
+               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
                VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
                int positionVR = VSMotorR.getCurrentPosition();
                VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
- //              VSMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
 
 //End Definition and Initialization of Vertical Slides Motors
