@@ -6,15 +6,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.teamcode.HardwareTeletubbies;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 12122024")
-public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
+
+@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies RRR 12122024")
+public class IntoTheDeepTeleOpTeletubbiesR extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
@@ -41,7 +35,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
         while (opModeIsActive()) {
             RobotCentricDriveTrain(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
-            FieldCentricDriveTrain(); //Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+ //           FieldCentricDriveTrain(); //Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
 //Begin Definition and Initialization of gamepad
