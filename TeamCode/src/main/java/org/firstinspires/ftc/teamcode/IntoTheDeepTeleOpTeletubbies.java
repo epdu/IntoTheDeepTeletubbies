@@ -165,8 +165,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.VSMotorL.setPower(liftVertSlides_y*0.45);
         robot.VSMotorR.setPower(liftVertSlides_y*0.45);
-        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+
         //up joystick makes the slides rotate clockwise on the out right side
         //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
     }
