@@ -37,6 +37,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         while (opModeIsActive()) {
 
             moveDriveTrain();
+            liftVertSlidesHigh();
 //Begin Definition and Initialization of gamepad
 
 //                        if (gamepad1.left_trigger > 0.3) { //open
@@ -237,6 +238,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+
         move = false;
     }
 
