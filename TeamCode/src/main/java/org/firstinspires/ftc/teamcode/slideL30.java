@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 11252024")
+@TeleOp(name = "A slideL30")
 public class slideL30 extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
@@ -209,7 +209,7 @@ public class slideL30 extends LinearOpMode {
 //        robot.VSMotorR.setPower(0);
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 //        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         move = false;
     }
