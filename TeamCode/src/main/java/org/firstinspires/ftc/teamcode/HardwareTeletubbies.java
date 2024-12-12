@@ -148,8 +148,8 @@
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
-//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-//               TServo.setPosition(0.5);// for safe
+               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+               TServo.setPosition(0.5);// for safe
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
