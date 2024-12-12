@@ -13,19 +13,19 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 12122024")
+@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies both field and robotic centric 12122024")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
-    private static final int POSITION_X_IN = 100; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 800;//horizontal slides  out
+    private static final int POSITION_X_IN = 50; // horizontal slides all the way in
+    private static final int POSITION_B_EXTRUDE = 300;//horizontal slides  out
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 5; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
-    private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
+    private static final double SLIDE_POWER_H = 0.2; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.4; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
@@ -40,8 +40,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            RobotCentricDriveTrain(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
-            FieldCentricDriveTrain(); //Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+//            moveDriveTrain_RobotCentric(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+            moveDriveTrain_FieldCentric() ;
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
 //Begin Definition and Initialization of gamepad
@@ -52,13 +52,21 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            if (gamepad1.right_trigger > 0.3) { //close
 //                robot.TServo.setPosition(0.45);
 //            }
+//
 
             if (gamepad1.left_trigger > 0.3) { //open
-                moveVSlideToPosition(POSITION_A_BOTTOM);
+                moveHSlideToPosition(POSITION_X_IN);
             }
             if (gamepad1.right_trigger > 0.3) { //close
-                moveVSlideToPosition(POSITION_Y_LOW);
+                moveHSlideToPosition(POSITION_B_EXTRUDE);
             }
+
+//            if (gamepad1.left_trigger > 0.3) { //open
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad1.right_trigger > 0.3) { //close
+//                moveVSlideToPosition(POSITION_Y_LOW);
+//            }
 
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
@@ -249,53 +257,87 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End Definition and Initialization of Vertical Slides
 
+//Begin Definition and Initialization of Horizontal Slides
+    private void moveHSlideToPosition ( int targetPosition){
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        telemetry.addData("targetPosition", targetPosition);
+        telemetry.addData("robot.HSMotor.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
+        telemetry.update();
+        robot.HSMotor.setTargetPosition(-targetPosition);
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.HSMotor.setPower(+SLIDE_POWER_H);
+        move = true;
+        while (robot.HSMotor.isBusy()  && move) {
+            // Wait until the motor reaches the target position
+        }
+//        while (robot.VSMotorR.isBusy() && move) {
+        //           // Wait until the motor reaches the target position
+        //       }
+        telemetry.addData("targetPosition", targetPosition);
+        telemetry.addData("after while HSMotor.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
+        telemetry.update();
+        robot.HSMotor.setPower(0);
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
-    public void FieldCentricDriveTrain () {
-        //for gobilda motor with REV hub and Frist SDK, we need reverse all control signals
-        double field_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
-        double field_x = gamepad1.left_stick_x;
-        double field_rx = gamepad1.right_stick_x;
+        move = false;
+    }
 
-        // Retrieve the IMU from the hardware map
-        IMU imu = hardwareMap.get(IMU.class, "imu");
-        // Adjust the orientation parameters to match your robot
-        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
+//End Definition and Initialization of Horizontal Slides
 
 
-        // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
-        imu.initialize(parameters);
+
+    public void moveDriveTrain_FieldCentric() {
+        double y = gamepad1.left_stick_y * (1); // Remember, Y stick value is reversed
+        double x = -gamepad1.left_stick_x * (1);
+        double rx = -gamepad1.right_stick_x * (1); //*(0.5) is fine
+
         // This button choice was made so that it is hard to hit on accident,
         // it can be freely changed based on preference.
         // The equivalent button is start on Xbox-style controllers.
         if (gamepad1.options) {
-            imu.resetYaw();
+            robot.imu.resetYaw();
         }
 
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        double botHeading = robot.imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
         // Rotate the movement direction counter to the bot's rotation
-        double rotX = field_x * Math.cos(-botHeading) - field_y * Math.sin(-botHeading);
-        double rotY = field_x * Math.sin(-botHeading) + field_y * Math.cos(-botHeading);
+        double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+        double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
 
         rotX = rotX * 1.1;  // Counteract imperfect strafing
 
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio,
         // but only if at least one is out of the range [-1, 1]
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(field_rx), 1);
-        double frontLeftPower = (rotY - rotX - field_rx) / denominator;
-        double backLeftPower = (rotY + rotX - field_rx) / denominator;
-        double frontRightPower = (rotY + rotX + field_rx) / denominator;
-        double backRightPower = (rotY - rotX + field_rx) / denominator;
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+        double frontLeftPower = (rotY + rotX + rx) / denominator;
+        double backLeftPower = (rotY - rotX + rx) / denominator;
+        double frontRightPower = (rotY - rotX - rx) / denominator;
+        double backRightPower = (rotY + rotX - rx) / denominator;
 
-        robot.LFMotor.setPower(0.75 * frontLeftPower);
-        robot.LBMotor.setPower(0.75 * backLeftPower);
-        robot.RFMotor.setPower(0.75 * frontRightPower);
-        robot.RBMotor.setPower(0.75 * backRightPower);
+        robot.LFMotor.setPower(frontLeftPower * DriveTrains_ReducePOWER);
+        robot.LBMotor.setPower(backLeftPower * DriveTrains_ReducePOWER);
+        robot.RFMotor.setPower(frontRightPower * DriveTrains_ReducePOWER);
+        robot.RBMotor.setPower(backRightPower * DriveTrains_ReducePOWER);
     }
 
+    public void moveDriveTrain_RobotCentric() {
+        double robot_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
+        double robot_x = gamepad1.left_stick_x;
+        double robot_rx = gamepad1.right_stick_x*0.5; // If a smooth turn is required 0.5
+
+        double fl = robot_y - robot_x - robot_rx;
+        double bl = robot_y + robot_x - robot_rx;
+        double fr = robot_y + robot_x + robot_rx;
+        double br = robot_y - robot_x + robot_rx;
+
+        robot.LFMotor.setPower(fl * speedMultiplier);
+        robot.LBMotor.setPower(bl * speedMultiplier);
+        robot.RFMotor.setPower(fr * speedMultiplier);
+        robot.RBMotor.setPower(br * speedMultiplier);
+
+    }
     public void RobotCentricDriveTrain () {
         double robot_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double robot_x = gamepad1.left_stick_x;
@@ -314,65 +356,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     }
 
 
-//    public void liftVertSlidesHigh () {
-//        double liftVertSlides_y = -gamepad2.left_stick_y;
-//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.VSMotorL.setPower(liftVertSlides_y*0.45);
-//        robot.VSMotorR.setPower(liftVertSlides_y*0.45);
-//        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        //up joystick makes the slides rotate clockwise on the out right side
-//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
-//
-//
-//    }
-// start of backup
-//
-//    public void liftArmHigh () {
-//        double liftArm_y = gamepad2.left_stick_y;
-//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.liftMotorL.setPower(liftArm_y);
-//        robot.liftMotorR.setPower(liftArm_y);
-//        //up joystick makes the slides rotate clockwise on the out right side
-//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
-//
-//    }
-//
-//    private void moveSlideToPosition ( int targetPosition){
-////            robot.liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-////            robot.liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        telemetry.addData("targetPosition", targetPosition);
-//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.liftMotorR.getCurrentPosition());
-//        telemetry.addData("liftMotorL.getCurrentPosition()",robot.liftMotorL.getCurrentPosition());
-//        telemetry.update();
-//        robot.liftMotorL.setTargetPosition(-targetPosition);
-//        robot.liftMotorR.setTargetPosition(-targetPosition);
-//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        robot.liftMotorR.setPower(+SLIDE_POWER);
-//        robot.liftMotorL.setPower(+SLIDE_POWER);
-//        move = true;
-//
-//        while (robot.liftMotorL.isBusy() && robot.liftMotorR.isBusy() && move) {
-//            // Wait until the motor reaches the target position
-//        }
-//
-//        robot.liftMotorL.setPower(0);
-//        robot.liftMotorR.setPower(0);
-//
-//        robot.liftMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.liftMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        move = false;
-//    }
-
-
-// end of backup
 
 
 
