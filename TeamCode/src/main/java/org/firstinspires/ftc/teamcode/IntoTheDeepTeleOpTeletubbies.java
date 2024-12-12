@@ -44,7 +44,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain_FieldCentric() ;
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
-            extrHoriSlidesLong();
+//            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
 
@@ -125,28 +125,28 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
  * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
  */
 
-//
-//            if (gamepad1.left_trigger > 0.3) {
-//                servoPosition = servoPosition + SERVO_STEP;
-//                if (servoPosition >= 1.0) {
-//                    servoPosition = 0.99; // 限制最大值
-//                }
-//                robot.TServo.setPosition(servoPosition);
-//                telemetry.addData("Servo Position", servoPosition);
-//                telemetry.update();
-//                sleep(200);
-//            }
-//            if (gamepad1.right_trigger > 0.3) {
-//                servoPosition = servoPosition - SERVO_STEP;
-//                if (servoPosition <= 0.0) {
-//                    servoPosition = 0.01; // 限制最小值
-//                }
-//                robot.TServo.setPosition(servoPosition);
-//                telemetry.addData("Servo Position", servoPosition);
-//                telemetry.update();
-//                sleep(200);
-//            }
-//
+
+            if (gamepad1.left_trigger > 0.3) {
+                servoPosition = servoPosition + SERVO_STEP;
+                if (servoPosition >= 1.0) {
+                    servoPosition = 0.99; // 限制最大值
+                }
+                robot.TServo.setPosition(servoPosition);
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.update();
+                sleep(200);
+            }
+            if (gamepad1.right_trigger > 0.3) {
+                servoPosition = servoPosition - SERVO_STEP;
+                if (servoPosition <= 0.0) {
+                    servoPosition = 0.01; // 限制最小值
+                }
+                robot.TServo.setPosition(servoPosition);
+                telemetry.addData("Servo Position", servoPosition);
+                telemetry.update();
+                sleep(200);
+            }
+
 
 
 //End debugging with a step increment of 0.05
