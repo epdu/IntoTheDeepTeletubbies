@@ -48,14 +48,47 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin Definition and Initialization of gamepad
 
-//                        if (gamepad1.left_trigger > 0.3) { //open
-//                            robot.TServo.setPosition(0.67);
+
+
+//Begin  open and close of intakeclaw
+//            if (gamepad1.left_trigger > 0.3) { //open
+//                robot.IClaw.setPosition(0.32); //12122024
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
-//                robot.TServo.setPosition(0.45);
+//                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 baremovable 0.543 hold
 //            }
-//
+//End open and close of intakeclaw
 
+//Begin  Wristzyaw
+//            if (gamepad1.b && !move) { //right
+//                robot.Wristzyaw.setPosition(0.35); //Wristzyaw right 45 degree 12122024
+//            }
+//            if (gamepad1.x && !move) { //left
+//                robot.Wristzyaw.setPosition(0.65); // Wristzyaw left 45 degree 12122024
+//            }
+//            if (gamepad1.right_bumper && !move) { //left
+//                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
+//            }
+//End   Wristzyaw
+
+//Begin  Wristxpitch
+            if (gamepad1.b && !move) { //down
+                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+            }
+            if (gamepad1.x && !move) { //up
+                robot.Wristxpitch.setPosition(0.95); // Wristxpitch 12122024
+            }
+            if (gamepad1.right_bumper && !move) { //left
+                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
+            }
+//End   Wristzyaw
+
+
+
+//            if (gamepad2.a && !move) { //left
+//                robot.V4BL.setPosition(0.4);
+//                robot.V4BR.setPosition(0.4);
+//            }
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                moveHSlideToPosition(POSITION_X_IN);
 //            }
@@ -85,19 +118,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
 //                robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
 //            }
-//            if (gamepad1.b && !move) { //right
-//                robot.Wrist.setPosition(0.35); // WRIST right 45 degree
-//            }
-//            if (gamepad1.x && !move) { //left
-//                robot.Wrist.setPosition(0.65); // WRIST left 45 degree
-//            }
-//            if (gamepad1.right_bumper && !move) { //left
-//                robot.Wrist.setPosition(0.5); // WRIST left 45 degree
-//            }
-//            if (gamepad2.a && !move) { //left
-//                robot.V4BL.setPosition(0.4);
-//                robot.V4BR.setPosition(0.4);
-//            }
+
 
 
 //End Definition and Initialization of gamepad
@@ -126,26 +147,26 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
  */
 
 
-            if (gamepad1.left_trigger > 0.3) {
-                servoPosition = servoPosition + SERVO_STEP;
-                if (servoPosition >= 1.0) {
-                    servoPosition = 0.99; // 限制最大值
-                }
-                robot.TServo.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
-                sleep(200);
-            }
-            if (gamepad1.right_trigger > 0.3) {
-                servoPosition = servoPosition - SERVO_STEP;
-                if (servoPosition <= 0.0) {
-                    servoPosition = 0.01; // 限制最小值
-                }
-                robot.TServo.setPosition(servoPosition);
-                telemetry.addData("Servo Position", servoPosition);
-                telemetry.update();
-                sleep(200);
-            }
+//            if (gamepad1.left_trigger > 0.3) {
+//                servoPosition = servoPosition + SERVO_STEP;
+//                if (servoPosition >= 1.0) {
+//                    servoPosition = 0.99; // 限制最大值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+//            if (gamepad1.right_trigger > 0.3) {
+//                servoPosition = servoPosition - SERVO_STEP;
+//                if (servoPosition <= 0.0) {
+//                    servoPosition = 0.01; // 限制最小值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
 
 
 

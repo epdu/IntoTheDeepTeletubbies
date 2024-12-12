@@ -148,8 +148,8 @@
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
-               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-               TServo.setPosition(0.5);// for safe
+//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               TServo.setPosition(0.5);// for safe
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -160,22 +160,22 @@
 //Begin Definition and Initialization of intake Claw Servo
 
 //               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port  good
-//               IClaw.setPosition(0.9);// 3 prong claw good-
+//               IClaw.setPosition(0.543);// 12122024
 
 //End Definition and Initialization of intake Claw Servo
 
 //Begin Definition and Initialization of Wristzyaw Servo
 
-//               Wrist = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
-//               Wrist.setPosition(0.5);// wrist good
+//               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
+//               Wristzyaw.setPosition(0.5);// 12122024
 
 //End Definition and Initialization of Wrist Servo
 
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-//               Wrist = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-//               Wrist.setPosition(0.5);// wrist good
+               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+               Wristxpitch.setPosition(0.05);// wrist good
 
 //End Definition and Initialization of Wrist Servo
 
