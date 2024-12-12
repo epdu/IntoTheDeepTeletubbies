@@ -34,8 +34,8 @@ public class IntoTheDeepTeleOpTeletubbiesF extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
- //           RobotCentricDriveTrain(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
-            FieldCentricDriveTrain(); //Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+ //           moveDriveTrain_RobotCentric(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+            moveDriveTrain_FieldCentric() ; //Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
 //Begin Definition and Initialization of gamepad
@@ -244,53 +244,42 @@ public class IntoTheDeepTeleOpTeletubbiesF extends LinearOpMode {
 //End Definition and Initialization of Vertical Slides
 
 
-    public void FieldCentricDriveTrain () {
-        //for gobilda motor with REV hub and Frist SDK, we need reverse all control signals
-        double field_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
-        double field_x = gamepad1.left_stick_x;
-        double field_rx = gamepad1.right_stick_x;
+    public void moveDriveTrain_FieldCentric() {
+        double y = gamepad1.left_stick_y * (1); // Remember, Y stick value is reversed
+        double x = -gamepad1.left_stick_x * (1);
+        double rx = -gamepad1.right_stick_x * (1); //*(0.5) is fine
 
-        // Retrieve the IMU from the hardware map
-        IMU imu = hardwareMap.get(IMU.class, "imu");
-        // Adjust the orientation parameters to match your robot
-        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
-
-
-        // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
-        imu.initialize(parameters);
         // This button choice was made so that it is hard to hit on accident,
         // it can be freely changed based on preference.
         // The equivalent button is start on Xbox-style controllers.
         if (gamepad1.options) {
-            imu.resetYaw();
+            robot.imu.resetYaw();
         }
 
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+        double botHeading = robot.imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
         // Rotate the movement direction counter to the bot's rotation
-        double rotX = field_x * Math.cos(-botHeading) - field_y * Math.sin(-botHeading);
-        double rotY = field_x * Math.sin(-botHeading) + field_y * Math.cos(-botHeading);
+        double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+        double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
 
         rotX = rotX * 1.1;  // Counteract imperfect strafing
 
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio,
         // but only if at least one is out of the range [-1, 1]
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(field_rx), 1);
-        double frontLeftPower = (rotY - rotX - field_rx) / denominator;
-        double backLeftPower = (rotY + rotX - field_rx) / denominator;
-        double frontRightPower = (rotY + rotX + field_rx) / denominator;
-        double backRightPower = (rotY - rotX + field_rx) / denominator;
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+        double frontLeftPower = (rotY + rotX + rx) / denominator;
+        double backLeftPower = (rotY - rotX + rx) / denominator;
+        double frontRightPower = (rotY - rotX - rx) / denominator;
+        double backRightPower = (rotY + rotX - rx) / denominator;
 
-        robot.LFMotor.setPower(0.75 * frontLeftPower);
-        robot.LBMotor.setPower(0.75 * backLeftPower);
-        robot.RFMotor.setPower(0.75 * frontRightPower);
-        robot.RBMotor.setPower(0.75 * backRightPower);
+        robot.LFMotor.setPower(frontLeftPower * DriveTrains_ReducePOWER);
+        robot.LBMotor.setPower(backLeftPower * DriveTrains_ReducePOWER);
+        robot.RFMotor.setPower(frontRightPower * DriveTrains_ReducePOWER);
+        robot.RBMotor.setPower(backRightPower * DriveTrains_ReducePOWER);
     }
 
-    public void RobotCentricDriveTrain () {
+    public void moveDriveTrain_RobotCentric() {
         double robot_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double robot_x = gamepad1.left_stick_x;
         double robot_rx = gamepad1.right_stick_x*0.5; // If a smooth turn is required 0.5
