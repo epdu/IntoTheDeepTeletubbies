@@ -56,12 +56,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            }
 //
 
-            if (gamepad1.left_trigger > 0.3) { //open
-                moveHSlideToPosition(POSITION_X_IN);
-            }
-            if (gamepad1.right_trigger > 0.3) { //close
-                moveHSlideToPosition(POSITION_B_EXTRUDE);
-            }
+//            if (gamepad1.left_trigger > 0.3) { //open
+//                moveHSlideToPosition(POSITION_X_IN);
+//            }
+//            if (gamepad1.right_trigger > 0.3) { //close
+//                moveHSlideToPosition(POSITION_B_EXTRUDE);
+//            }
 
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                moveVSlideToPosition(POSITION_A_BOTTOM);
