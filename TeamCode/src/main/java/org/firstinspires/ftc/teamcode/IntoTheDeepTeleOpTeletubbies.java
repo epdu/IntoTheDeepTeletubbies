@@ -167,7 +167,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
     public void liftVertSlidesHigh () {
-        double liftVertSlides_y = -gamepad2.left_stick_y;
+        double liftVertSlides_y = gamepad2.left_stick_y;
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.VSMotorL.setPower(liftVertSlides_y*0.45);
