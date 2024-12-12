@@ -44,6 +44,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain_FieldCentric() ;
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
+            extrHoriSlidesLong();
+
 //Begin Definition and Initialization of gamepad
 
 //                        if (gamepad1.left_trigger > 0.3) { //open
@@ -190,6 +192,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
 
+
+//Begin Definition and Initialization of Horizontal Slides by gamepad2.left_stick_x  extrude slides long
+
+public void extrHoriSlidesLong() {
+        double liftVertSlides_y = gamepad2.left_stick_x;
+        robot.HSMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.HSMotor.setPower(liftVertSlides_y*0.45);
+        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+
+        //up joystick makes the slides rotate clockwise on the out right side
+        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+    }
+
+//End Definition and Initialization of Horizontal Slides by gamepad2.left_stick_x
 
 //Begin Definition and Initialization of Horizontal Slides
 
