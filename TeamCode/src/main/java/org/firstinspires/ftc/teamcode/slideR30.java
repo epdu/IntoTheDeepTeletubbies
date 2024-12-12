@@ -1,16 +1,10 @@
 package org.firstinspires.ftc.teamcode;
-import org.firstinspires.ftc.teamcode.HardwareTeletubbies;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+
 @TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 11252024")
-public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
+public class slideR30 extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
@@ -22,7 +16,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_Y_LOW = 800; // Vertical slides up
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.8; // Adjust as needed
-    private static final double SLIDE_POWER_V = 0.4; // Adjust as needed
+    private static final double SLIDE_POWER_V = 0.3; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
@@ -197,8 +191,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setTargetPosition(-targetPosition);
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.VSMotorL.setPower(+SLIDE_POWER_V);
-//        robot.VSMotorR.setPower(+SLIDE_POWER_V);
+//       robot.VSMotorL.setPower(+SLIDE_POWER_V);
+        robot.VSMotorR.setPower(+SLIDE_POWER_V);
         move = true;
         while (robot.VSMotorL.isBusy() && robot.VSMotorR.isBusy() && move) {
             // Wait until the motor reaches the target position

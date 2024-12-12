@@ -4,8 +4,8 @@
 //import com.qualcomm.robotcore.hardware.DcMotor;
 //import com.qualcomm.robotcore.util.ElapsedTime;
 //
-//@TeleOp(name = "Atestmotors 20")
-//public class Atestmotors20 extends LinearOpMode {
+//@TeleOp(name = "Atestmotors 75")
+//public class Atestmotors75 extends LinearOpMode {
 //    public static final double DriveTrains_ReducePOWER = 0.75;
 //    HardwareTeletubbies robot = new HardwareTeletubbies();
 //    public String fieldOrRobotCentric = "robot";
@@ -75,10 +75,10 @@
 //
 //            if (gamepad1.left_trigger > 0.3) {
 //
-//                robot.LFMotor.setPower(0.2);
-//                robot.RFMotor.setPower(0.2);
-//                robot.LBMotor.setPower(0.2);
-//                robot.RBMotor.setPower(0.2);
+//                robot.LFMotor.setPower(0.75);
+//                robot.RFMotor.setPower(0.75);
+//                robot.LBMotor.setPower(0.75);
+//                robot.RBMotor.setPower(0.75);
 //
 //                while (opModeIsActive() && System.currentTimeMillis() - startTime < 5000) {
 //                    // Measure time elapsed
