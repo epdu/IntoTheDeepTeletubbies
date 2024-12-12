@@ -114,7 +114,11 @@
                RBMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
  // End Definition and Initialization of Drivetrain Motors
-
+/*
+ Expansion port 1 output is reversed
+ Expansion port 1 output is reversed
+ Expansion port 1 output is reversed
+ */
 
 //Begin Definition and Initialization of Horizontal Slides  Motor
 
@@ -127,14 +131,15 @@
 
 //Begin Definition and Initialization of Vertical Slides Motors
 
-               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub port 0
-               int positionVL = VSMotorL.getCurrentPosition();
-               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
-//               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
-//               VSMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
-//               int positionVR = VSMotorR.getCurrentPosition();
-//               VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//               VSMotorL = hwMap.get(DcMotor.class, "VSMotorL");// expansion  hub port 0
+//               int positionVL = VSMotorL.getCurrentPosition();
+//               VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//               VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
+               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
+               int positionVR = VSMotorR.getCurrentPosition();
+               VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+ //              VSMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
 //End Definition and Initialization of Vertical Slides Motors
 

@@ -2,15 +2,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.teamcode.HardwareTeletubbies;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 11252024")
-public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
+
+@TeleOp(name = "A right encoder only")
+public class slideRightMotor extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
@@ -187,20 +181,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin Definition and Initialization of Vertical Slides
     private void moveVSlideToPosition ( int targetPosition){
-        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         telemetry.addData("targetPosition", targetPosition);
         telemetry.addData("liftMotorL.getCurrentPosition()",robot.VSMotorL.getCurrentPosition());
         telemetry.addData("liftMotorR.getCurrentPosition()",robot.VSMotorR.getCurrentPosition());
         telemetry.update();
-        robot.VSMotorL.setTargetPosition(-targetPosition);
+//        robot.VSMotorL.setTargetPosition(-targetPosition);
         robot.VSMotorR.setTargetPosition(-targetPosition);
-        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.VSMotorL.setPower(+SLIDE_POWER_V);
         robot.VSMotorR.setPower(+SLIDE_POWER_V);
         move = true;
-        while (robot.VSMotorL.isBusy() && robot.VSMotorR.isBusy() && move) {
+        while (robot.VSMotorR.isBusy() && move) {
             // Wait until the motor reaches the target position
         }
 //        while (robot.VSMotorR.isBusy() && move) {
@@ -213,7 +207,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
         robot.VSMotorL.setPower(0);
         robot.VSMotorR.setPower(0);
-        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 //        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));

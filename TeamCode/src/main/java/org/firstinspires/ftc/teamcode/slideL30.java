@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "A slideL30")
 public class slideL30 extends LinearOpMode {
@@ -20,7 +21,7 @@ public class slideL30 extends LinearOpMode {
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
-
+    private ElapsedTime timer = new ElapsedTime();
 
     @Override
     public void runOpMode() {
@@ -181,6 +182,7 @@ public class slideL30 extends LinearOpMode {
 
 //Begin Definition and Initialization of Vertical Slides
     private void moveVSlideToPosition ( int targetPosition){
+        timer.reset();
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         telemetry.addData("targetPosition", targetPosition);
@@ -200,8 +202,10 @@ public class slideL30 extends LinearOpMode {
 //        while (robot.VSMotorR.isBusy() && move) {
         //           // Wait until the motor reaches the target position
         //       }
+        long currentTime = System.currentTimeMillis();
         telemetry.addData("targetPosition", targetPosition);
         telemetry.addData("after while liftMotorL.getCurrentPosition()",robot.VSMotorL.getCurrentPosition());
+        telemetry.addData("CurrentTime",currentTime);
 //        telemetry.addData("after while liftMotorR.getCurrentPosition()",robot.VSMotorR.getCurrentPosition());
         telemetry.update();
 
