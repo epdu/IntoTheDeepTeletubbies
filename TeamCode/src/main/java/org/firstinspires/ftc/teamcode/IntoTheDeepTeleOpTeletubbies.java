@@ -19,8 +19,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
-    private static final int POSITION_X_IN = 50; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 300;//horizontal slides  out
+    private static final int POSITION_X_IN = 5; // horizontal slides all the way in
+    private static final int POSITION_B_EXTRUDE = 900;//horizontal slides  out
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 5; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up
