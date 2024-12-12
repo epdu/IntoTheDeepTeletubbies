@@ -2,15 +2,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.teamcode.HardwareTeletubbies;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 11252024")
-public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
+
+@TeleOp(name = "A Tune VSlides")
+public class TuneVSlides extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
@@ -52,6 +46,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad1.right_trigger > 0.3) { //close
                 moveVSlideToPosition(POSITION_Y_LOW);
             }
+
+
+//            public void moveVSlidebystick () {
+//                double liftVertSlides_y = -gamepad2.left_stick_y;
+
 
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
@@ -156,25 +155,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
     }
 
-
-//Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
-
-    public void liftVertSlidesHigh () {
-        double liftVertSlides_y = -gamepad2.left_stick_y;
-        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.VSMotorL.setPower(liftVertSlides_y*0.45);
-        robot.VSMotorR.setPower(liftVertSlides_y*0.45);
-        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        //up joystick makes the slides rotate clockwise on the out right side
-        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
-    }
-
-//End Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
-
-
-
 //Begin Definition and Initialization of Horizontal Slides
 
 
@@ -241,19 +221,23 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End Definition and Initialization of Vertical Slides
 
-//    public void liftVertSlidesHigh () {
-//        double liftVertSlides_y = -gamepad2.left_stick_y;
-//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        robot.VSMotorL.setPower(liftVertSlides_y*0.45);
-//        robot.VSMotorR.setPower(liftVertSlides_y*0.45);
-//        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        //up joystick makes the slides rotate clockwise on the out right side
-//        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
-//
-//
-//    }
+
+//Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
+
+    public void liftVertSlidesHigh () {
+        double liftVertSlides_y = -gamepad2.left_stick_y;
+        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.VSMotorL.setPower(liftVertSlides_y*0.45);
+        robot.VSMotorR.setPower(liftVertSlides_y*0.45);
+        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        //up joystick makes the slides rotate clockwise on the out right side
+        //when looking at the robots right side from the outside wall the slide pulley spins clockwise/to the right when the joystick is pushed up
+    }
+
+//End Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
+
 // start of backup
 //
 //    public void liftArmHigh () {
