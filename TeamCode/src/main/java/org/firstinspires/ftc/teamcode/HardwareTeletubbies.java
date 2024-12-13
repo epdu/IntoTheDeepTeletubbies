@@ -183,11 +183,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-               IArmR.setDirection(Servo.Direction.REVERSE);
-               IArmL.setPosition(0.05);//  good
-               IArmR.setPosition(0.05);//
+//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+//               IArmR.setDirection(Servo.Direction.REVERSE);
+//               IArmL.setPosition(0.8);//  good
+//               IArmR.setPosition(0.8);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
@@ -202,11 +202,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-//               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
-//               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
-//               OArmL.setDirection(Servo.Direction.REVERSE);
-//               OArmL.setPosition(0.32);//  good
-//               OArmR.setPosition(0.32);//
+               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
+               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
+               OArmR.setDirection(Servo.Direction.REVERSE);
+               OArmL.setPosition(0.32);//  good
+               OArmR.setPosition(0.32);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
