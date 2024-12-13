@@ -13,7 +13,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies both field and robotic centric 12122024")
+@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 12122024")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
@@ -50,12 +50,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 
 
-//Begin  open and close of intakeclaw
+//Begin  open and close of intakeclaw 12122024 finetuned
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                robot.IClaw.setPosition(0.32); //12122024
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
 //                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 baremovable 0.543 hold
+//            }
+//            if (gamepad1.right_bumper && !move) { //adjust location
+//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 baremovable 0.543 hold
 //            }
 //End open and close of intakeclaw
 
@@ -72,13 +75,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End   Wristzyaw
 
 //Begin  Wristxpitch
-            if (gamepad1.b && !move) { //down
+            if (gamepad1.b && !move) { //up
                 robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
             }
-            if (gamepad1.x && !move) { //up
+            if (gamepad1.x && !move) { //down
                 robot.Wristxpitch.setPosition(0.95); // Wristxpitch 12122024
             }
-            if (gamepad1.right_bumper && !move) { //left
+            if (gamepad1.right_bumper && !move) { //init
                 robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
             }
 //End   Wristzyaw

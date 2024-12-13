@@ -159,7 +159,7 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of intake Claw Servo
 
-//               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port  good
+//               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port ?
 //               IClaw.setPosition(0.543);// 12122024
 
 //End Definition and Initialization of intake Claw Servo
@@ -174,13 +174,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-//               Wristxpitch.setPosition(0.05);// wrist good
+               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+               Wristxpitch.setDirection(Servo.Direction.REVERSE);
+               Wristxpitch.setPosition(0.05);// wrist good
 
-//End Definition and Initialization of Wrist Servo
-
-
-
+//End Definition and Initialization of Wristxpitch Servo
 
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
@@ -212,7 +210,7 @@ public class HardwareTeletubbies
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
 
-
+//Old hardwire
 //Begin Definition and Initialization of V4B Servos
 
 //               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
@@ -222,9 +220,6 @@ public class HardwareTeletubbies
 //               V4BR.setPosition(0.32);//
 
 //End Definition and Initialization of V4B Servos
-
-
-
 
 //               Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
 //               Drone.setPosition(0);
