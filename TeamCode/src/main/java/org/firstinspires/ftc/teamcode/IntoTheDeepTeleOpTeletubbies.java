@@ -44,7 +44,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             moveDriveTrain_FieldCentric() ;
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
-            extrHoriSlidesLong();
+//            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
 
