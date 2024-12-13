@@ -55,7 +55,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.TServo.setPosition(0.45);
 //            }
 //
-
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                moveHSlideToPosition(POSITION_X_IN);
 //            }
