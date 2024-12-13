@@ -83,8 +83,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             }
 //End   Wristzyaw
 
-
-
 //            if (gamepad2.a && !move) { //left
 //                robot.V4BL.setPosition(0.4);
 //                robot.V4BR.setPosition(0.4);
