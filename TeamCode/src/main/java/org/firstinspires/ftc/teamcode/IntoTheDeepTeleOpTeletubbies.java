@@ -75,30 +75,36 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End   Wristzyaw
 
 //Begin  Wristxpitch
-            if (gamepad1.b && !move) { //up
-                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-            }
-            if (gamepad1.x && !move) { //down
-                robot.Wristxpitch.setPosition(0.95); // Wristxpitch 12122024
-            }
-            if (gamepad1.right_bumper && !move) { //init
-                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
-            }
+//            if (gamepad1.b && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+//            }
+//            if (gamepad1.x && !move) { //down
+//                robot.Wristxpitch.setPosition(0.7); // Wristxpitch 12122024
+//            }
+//            if (gamepad1.right_bumper && !move) { //init
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
+//            }
 //End   Wristzyaw
 
+//Begin  IArm L and R
 
+            if (gamepad2.a && !move) { //left
+                robot.IArmL.setPosition(0.05);
+                robot.IArmR.setPosition(0.05);
+            }
+            if (gamepad2.y && !move) { //left
+                robot.IArmL.setPosition(0.8);
+                robot.IArmR.setPosition(0.8);
+            }
 
-//            if (gamepad2.a && !move) { //left
-//                robot.V4BL.setPosition(0.4);
-//                robot.V4BR.setPosition(0.4);
-//            }
+//Begin  IArm L and R
+
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                moveHSlideToPosition(POSITION_X_IN);
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
 //                moveHSlideToPosition(POSITION_B_EXTRUDE);
 //            }
-
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                moveVSlideToPosition(POSITION_A_BOTTOM);
 //            }

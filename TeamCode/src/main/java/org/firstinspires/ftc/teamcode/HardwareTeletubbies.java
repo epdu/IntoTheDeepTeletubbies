@@ -174,20 +174,20 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-               Wristxpitch.setDirection(Servo.Direction.REVERSE);
-               Wristxpitch.setPosition(0.05);// wrist good
+//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+//               Wristxpitch.setDirection(Servo.Direction.REVERSE);
+//               Wristxpitch.setPosition(0.05);// wrist good
 
 //End Definition and Initialization of Wristxpitch Servo
 
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-//               IArmL.setDirection(Servo.Direction.REVERSE);
-//               IArmL.setPosition(0.32);//  good
-//               IArmR.setPosition(0.32);//
+               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+               IArmR.setDirection(Servo.Direction.REVERSE);
+               IArmL.setPosition(0.05);//  good
+               IArmR.setPosition(0.05);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
