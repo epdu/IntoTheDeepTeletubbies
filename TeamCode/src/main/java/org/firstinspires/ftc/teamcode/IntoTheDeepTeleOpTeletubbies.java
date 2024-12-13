@@ -56,19 +56,19 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            }
 //
 
-            if (gamepad1.left_trigger > 0.3) { //open
-                moveHSlideToPosition(POSITION_X_IN);
-            }
-            if (gamepad1.right_trigger > 0.3) { //close
-                moveHSlideToPosition(POSITION_B_EXTRUDE);
-            }
-
 //            if (gamepad1.left_trigger > 0.3) { //open
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//                moveHSlideToPosition(POSITION_X_IN);
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
-//                moveVSlideToPosition(POSITION_Y_LOW);
+//                moveHSlideToPosition(POSITION_B_EXTRUDE);
 //            }
+
+            if (gamepad1.left_trigger > 0.3) { //open
+                moveVSlideToPosition(POSITION_A_BOTTOM);
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                moveVSlideToPosition(POSITION_Y_LOW);
+            }
 
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
