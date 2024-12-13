@@ -13,7 +13,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies both field and robotic centric 12122024")
+@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 12122024")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
@@ -50,7 +50,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //                        if (gamepad1.left_trigger > 0.3) { //open
 //                            robot.TServo.setPosition(0.67);
-//            }
+//            }skip this
 //            if (gamepad1.right_trigger > 0.3) { //close
 //                robot.TServo.setPosition(0.45);
 //            }
@@ -74,7 +74,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
 //                 robot.Claw.setPosition(0.6); // loony claw -open good
 //            }if (gamepad1.right_trigger > 0.3) { //close
-
 //                robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
 //        }//if (gamepad1.a  && !move) { //down
@@ -354,26 +353,6 @@ public void extrHoriSlidesLong() {
         robot.RBMotor.setPower(br * speedMultiplier);
 
     }
-    public void RobotCentricDriveTrain () {
-        double robot_y = gamepad1.left_stick_y; // Remember, Y stick value is reversed
-        double robot_x = gamepad1.left_stick_x;
-        double robot_rx = gamepad1.right_stick_x*0.5; // If a smooth turn is required 0.5
-
-        double fl = robot_y - robot_x - robot_rx;
-        double bl = robot_y + robot_x - robot_rx;
-        double fr = robot_y + robot_x + robot_rx;
-        double br = robot_y - robot_x + robot_rx;
-
-        robot.LFMotor.setPower(fl * speedMultiplier);
-        robot.LBMotor.setPower(bl * speedMultiplier);
-        robot.RFMotor.setPower(fr * speedMultiplier);
-        robot.RBMotor.setPower(br * speedMultiplier);
-
-    }
-
-
-
-
 
 
 }
