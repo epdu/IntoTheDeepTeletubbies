@@ -169,7 +169,7 @@ public class HardwareTeletubbies
 //               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
 //               Wristzyaw.setPosition(0.5);// 12122024
 
-//End Definition and Initialization of Wrist Servo
+//End Definition and Initialization of Wristzyaw Servo
 
 
 //Begin Definition and Initialization of Wristxpitch Servo
