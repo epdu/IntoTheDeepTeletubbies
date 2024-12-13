@@ -135,7 +135,7 @@
                int positionVL = VSMotorL.getCurrentPosition();
                VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
                VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
-               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
+               VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 2
                int positionVR = VSMotorR.getCurrentPosition();
                VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
