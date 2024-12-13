@@ -148,8 +148,8 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
-//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-//               TServo.setPosition(0.5);// for safe
+               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+               TServo.setPosition(0.5);// for safe
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -202,11 +202,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
-               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
-               OArmR.setDirection(Servo.Direction.REVERSE);
-               OArmL.setPosition(0.05);//  good
-               OArmR.setPosition(0.05);//
+//               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
+//               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
+//               OArmR.setDirection(Servo.Direction.REVERSE);
+//               OArmL.setPosition(0.05);//  good
+//               OArmR.setPosition(0.05);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
