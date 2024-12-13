@@ -135,7 +135,7 @@ public class HardwareTeletubbies
         int positionVL = VSMotorL.getCurrentPosition();
         VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         VSMotorL.setDirection(DcMotorSimple.Direction.REVERSE);
-        VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 1
+        VSMotorR = hwMap.get(DcMotor.class, "VSMotorR");// expansion  hub port 2
         int positionVR = VSMotorR.getCurrentPosition();
         VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
@@ -146,11 +146,10 @@ public class HardwareTeletubbies
         // Set all motors to zero power
         setAllPower(0);
 
-
 //Begin Definition and Initialization of Testing Motors and Servos
 
-               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-               TServo.setPosition(0.5);// for safe
+//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               TServo.setPosition(0.5);// for safe
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -175,8 +174,8 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-        Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-        Wristxpitch.setPosition(0.05);// wrist good
+//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+//               Wristxpitch.setPosition(0.05);// wrist good
 
 //End Definition and Initialization of Wrist Servo
 
@@ -186,7 +185,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-//6
+//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+//               IArmL.setDirection(Servo.Direction.REVERSE);
+//               IArmL.setPosition(0.32);//  good
+//               IArmR.setPosition(0.32);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
