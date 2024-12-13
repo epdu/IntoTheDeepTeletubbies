@@ -157,21 +157,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     } //end of while loop
 } //end of run mode
 
-    public void moveDriveTrain() {
-        double y = gamepad1.left_stick_y;
-        double x = gamepad1.left_stick_x;
-        double rx = (gamepad1.right_stick_x*0.5);
-        double fl = y - x - rx;
-        double bl = y + x - rx;
-        double fr = y + x + rx;
-        double br = y - x + rx;
-        robot.LFMotor.setPower(fl*DriveTrains_ReducePOWER);
-        robot.LBMotor.setPower(bl*DriveTrains_ReducePOWER);
-        robot.RFMotor.setPower(fr*DriveTrains_ReducePOWER);
-        robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
-
-    }
-
 
 //Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
@@ -351,6 +336,21 @@ public void extrHoriSlidesLong() {
         robot.LBMotor.setPower(bl * speedMultiplier);
         robot.RFMotor.setPower(fr * speedMultiplier);
         robot.RBMotor.setPower(br * speedMultiplier);
+
+    }
+
+    public void moveDriveTrain() {
+        double y = gamepad1.left_stick_y;
+        double x = gamepad1.left_stick_x;
+        double rx = (gamepad1.right_stick_x*0.5);
+        double fl = y - x - rx;
+        double bl = y + x - rx;
+        double fr = y + x + rx;
+        double br = y - x + rx;
+        robot.LFMotor.setPower(fl*DriveTrains_ReducePOWER);
+        robot.LBMotor.setPower(bl*DriveTrains_ReducePOWER);
+        robot.RFMotor.setPower(fr*DriveTrains_ReducePOWER);
+        robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
 
     }
 
