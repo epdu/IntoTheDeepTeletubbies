@@ -174,8 +174,8 @@
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-               Wristxpitch.setPosition(0.05);// wrist good
+//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+//               Wristxpitch.setPosition(0.05);// wrist good
 
 //End Definition and Initialization of Wrist Servo
 

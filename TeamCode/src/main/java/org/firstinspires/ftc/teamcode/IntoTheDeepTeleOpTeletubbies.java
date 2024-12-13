@@ -72,15 +72,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End   Wristzyaw
 
 //Begin  Wristxpitch
-            if (gamepad1.b && !move) { //down
-                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-            }
-            if (gamepad1.x && !move) { //up
-                robot.Wristxpitch.setPosition(0.95); // Wristxpitch 12122024
-            }
-            if (gamepad1.right_bumper && !move) { //left
-                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
-            }
+//            if (gamepad1.b && !move) { //down
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+//            }
+//            if (gamepad1.x && !move) { //up
+//                robot.Wristxpitch.setPosition(0.95); // Wristxpitch 12122024
+//            }
+//            if (gamepad1.right_bumper && !move) { //left
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
+//            }
 //End   Wristzyaw
 
 //            if (gamepad2.a && !move) { //left
@@ -94,12 +94,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                moveHSlideToPosition(POSITION_B_EXTRUDE);
 //            }
 
-//            if (gamepad1.left_trigger > 0.3) { //open
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad1.right_trigger > 0.3) { //close
-//                moveVSlideToPosition(POSITION_Y_LOW);
-//            }
+            if (gamepad1.left_trigger > 0.3) { //open
+                moveVSlideToPosition(POSITION_A_BOTTOM);
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                moveVSlideToPosition(POSITION_Y_LOW);
+            }
 
 //           if (gamepad1.left_trigger > 0.3 ) { //open
 //                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
