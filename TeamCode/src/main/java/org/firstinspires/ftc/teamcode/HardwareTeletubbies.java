@@ -185,11 +185,11 @@
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-//               IArmL.setDirection(Servo.Direction.REVERSE);
-//               IArmL.setPosition(0.32);//  good
-//               IArmR.setPosition(0.32);//
+               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+               IArmL.setDirection(Servo.Direction.REVERSE);
+               IArmL.setPosition(0.32);//  good
+               IArmR.setPosition(0.32);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 

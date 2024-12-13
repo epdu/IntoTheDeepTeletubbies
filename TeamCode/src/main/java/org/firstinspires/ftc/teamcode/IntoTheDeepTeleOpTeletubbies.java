@@ -83,6 +83,16 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            }
 //End   Wristzyaw
 
+//Begin  IArmL IArmR
+             if (gamepad1.a  && !move) { //down
+                robot.IArmL.setPosition(0.49); //  IArmL put down
+                robot.IArmR.setPosition(0.49); //IArmL put down
+            }
+            if (gamepad2.y && !move) { // up
+                robot.IArmL.setPosition(0.32); // IArm.setPosition() they are always the same value IArm rise up
+                robot.IArmR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
+            }
+
 //            if (gamepad2.a && !move) { //left
 //                robot.V4BL.setPosition(0.4);
 //                robot.V4BR.setPosition(0.4);
@@ -108,7 +118,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //                robot.Claw.setPosition(0.9); // 3 prong claw -close good
 //                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
-//        }//if (gamepad1.a  && !move) { //down
+//        }
+// if (gamepad1.a  && !move) { //down
 //                robot.V4BL.setPosition(0.49); //  V4B put down
 //                robot.V4BR.setPosition(0.49); //V4B put down
 //            }
