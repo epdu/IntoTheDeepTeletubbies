@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 /**
@@ -64,6 +66,7 @@ public class HardwareTeletubbies
     public DcMotor VSMotorL; //vertical Slides motor left
     public DcMotor VSMotorR; //vertical Slides motor right
     public Servo TServo; // For testing
+    public Servo myServo;
 //           public DcMotor TMotor; // For testing
 
 
@@ -150,6 +153,15 @@ public class HardwareTeletubbies
 
                TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
                TServo.setPosition(0.5);// for safe
+
+
+// Assuming "myServo" is your Axon Max+ servo object
+
+              ServoImplEx myServo = hwMap.get(ServoImplEx.class, "myServo");
+
+              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
+
+
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
