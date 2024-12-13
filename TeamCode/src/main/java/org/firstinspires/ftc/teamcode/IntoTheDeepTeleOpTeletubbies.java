@@ -94,7 +94,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            }
 //            if (gamepad2.y && !move) { //left
 //                robot.IArmL.setPosition(0.8);
-//                robot.IArmR.setPosition(0.8);
+//                robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
 //            }
 
 //Begin  IArm L and R
@@ -102,12 +102,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin  OArm L and R
 
             if (gamepad2.a && !move) { //left
-                robot.OArmL.setPosition(0.6);
-                robot.OArmR.setPosition(0.6);
+                robot.OArmL.setPosition(0.05);
+                robot.OArmR.setPosition(0.05);
             }
             if (gamepad2.y && !move) { //left
-                robot.OArmL.setPosition(0.8);
-                robot.OArmR.setPosition(0.8);
+                robot.OArmL.setPosition(0.95);
+                robot.OArmR.setPosition(0.95);
             }
 
 //Begin  IArm L and R
