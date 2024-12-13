@@ -146,8 +146,8 @@
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
-//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-//               TServo.setPosition(0.5);// for safe
+               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+               TServo.setPosition(0.5);// for safe
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -183,11 +183,11 @@
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-               IArmL.setDirection(Servo.Direction.REVERSE);
-               IArmL.setPosition(0.32);//  good
-               IArmR.setPosition(0.32);//
+//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+//               IArmL.setDirection(Servo.Direction.REVERSE);
+//               IArmL.setPosition(0.32);//  good
+//               IArmR.setPosition(0.32);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
