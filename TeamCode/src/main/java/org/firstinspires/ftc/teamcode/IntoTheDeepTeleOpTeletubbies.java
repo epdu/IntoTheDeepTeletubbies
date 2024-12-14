@@ -100,19 +100,19 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  OArm L and R
 
-            if (gamepad2.a && !move) { //left
-                robot.OArmL.setPosition(0.08);
-                robot.OArmR.setPosition(0.08);
+            if (gamepad2.a && !move) { //rear specimen
+                robot.OArmL.setPosition(0.05);
+                robot.OArmR.setPosition(0.05);
             }
-            if (gamepad2.y && !move) { //left
+            if (gamepad2.y && !move) { //front transfer
                 robot.OArmL.setPosition(0.99);
                 robot.OArmR.setPosition(0.99);
             }
 
-
 //end  IArm L and R
 
 //Begin  open and close of outtakeclaw 12122024 finetuned
+
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                robot.OClaw.setPosition(0.32); //12122024
 //            }
@@ -122,12 +122,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End open and close of outtakeclaw
 
-
-
 //End Definition and Initialization of gamepad
-
-
-
 
 
 //Begin debugging with a step increment of 0.05
