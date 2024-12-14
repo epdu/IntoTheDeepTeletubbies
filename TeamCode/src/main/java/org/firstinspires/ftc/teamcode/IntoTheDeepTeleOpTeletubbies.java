@@ -85,11 +85,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  IArm L and R
 
-            if (gamepad1.a && !move) { //down
+            if (gamepad1.a && !move) { //up
                 robot.IArmL.setPosition(0.6);
                 robot.IArmR.setPosition(0.6);
             }
-            if (gamepad1.y && !move) { //up
+            if (gamepad1.y && !move) { //down
                 robot.IArmL.setPosition(0.8);
                 robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
             }
@@ -107,7 +107,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.OArmR.setPosition(0.99);
             }
 
-//end  IArm L and R
+//end  OArm L and R
 
 //Begin  open and close of outtakeclaw 12122024 finetuned
 

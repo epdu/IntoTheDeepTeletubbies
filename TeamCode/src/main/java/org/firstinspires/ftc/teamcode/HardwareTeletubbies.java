@@ -173,8 +173,8 @@ public class HardwareTeletubbies
                IArmL = hwMap.get(Servo.class, "IArmL");//control hub port 2
                IArmR = hwMap.get(Servo.class, "IArmR");//control hub port 3
                IArmR.setDirection(Servo.Direction.REVERSE);
-               IArmL.setPosition(0.8);//  12132024
-               IArmR.setPosition(0.8);//
+               IArmL.setPosition(0.6);//  12132024
+               IArmR.setPosition(0.6);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
