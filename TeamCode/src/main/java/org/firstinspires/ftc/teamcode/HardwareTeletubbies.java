@@ -66,7 +66,8 @@ public class HardwareTeletubbies
     public DcMotor VSMotorL; //vertical Slides motor left
     public DcMotor VSMotorR; //vertical Slides motor right
     public Servo TServo; // For testing
-    public Servo myServo;
+//   public ServoImplEx myServo;
+    public ServoImplEx myServo;
 //           public DcMotor TMotor; // For testing
 
 
@@ -142,8 +143,6 @@ public class HardwareTeletubbies
         int positionVR = VSMotorR.getCurrentPosition();
         VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
-
-
 //End Definition and Initialization of Vertical Slides Motors
 
         // Set all motors to zero power
@@ -151,16 +150,19 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
-               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-               TServo.setPosition(0.5);// for safe
-
+//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               TServo.setPosition(0.5);// for safe
 
 // Assuming "myServo" is your Axon Max+ servo object
 
-              ServoImplEx myServo = hwMap.get(ServoImplEx.class, "myServo");
-
-              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
-
+//              myServo = hwMap.get(ServoImplEx.class, "myServo");
+//              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
+//        myServo.setPosition(0.5);// for safe
+/*
+ This sets the PWM range for the servo.
+ 500: Represents the minimum pulse width in microseconds.
+ 2500: Represents the maximum pulse width in microseconds
+ */
 
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
 //               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
@@ -214,11 +216,11 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-//               OArmL = hwMap.get(Servo.class, "OArmL");//control hub port
-//               OArmR = hwMap.get(Servo.class, "OArmR");//control hub port
-//               OArmR.setDirection(Servo.Direction.REVERSE);
-//               OArmL.setPosition(0.05);//  good
-//               OArmR.setPosition(0.05);//
+               OArmL = hwMap.get(ServoImplEx.class, "OArmL");//control hub port
+               OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//control hub port
+               OArmR.setDirection(Servo.Direction.REVERSE);
+               OArmL.setPosition(0.05);//  good
+               OArmR.setPosition(0.05);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
