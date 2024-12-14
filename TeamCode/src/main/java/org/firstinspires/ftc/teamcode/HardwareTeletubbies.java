@@ -155,7 +155,7 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of Wristzyaw Servo
 
-               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port
+               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port 1
                Wristzyaw.setPosition(0.5);// 12122024
 
 //End Definition and Initialization of Wristzyaw Servo
@@ -170,18 +170,15 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port 2
+               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port 3
                IArmR.setDirection(Servo.Direction.REVERSE);
                IArmL.setPosition(0.8);//  12132024
                IArmR.setPosition(0.8);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
-
-
 //Begin Definition and Initialization of outtake Claw Servo
-
                OClaw = hwMap.get(Servo.class, "OClaw");//expansion hub port  0
                OClaw.setPosition(0.543);//  12122024
 //End Definition and Initialization of outtake Claw Servo
@@ -197,6 +194,8 @@ public class HardwareTeletubbies
                OArmR.setPosition(0.11);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
+
+
 
 //Begin Definition and Initialization of Testing Motors and Servos
 
