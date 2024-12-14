@@ -50,51 +50,49 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 
 //Begin  open and close of intakeclaw 12122024 finetuned
-//            if (gamepad1.left_trigger > 0.3) { //open
-//                robot.IClaw.setPosition(0.32); //12122024
-//            }
-//            if (gamepad1.right_trigger > 0.3) { //close
-//                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
-//            }
-//            if (gamepad1.right_bumper && !move) { //adjust location
-//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
-//            }
+            if (gamepad1.left_trigger > 0.3) { //open
+                robot.IClaw.setPosition(0.32); //12122024
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
+            }
+            if (gamepad1.left_bumper && !move) { //adjust location
+                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
+            }
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
-//            if (gamepad1.b && !move) { //right
-//                robot.Wristzyaw.setPosition(0.35); //Wristzyaw right 45 degree 12122024
-//            }
-//            if (gamepad1.x && !move) { //left
-//                robot.Wristzyaw.setPosition(0.65); // Wristzyaw left 45 degree 12122024
-//            }
-//            if (gamepad1.right_bumper && !move) { //left
-//                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
-//            }
+            if (gamepad1.b && !move) { //right
+                robot.Wristzyaw.setPosition(0.35); //Wristzyaw right 45 degree 12122024
+            }
+            if (gamepad1.x && !move) { //left
+                robot.Wristzyaw.setPosition(0.65); // Wristzyaw left 45 degree 12122024
+            }
+            if (gamepad1.right_bumper && !move) { //left
+                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
+            }
 //End   Wristzyaw
 
 //Begin  Wristxpitch
-//            if (gamepad1.b && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-//            }
-//            if (gamepad1.x && !move) { //down
-//                robot.Wristxpitch.setPosition(0.7); // Wristxpitch 12122024
-//            }
-//            if (gamepad1.right_bumper && !move) { //init
-//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch init  12122024
-//            }
+            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+            }
+            if (gamepad1.dpad_down && !move) { //down
+                robot.Wristxpitch.setPosition(0.7); // Wristxpitch 12122024
+            }
+
 //End   Wristzyaw
 
 //Begin  IArm L and R
 
-//            if (gamepad2.a && !move) { //left
-//                robot.IArmL.setPosition(0.6);
-//                robot.IArmR.setPosition(0.6);
-//            }
-//            if (gamepad2.y && !move) { //left
-//                robot.IArmL.setPosition(0.8);
-//                robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
-//            }
+            if (gamepad1.a && !move) { //down
+                robot.IArmL.setPosition(0.6);
+                robot.IArmR.setPosition(0.6);
+            }
+            if (gamepad1.y && !move) { //up
+                robot.IArmL.setPosition(0.8);
+                robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
+            }
 
 //end  IArm L and R
 
@@ -113,12 +111,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  open and close of outtakeclaw 12122024 finetuned
 
-//            if (gamepad1.left_trigger > 0.3) { //open
-//                robot.OClaw.setPosition(0.32); //12122024
-//            }
-//            if (gamepad1.right_trigger > 0.3) { //close
-//                robot.OClaw.setPosition(0.543); // 0.543 hold
-//            }
+            if (gamepad2.left_trigger > 0.3) { //open
+                robot.OClaw.setPosition(0.32); //12122024
+            }
+            if (gamepad2.right_trigger > 0.3) { //close
+                robot.OClaw.setPosition(0.543); // 0.543 hold
+            }
 
 //End open and close of outtakeclaw
 
