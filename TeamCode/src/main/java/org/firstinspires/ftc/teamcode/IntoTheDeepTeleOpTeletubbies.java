@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -20,13 +21,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     private static final int POSITION_X_IN = 5; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 900;//horizontal slides  out 900
+    private static final int POSITION_B_EXTRUDE = 400;//horizontal slides  out //900
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 5; //Vertical  slides all the way in
-    private static final int POSITION_Y_LOW = 800; // Vertical slides up
+    private static final int POSITION_Y_LOW = 800; // Vertical slides up //800
     private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.2; // Adjust as needed
-    private static final double SLIDE_POWER_V = 0.4; // Adjust as needed
+    private static final double SLIDE_POWER_V = 0.2; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
@@ -48,19 +49,19 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin Definition and Initialization of gamepad
 //Begin  moveVSlideToPosition
-            if (gamepad1.left_trigger > 0.3) { //open
+            if (gamepad2.y && !move ) { //down
                 moveVSlideToPosition(POSITION_A_BOTTOM);
             }
-            if (gamepad1.right_trigger > 0.3) { //close
+            if (gamepad2.a && !move) { //upforchameber
                 moveVSlideToPosition(POSITION_Y_LOW);
             }
 //End  moveVSlideToPosition
 
 //Begin  moveHSlideToPosition
-            if (gamepad1.left_trigger > 0.3) { //open
+            if (gamepad2.b && !move) { //in
                 moveHSlideToPosition(POSITION_X_IN);
             }
-            if (gamepad1.right_trigger > 0.3) { //close
+            if (gamepad2.x && !move) { //out
                 moveHSlideToPosition(POSITION_B_EXTRUDE);
             }
 //End  moveHSlideToPosition
@@ -100,7 +101,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End   Wristzyaw
 
 
-//Begin  IArm L and R
+//Begin  IArm L and R  problem*****
 
             if (gamepad1.a && !move) { //up
                 robot.IArmL.setPosition(0.6);
@@ -115,11 +116,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  OArm L and R
 
-            if (gamepad2.a && !move) { //rear specimen
+            if (gamepad2.dpad_up && !move) { //rear specimen
                 robot.OArmL.setPosition(0.06);
                 robot.OArmR.setPosition(0.06);
             }
-            if (gamepad2.y && !move) { //front transfer
+            if (gamepad2.dpad_down && !move) { //front transfer
                 robot.OArmL.setPosition(0.99);
                 robot.OArmR.setPosition(0.99);
             }
