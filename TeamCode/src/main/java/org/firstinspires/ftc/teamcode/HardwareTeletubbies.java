@@ -207,14 +207,14 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake Claw Servo
 
-               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  4
+               OClaw = hwMap.get(Servo.class, "OClaw");//expansion hub port  0
                OClaw.setPosition(0.543);//  12122024
 //End Definition and Initialization of outtake Claw Servo
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-               OArmL = hwMap.get(ServoImplEx.class, "OArmL");//control hub port 0
-               OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//control hub port 2
+               OArmL = hwMap.get(ServoImplEx.class, "OArmL");//expansion hub port 5
+               OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//expansion hub port 2
                OArmL.setPwmRange(new PwmControl.PwmRange(500, 2500));
                OArmR.setPwmRange(new PwmControl.PwmRange(500, 2500));
                OArmR.setDirection(Servo.Direction.REVERSE);
