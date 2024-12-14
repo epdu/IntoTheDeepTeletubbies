@@ -20,7 +20,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     private static final int POSITION_X_IN = 5; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 900;//horizontal slides  out
+    private static final int POSITION_B_EXTRUDE = 900;//horizontal slides  out 900
     private static final int POSITION_B_EXTRUDE_MORE = 1000; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 5; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up
@@ -47,7 +47,23 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
+//Begin  moveVSlideToPosition
+            if (gamepad1.left_trigger > 0.3) { //open
+                moveVSlideToPosition(POSITION_A_BOTTOM);
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                moveVSlideToPosition(POSITION_Y_LOW);
+            }
+//End  moveVSlideToPosition
 
+//Begin  moveHSlideToPosition
+            if (gamepad1.left_trigger > 0.3) { //open
+                moveHSlideToPosition(POSITION_X_IN);
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                moveHSlideToPosition(POSITION_B_EXTRUDE);
+            }
+//End  moveHSlideToPosition
 
 //Begin  open and close of intakeclaw 12122024 finetuned
             if (gamepad1.left_trigger > 0.3) { //open
