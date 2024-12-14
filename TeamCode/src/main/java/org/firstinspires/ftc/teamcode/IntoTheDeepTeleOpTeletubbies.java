@@ -49,16 +49,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin Definition and Initialization of gamepad
 
 
-
 //Begin  open and close of intakeclaw 12122024 finetuned
 //            if (gamepad1.left_trigger > 0.3) { //open
 //                robot.IClaw.setPosition(0.32); //12122024
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
-//                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 baremovable 0.543 hold
+//                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
 //            }
 //            if (gamepad1.right_bumper && !move) { //adjust location
-//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 baremovable 0.543 hold
+//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
 //            }
 //End open and close of intakeclaw
 
@@ -97,59 +96,39 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
 //            }
 
-//Begin  IArm L and R
+//end  IArm L and R
 
 //Begin  OArm L and R
 
-            if (gamepad2.a && !move) { //left
-                robot.OArmL.setPosition(0.01);
-                robot.OArmR.setPosition(0.01);
-            }
-            if (gamepad2.y && !move) { //left
-                robot.OArmL.setPosition(0.99);
-                robot.OArmR.setPosition(0.99);
-            }
-
 //            if (gamepad2.a && !move) { //left
-//                robot.myServo.setPosition(0.1);
+//                robot.OArmL.setPosition(0.01);
+//                robot.OArmR.setPosition(0.01);
 //            }
 //            if (gamepad2.y && !move) { //left
-//                robot.myServo.setPosition(0.9);
+//                robot.OArmL.setPosition(0.99);
+//                robot.OArmR.setPosition(0.99);
 //            }
 
-//Begin  IArm L and R
-//            if (gamepad1.left_trigger > 0.3) { //open
-//                moveHSlideToPosition(POSITION_X_IN);
-//            }
-//            if (gamepad1.right_trigger > 0.3) { //close
-//                moveHSlideToPosition(POSITION_B_EXTRUDE);
-//            }
-//            if (gamepad1.left_trigger > 0.3) { //open
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad1.right_trigger > 0.3) { //close
-//                moveVSlideToPosition(POSITION_Y_LOW);
+
+//end  IArm L and R
+
+//Begin  open and close of outtakeclaw 12122024 finetuned
+            if (gamepad1.left_trigger > 0.3) { //open
+                robot.OClaw.setPosition(0.32); //12122024
+            }
+            if (gamepad1.right_trigger > 0.3) { //close
+                robot.OClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
 //            }
 
-//           if (gamepad1.left_trigger > 0.3 ) { //open
-//                robot.Claw.setPosition(0.1); // too big opening 3 prong claw -open good
-//                 robot.Claw.setPosition(0.6); // loony claw -open good
-//            }if (gamepad1.right_trigger > 0.3) { //close
-
-//                robot.Claw.setPosition(0.9); // 3 prong claw -close good
-//                 robot.Claw.setPosition(0.828); // loony claw -close 835  max good
-//        }//if (gamepad1.a  && !move) { //down
-//                robot.V4BL.setPosition(0.49); //  V4B put down
-//                robot.V4BR.setPosition(0.49); //V4B put down
-//            }
-//            if (gamepad2.y && !move) { // up
-//                robot.V4BL.setPosition(0.32); // V4BL.setPosition(0.2) they are always the same value V4B rise up
-//                robot.V4BR.setPosition(0.32); //       V4BR.setPosition(0.8); they are always the same value // wrist goodV4B rise up
-//            }
+//End open and close of outtakeclaw
 
 
 
 //End Definition and Initialization of gamepad
+
+
+
+
 
 //Begin debugging with a step increment of 0.05
 

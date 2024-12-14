@@ -60,8 +60,8 @@ public class HardwareTeletubbies
     */
     public Servo IArmL;
     public Servo IArmR;
-    public Servo OArmL;
-    public Servo OArmR;
+    public ServoImplEx OArmL;
+    public ServoImplEx OArmR;
     public DcMotor HSMotor; //horizontal Slides motor  extruder
     public DcMotor VSMotorL; //vertical Slides motor left
     public DcMotor VSMotorR; //vertical Slides motor right
@@ -69,8 +69,6 @@ public class HardwareTeletubbies
 //   public ServoImplEx myServo;
     public ServoImplEx myServo;
 //           public DcMotor TMotor; // For testing
-
-
 
 //           public Servo ArmL;
 //           public Servo ArmR;
@@ -157,7 +155,7 @@ public class HardwareTeletubbies
 
 //              myServo = hwMap.get(ServoImplEx.class, "myServo");
 //              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
-//        myServo.setPosition(0.5);// for safe
+//              myServo.setPosition(0.5);// for safe
 /*
  This sets the PWM range for the servo.
  500: Represents the minimum pulse width in microseconds.
@@ -209,18 +207,19 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake Claw Servo
 
-//               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  good
-//               OClaw.setPosition(0.9);// 3 prong claw good-
-
+               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  good
+               OClaw.setPosition(0.543);//  12122024
 //End Definition and Initialization of outtake Claw Servo
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-               OArmL = hwMap.get(ServoImplEx.class, "OArmL");//control hub port
-               OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//control hub port
-               OArmR.setDirection(Servo.Direction.REVERSE);
-               OArmL.setPosition(0.01);//  good
-               OArmR.setPosition(0.01);//
+//               OArmL = hwMap.get(ServoImplEx.class, "OArmL");//control hub port
+//               OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//control hub port
+//               OArmL.setPwmRange(new PwmControl.PwmRange(500, 2500));
+//               OArmR.setPwmRange(new PwmControl.PwmRange(500, 2500));
+//               OArmR.setDirection(Servo.Direction.REVERSE);
+//               OArmL.setPosition(0.01);//  good
+//               OArmR.setPosition(0.01);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
