@@ -219,8 +219,8 @@ public class HardwareTeletubbies
                OArmL = hwMap.get(ServoImplEx.class, "OArmL");//control hub port
                OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//control hub port
                OArmR.setDirection(Servo.Direction.REVERSE);
-               OArmL.setPosition(0.05);//  good
-               OArmR.setPosition(0.05);//
+               OArmL.setPosition(0.01);//  good
+               OArmR.setPosition(0.01);//
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 

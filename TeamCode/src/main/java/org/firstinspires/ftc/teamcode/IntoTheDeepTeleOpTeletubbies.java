@@ -102,12 +102,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin  OArm L and R
 
             if (gamepad2.a && !move) { //left
-                robot.OArmL.setPosition(0.05);
-                robot.OArmR.setPosition(0.05);
+                robot.OArmL.setPosition(0.01);
+                robot.OArmR.setPosition(0.01);
             }
             if (gamepad2.y && !move) { //left
-                robot.OArmL.setPosition(0.98);
-                robot.OArmR.setPosition(0.98);
+                robot.OArmL.setPosition(0.99);
+                robot.OArmR.setPosition(0.99);
             }
 
 //            if (gamepad2.a && !move) { //left
