@@ -117,7 +117,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                robot.OClaw.setPosition(0.32); //12122024
 //            }
 //            if (gamepad1.right_trigger > 0.3) { //close
-//                robot.OClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
+//                robot.OClaw.setPosition(0.543); // 0.543 hold
 //            }
 
 //End open and close of outtakeclaw
