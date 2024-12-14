@@ -171,35 +171,35 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of intake Claw Servo
 
-//               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port ?
-//               IClaw.setPosition(0.543);// 12122024
+               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port ?
+               IClaw.setPosition(0.543);// 12122024
 
 //End Definition and Initialization of intake Claw Servo
 
 //Begin Definition and Initialization of Wristzyaw Servo
 
-//               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
-//               Wristzyaw.setPosition(0.5);// 12122024
+               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
+               Wristzyaw.setPosition(0.5);// 12122024
 
 //End Definition and Initialization of Wristzyaw Servo
 
 
 //Begin Definition and Initialization of Wristxpitch Servo
 
-//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-//               Wristxpitch.setDirection(Servo.Direction.REVERSE);
-//               Wristxpitch.setPosition(0.05);// wrist good
+               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
+               Wristxpitch.setDirection(Servo.Direction.REVERSE);
+               Wristxpitch.setPosition(0.05);// wrist good
 
 //End Definition and Initialization of Wristxpitch Servo
 
 
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-//               IArmR.setDirection(Servo.Direction.REVERSE);
-//               IArmL.setPosition(0.8);//  12132024
-//               IArmR.setPosition(0.8);//
+               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+               IArmR.setDirection(Servo.Direction.REVERSE);
+               IArmL.setPosition(0.8);//  12132024
+               IArmR.setPosition(0.8);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
@@ -207,8 +207,8 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake Claw Servo
 
-//               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  good
-//               OClaw.setPosition(0.543);//  12122024
+               OClaw = hwMap.get(Servo.class, "OClaw");//control hub port  good
+               OClaw.setPosition(0.543);//  12122024
 //End Definition and Initialization of outtake Claw Servo
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
