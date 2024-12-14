@@ -78,7 +78,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
             }
             if (gamepad1.dpad_down && !move) { //down
-                robot.Wristxpitch.setPosition(0.7); // Wristxpitch 12122024
+                robot.Wristxpitch.setPosition(0.5); // Wristxpitch 12122024
             }
 
 //End   Wristzyaw
@@ -90,8 +90,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.IArmR.setPosition(0.6);
             }
             if (gamepad1.y && !move) { //down
-                robot.IArmL.setPosition(0.8);
-                robot.IArmR.setPosition(0.8); // always same as hardware IArmL.setPosition(0.8);
+                robot.IArmL.setPosition(0.7);
+                robot.IArmR.setPosition(0.7); // always same as hardware IArmL.setPosition(0.8);
             }
 
 //end  IArm L and R
