@@ -146,60 +146,35 @@ public class HardwareTeletubbies
         // Set all motors to zero power
         setAllPower(0);
 
-//Begin Definition and Initialization of Testing Motors and Servos
-
-//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
-//               TServo.setPosition(0.5);// for safe
-
-// Assuming "myServo" is your Axon Max+ servo object
-
-//              myServo = hwMap.get(ServoImplEx.class, "myServo");
-//              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
-//              myServo.setPosition(0.5);// for safe
-/*
- This sets the PWM range for the servo.
- 500: Represents the minimum pulse width in microseconds.
- 2500: Represents the maximum pulse width in microseconds
- */
-
-//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
-//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
-//               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//               TMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-//End Definition and Initialization of Testing Motors and Servos
-
 //Begin Definition and Initialization of intake Claw Servo
 
-//               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port ?
-//               IClaw.setPosition(0.543);// 12122024
+               IClaw = hwMap.get(Servo.class, "IClaw");//control hub port 5
+               IClaw.setPosition(0.543);// 12122024
 
 //End Definition and Initialization of intake Claw Servo
 
 //Begin Definition and Initialization of Wristzyaw Servo
 
-//               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port x
-//               Wristzyaw.setPosition(0.5);// 12122024
+               Wristzyaw = hwMap.get(Servo.class, "Wristzyaw");//control hub port
+               Wristzyaw.setPosition(0.5);// 12122024
 
 //End Definition and Initialization of Wristzyaw Servo
 
-
 //Begin Definition and Initialization of Wristxpitch Servo
 
-//               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port x
-//               Wristxpitch.setDirection(Servo.Direction.REVERSE);
-//               Wristxpitch.setPosition(0.05);// wrist good
+               Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port 4
+               Wristxpitch.setDirection(Servo.Direction.REVERSE);
+               Wristxpitch.setPosition(0.05);//
 
 //End Definition and Initialization of Wristxpitch Servo
 
-
 //Begin Definition and Initialization of intake ArmL and ArmR Servos
 
-//               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
-//               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
-//               IArmR.setDirection(Servo.Direction.REVERSE);
-//               IArmL.setPosition(0.8);//  12132024
-//               IArmR.setPosition(0.8);//
+               IArmL = hwMap.get(Servo.class, "IArmL");//control hub port
+               IArmR = hwMap.get(Servo.class, "IArmR");//control hub port
+               IArmR.setDirection(Servo.Direction.REVERSE);
+               IArmL.setPosition(0.8);//  12132024
+               IArmR.setPosition(0.8);//
 
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
@@ -223,6 +198,28 @@ public class HardwareTeletubbies
 
 //End Definition and Initialization of outtake ArmL and ArmR Servos
 
+//Begin Definition and Initialization of Testing Motors and Servos
+
+//               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
+//               TServo.setPosition(0.5);// for safe
+
+// Assuming "myServo" is your Axon Max+ servo object
+
+//              myServo = hwMap.get(ServoImplEx.class, "myServo");
+//              myServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
+//              myServo.setPosition(0.5);// for safe
+/*
+ This sets the PWM range for the servo.
+ 500: Represents the minimum pulse width in microseconds.
+ 2500: Represents the maximum pulse width in microseconds
+ */
+
+//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
+//               TMotor = hwMap.get(DcMotor.class, "TM");//02022024 control hub port 0 //only for motor program testing
+//               TMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//               TMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+//End Definition and Initialization of Testing Motors and Servos
 
 //Old hardwire
 //Begin Definition and Initialization of V4B Servos
@@ -248,7 +245,7 @@ public class HardwareTeletubbies
 ////        Wrist.setPosition(0.34);
 //               ArmL = hwMap.get(Servo.class, "ArmL");
 //               ArmR = hwMap.get(Servo.class, "ArmR");
-//               ArmL.setDirection(Servo.Direction.REVERSE);0000
+//               ArmL.setDirection(Servo.Direction.REVERSE);
 
 
 //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
