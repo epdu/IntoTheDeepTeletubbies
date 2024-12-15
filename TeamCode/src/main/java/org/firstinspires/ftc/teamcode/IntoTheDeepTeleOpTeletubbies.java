@@ -97,7 +97,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  Wristzyaw
             if (gamepad1.b && !move) { //right
-                robot.Wristzyaw.setPosition(0.35); //Wristzyaw right 45 degree 12122024
+                robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
             }
             if (gamepad1.x && !move) { //left
                 robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
