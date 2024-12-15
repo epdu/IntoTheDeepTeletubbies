@@ -25,7 +25,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_B_EXTRUDE_MORE = 400; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    private static final int POSITION_Y_HIGH = 1600;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGH = 1000;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.55; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
@@ -55,8 +55,10 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad2.y && !move) { //upforchameber
                 moveVSlideToPosition(-POSITION_Y_LOW);
             }
+            if (gamepad2.left_bumper && !move){ //upforchameber
+                moveVSlideToPosition(-POSITION_Y_HIGH);
+            }// d  moveVSlideToPosition
 //End  moveVSlideToPosition
-
 //Begin  moveHSlideToPosition
             if (gamepad2.b && !move) { //in
                 moveHSlideToPosition(POSITION_X_IN);
