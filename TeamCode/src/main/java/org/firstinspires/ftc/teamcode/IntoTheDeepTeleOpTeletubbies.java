@@ -96,26 +96,38 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             }
 //End   Wristzyaw
 
+//one key ready for pick
+            if (gamepad1.left_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+                robot.Wristxpitch.setPosition(0.65);
+                sleep(200);
+                robot.IClaw.setPosition(0.32);
+                sleep(200);
+                robot.IArmL.setPosition(0.7);
+                robot.IArmR.setPosition(0.7);
+            }
+
+//one key ready for pick up
+
 //Begin  Wristxpitch
             if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
                 robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
             }
             if (gamepad1.dpad_down && !move) { //down
-                robot.Wristxpitch.setPosition(0.5); // Wristxpitch 12122024
+                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
             }
 
 //End   Wristzyaw
 
 
-//Begin  IArm L and R  problem*****
+//Begin  IArm L and R
 
-            if (gamepad1.a && !move) { //up
-                robot.IArmL.setPosition(0.6);
+            if (gamepad1.y && !move) { //up
+                robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
                 robot.IArmR.setPosition(0.6);
             }
-            if (gamepad1.y && !move) { //down
-                robot.IArmL.setPosition(0.7);
-                robot.IArmR.setPosition(0.7); // always same as hardware IArmL.setPosition(0.8);
+            if (gamepad1.a && !move) { //down
+                robot.IArmL.setPosition(0.72);
+                robot.IArmR.setPosition(0.72); //
             }
 
 //end  IArm L and R
