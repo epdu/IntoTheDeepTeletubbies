@@ -94,7 +94,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            }
 //End open and close of intakeclaw
 
-
 //Begin  Wristzyaw
             if (gamepad1.b && !move) { //right
                 robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
