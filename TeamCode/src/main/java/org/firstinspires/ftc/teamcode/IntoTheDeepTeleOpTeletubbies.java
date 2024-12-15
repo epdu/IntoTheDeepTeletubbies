@@ -14,19 +14,19 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-@TeleOp(name = "A IntoTheDeepTeleOpTeletubbies 12142024 V0")
+@TeleOp(name = "A QualTeleOpTele 12142024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public static final double DriveTrains_ReducePOWER = 0.75;
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     private static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 200;//horizontal slides  out //900
+    private static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //900
     private static final int POSITION_B_EXTRUDE_MORE = 400; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    private static final int POSITION_Y_HIGH = 1100;//Vertical slides all the way up
-    private static final int POSITION_Y_HIGHH = 1200;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGH = 1200;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGHH = 1250;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.70; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
@@ -50,15 +50,25 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin Definition and Initialization of gamepad
 //Begin  moveVSlideToPosition
-            if (gamepad2.a && !move ) { //down
+            if (gamepad1.dpad_down && !move ) { //down
                 moveVSlideToPosition(POSITION_A_BOTTOM);
             }
-            if (gamepad2.y && !move) { //up prepare forchameber
+            if (gamepad1.dpad_up && !move) { //up prepare forchameber
                 moveVSlideToPosition(-POSITION_Y_LOW);
             }
-            if (gamepad2.right_bumper && !move){ //upforchameber
+            if (gamepad1.left_bumper && !move){ //upforchameber
                 moveVSlideToPosition(-POSITION_Y_HIGH);
             }
+
+//            if (gamepad2.a && !move ) { //down
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad2.y && !move) { //up prepare forchameber
+//                moveVSlideToPosition(-POSITION_Y_LOW);
+//            }
+//            if (gamepad2.right_bumper && !move){ //upforchameber
+//                moveVSlideToPosition(-POSITION_Y_HIGH);
+//            }
             if (gamepad2.left_bumper && !move){ //upforchameber
                 moveVSlideToPosition(-POSITION_Y_HIGHH);
             }
@@ -79,9 +89,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad1.right_trigger > 0.3) { //close
                 robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
             }
-            if (gamepad1.left_bumper && !move) { //adjust location
-                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
-            }
+//            if (gamepad1.left_bumper && !move) { //adjust location
+//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
+//            }
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
@@ -89,15 +99,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.Wristzyaw.setPosition(0.35); //Wristzyaw right 45 degree 12122024
             }
             if (gamepad1.x && !move) { //left
-                robot.Wristzyaw.setPosition(0.65); // Wristzyaw left 45 degree 12122024
+                robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
             }
-            if (gamepad1.right_bumper && !move) { //left
-                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
-            }
+//            if (gamepad1.right_bumper && !move) { //left
+//                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
+//            }
 //End   Wristzyaw
 
 //one key ready for pick
-            if (gamepad1.left_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+            if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
                 robot.Wristxpitch.setPosition(0.65);
                 sleep(200);
                 robot.IClaw.setPosition(0.32);
@@ -108,15 +118,14 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //one key ready for pick up
 
-//Begin  Wristxpitch
-            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-            }
-            if (gamepad1.dpad_down && !move) { //down
-                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
-            }
-
-//End   Wristzyaw
+//Begin  Wristxpitch do not use it any more
+//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+//            }
+//            if (gamepad1.dpad_down && !move) { //down
+//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
+//            }
+//End   Wristxpitch
 
 
 //Begin  IArm L and R
@@ -126,8 +135,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.IArmR.setPosition(0.6);
             }
             if (gamepad1.a && !move) { //down
-                robot.IArmL.setPosition(0.72);
-                robot.IArmR.setPosition(0.72); //
+                robot.IArmL.setPosition(0.725);
+                robot.IArmR.setPosition(0.725); //
             }
 
 //end  IArm L and R
