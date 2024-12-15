@@ -153,7 +153,6 @@ public String allianceColor="blue";
 
         while (opModeIsActive()) {
             // TODO: Need to do red or blue according to alliance color.
-
                 moveForward(0.3, 30); //32
                 sleep(100);
                 strafeLeft(0.3, 16);
