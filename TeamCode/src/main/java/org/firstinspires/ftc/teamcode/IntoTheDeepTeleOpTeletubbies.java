@@ -21,8 +21,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     private static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //900
-    private static final int POSITION_B_EXTRUDE_MORE = 400; //horizontal slides all the way out
+    private static final int POSITION_B_EXTRUDE = 400;//horizontal slides  out //600
+    private static final int POSITION_B_EXTRUDE_MORE = 600; //horizontal slides all the way out 800
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
     private static final int POSITION_Y_HIGH = 1250;//Vertical slides all the way up
@@ -34,7 +34,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
-
+    int controlMode = 0;
+    ButtonHandler dpadDownHandler = new ButtonHandler();
+    ButtonHandler dpadUpHandler = new ButtonHandler();
+    ButtonHandler leftBumperHandler = new ButtonHandler();
+    ButtonHandler rightBumperHandler = new ButtonHandler();
+    ButtonHandler gamepad1XHandler = new ButtonHandler();
+    ButtonHandler gamepad1BHandler = new ButtonHandler();
+    ButtonHandler gamepad1YHandler = new ButtonHandler();
+    ButtonHandler gamepad1AHandler = new ButtonHandler();
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -49,96 +57,118 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
+            dpadDownHandler.update(gamepad1.dpad_down);
+            dpadUpHandler.update(gamepad1.dpad_up);
+            leftBumperHandler.update(gamepad1.left_bumper);
+            rightBumperHandler.update(gamepad1.right_bumper);
+            gamepad1XHandler.update(gamepad1.x);
+            gamepad1BHandler.update(gamepad1.b);
+            gamepad1YHandler.update(gamepad1.y);
+            gamepad1AHandler.update(gamepad1.a);
 
-//Begin  moveVSlideToPosition
-            if (gamepad1.dpad_down && !move ) { //down
-                moveVSlideToPosition(POSITION_A_BOTTOM);
-            }
-            if (gamepad1.dpad_up && !move) { //up prepare forchameber
-                moveVSlideToPosition(-POSITION_Y_LOW);
-            }
-            if (gamepad1.left_bumper && !move){ //upforchameber
-                moveVSlideToPosition(-POSITION_Y_HIGH);
-            }
-            if (gamepad2.left_bumper && !move){ //upforchameber
-                moveVSlideToPosition(-POSITION_Y_HIGHH);
-            }
-            //End  moveVSlideToPosition
-//Begin  moveHSlideToPosition
-            if (gamepad2.b && !move) { //in
-                moveHSlideToPosition(POSITION_X_IN);
-            }
-            if (gamepad2.x && !move) { //out
-                moveHSlideToPosition(POSITION_B_EXTRUDE);
-            }
-//End  moveHSlideToPosition
+        if (gamepad1.start && !move) { // 切换控制模式
+           controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
+            telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
+            telemetry.update();
+            sleep(300); // 防止快速连击导致模式快速切换
+        }
+// 根据不同模式定义按键功能
+            switch (controlMode) {
+                case 0:
+                    // intake
+                    //Begin  moveHSlideToPosition
+                    if (gamepad1BHandler.isShortPress()) { //IN
+                        moveHSlideToPosition(POSITION_X_IN);
+                    }
+                    if (gamepad1XHandler.isShortPress()) { //EXTRUDE
+                        moveHSlideToPosition(POSITION_B_EXTRUDE);
+                    }
+                    if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
+                        moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
+                    }
+                    //End  moveHSlideToPosition
 
 //Begin  open and close of intakeclaw 12122024 finetuned
-            if (gamepad1.left_trigger > 0.3) { //open
-                robot.IClaw.setPosition(0.32); //12122024
-            }
-            if (gamepad1.right_trigger > 0.3) { //close
-                robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
-            }
-//            if (gamepad1.left_bumper && !move) { //adjust location
-//                robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
-//            }
+
+                    if (gamepad1.left_trigger > 0.3 && gamepad1.left_trigger <= 0.7) { // 轻按
+                        robot.IClaw.setPosition(0.32); //12122024
+                    }
+                    if (gamepad1.right_trigger > 0.3 && gamepad1.right_trigger <= 0.7) { // 轻按
+                        robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
+                    }
+                    if (gamepad1.right_trigger > 0.7) { // 深按
+                        robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
+                    }
+
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
-            if (gamepad1.b && !move) { //right
-                robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
-            }
-            if (gamepad1.x && !move) { //left
-                robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
-            }
+                    if (gamepad1.b && !move) { //right
+                        robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
+                    }
+                    if (gamepad1.x && !move) { //left
+                        robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
+                    }
 
 //one key ready for pick
-            if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-                robot.Wristxpitch.setPosition(0.65);
-                sleep(200);
-                robot.IClaw.setPosition(0.32);
-                sleep(200);
-                robot.IArmL.setPosition(0.7);
-                robot.IArmR.setPosition(0.7);
-            }
+                    if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+                        robot.Wristxpitch.setPosition(0.65);
+                        sleep(200);
+                        robot.IClaw.setPosition(0.32);
+                        sleep(200);
+                        robot.IArmL.setPosition(0.7);
+                        robot.IArmR.setPosition(0.7);
+                    }
 
 //one key ready for pick up
 
+//one key ready for transfer
+                    if (gamepad1.right_bumper) { //
+
+                    robot.Wristxpitch.setPosition(0.35); // Wristxpitch
+                        sleep(200);
+                        robot.IArmL.setPosition(0.7);
+                        robot.IArmR.setPosition(0.7);
+                        sleep(200);
+                        robot.OClaw.setPosition(0.32); //12122024
+                        sleep(200);
+                        robot.OArmL.setPosition(0.99);
+                        robot.OArmR.setPosition(0.99);
+                        sleep(200);
+                        robot.OClaw.setPosition(0.548); // 0.543 hold
+                        sleep(200);
+                        robot.IClaw.setPosition(0.32); //12122024
+                        robot.OArmL.setPosition(0.06);
+                        robot.OArmR.setPosition(0.06);
+                        sleep(200);
+                        moveVSlideToPosition(-POSITION_Y_HIGH);// high
+
+                    }
+
+//one key ready for transfer
+
 //Begin  IArm L and R
 
-            if (gamepad1.y && !move) { //up
-                robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
-                robot.IArmR.setPosition(0.6);
-            }
-            if (gamepad1.a && !move) { //down
-                robot.IArmL.setPosition(0.725);
-                robot.IArmR.setPosition(0.725); //
-            }
+                    if (gamepad1.y && !move) { //up
+                        robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
+                        robot.IArmR.setPosition(0.6);
+                    }
+                    if (gamepad1.a && !move) { //down
+                        robot.IArmL.setPosition(0.725);
+                        robot.IArmR.setPosition(0.725); //
+                    }
 
 //end  IArm L and R
 
-//Begin  OArm L and R
-
-            if (gamepad2.dpad_up && !move) { //rear specimen
-                robot.OArmL.setPosition(0.06);
-                robot.OArmR.setPosition(0.06);
-            }
-            if (gamepad2.dpad_down && !move) { //front transfer
-                robot.OArmL.setPosition(0.99);
-                robot.OArmR.setPosition(0.99);
-            }
-
-//end  OArm L and R
 
 //Begin  open and close of outtakeclaw 12122024 finetuned
 
-            if (gamepad2.left_trigger > 0.3) { //open
-                robot.OClaw.setPosition(0.32); //12122024
-            }
-            if (gamepad2.right_trigger > 0.3) { //close
-                robot.OClaw.setPosition(0.548); // 0.543 hold
-            }
+                    if (gamepad2.left_trigger > 0.3) { //open
+                        robot.OClaw.setPosition(0.32); //12122024
+                    }
+                    if (gamepad2.right_trigger > 0.3) { //close
+                        robot.OClaw.setPosition(0.548); // 0.543 hold
+                    }
 
 //End open and close of outtakeclaw
 
@@ -192,7 +222,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End debugging with a step increment of 0.05
 
-            //Begin  Wristxpitch do not use it any more
+                    //Begin  Wristxpitch do not use it any more
 //            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
 //                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
 //            }
@@ -210,9 +240,162 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                moveVSlideToPosition(-POSITION_Y_HIGH);
 //            }
 
-            //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
-            //for up
-            //for down
+                    //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
+                    //for up
+                    //for down
+
+                    // ...（其他原始代码逻辑保持不变）
+                    break;
+
+                case 1:
+                    // out take
+                    //Begin  moveVSlideToPosition
+
+                    // 左触发器双功能：轻按和深按
+                    if (gamepad1BHandler.isShortPress()) { //IN
+                        moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+                    }
+                    if (gamepad1XHandler.isShortPress()) { //EXTRUDE
+                        moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+                    }
+                    if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
+                        moveVSlideToPosition(-POSITION_Y_HIGH);// high
+                    }
+                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
+                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
+                    }
+
+                    //End  moveVSlideToPosition
+
+//one key ready for pick
+                    if (gamepad1.right_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+                        robot.OArmL.setPosition(0.06);
+                        robot.OArmR.setPosition(0.06);
+                        sleep(200);
+                        robot.IClaw.setPosition(0.32);
+                        sleep(200);
+                    }
+
+//one key ready for pick up
+
+
+
+//Begin  OArm L and R
+
+                    if (gamepad1.y) { //rear specimen
+                        robot.OArmL.setPosition(0.06);
+                        robot.OArmR.setPosition(0.06);
+                    }
+                    if (gamepad1.a) { //front transfer
+                        robot.OArmL.setPosition(0.99);
+                        robot.OArmR.setPosition(0.99);
+                    }
+
+//end  OArm L and R
+
+//Begin  open and close of outtakeclaw 12122024 finetuned
+
+                    if (gamepad1.left_trigger > 0.3 && gamepad1.left_trigger <= 0.7) { // 轻按
+                        robot.IClaw.setPosition(0.32); //12122024
+                    }
+                    if (gamepad1.right_trigger > 0.3 && gamepad1.right_trigger <= 0.7) { // 轻按
+                        robot.IClaw.setPosition(0.548);
+                    }
+                    if (gamepad1.right_trigger > 0.7) { // 深按
+                        robot.IClaw.setPosition(0.549); //
+                    }
+
+
+
+//End open and close of outtakeclaw
+
+//End Definition and Initialization of gamepad
+
+
+//Begin debugging with a step increment of 0.05
+
+/**
+ * This code snippet controls the position of a servo motor using the gamepad triggers.
+ *
+ * **Purpose**:
+ * - The left trigger (`gamepad1.left_trigger`) increases the servo's position by a fixed step (`SERVO_STEP`).
+ * - The right trigger (`gamepad1.right_trigger`) decreases the servo's position by a fixed step (`SERVO_STEP`).
+ * - The servo position is constrained between 0.01 (minimum) and 0.99 (maximum) to prevent invalid values.
+ * - The current servo position is displayed on the telemetry for real-time monitoring.
+ *
+ * **Usage Instructions**:
+ * 1. Press the **left trigger** (`gamepad1.left_trigger`) to move the servo incrementally towards its maximum position.
+ * 2. Press the **right trigger** (`gamepad1.right_trigger`) to move the servo incrementally towards its minimum position.
+ * 3. The servo's position is updated with a small delay (`sleep(200)` milliseconds) to prevent rapid changes from multiple trigger presses.
+ * 4. Adjust `SERVO_STEP` as needed to control the increment size for finer or coarser adjustments.
+ *
+ * **Setup**:
+ * - Ensure the servo is connected to the correct port and initialized in the `robot.TServo` variable.
+ * - Configure the `SERVO_STEP` variable to determine how much the position changes with each trigger press.
+ * - Calibrate the servo movement range (e.g., 0.01 to 0.99) based on your servo's physical limits to avoid damage.
+ */
+
+
+//            if (gamepad1.left_trigger > 0.3) {
+//                servoPosition = servoPosition + SERVO_STEP;
+//                if (servoPosition >= 1.0) {
+//                    servoPosition = 0.99; // 限制最大值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+//            if (gamepad1.right_trigger > 0.3) {
+//                servoPosition = servoPosition - SERVO_STEP;
+//                if (servoPosition <= 0.0) {
+//                    servoPosition = 0.01; // 限制最小值
+//                }
+//                robot.TServo.setPosition(servoPosition);
+//                telemetry.addData("Servo Position", servoPosition);
+//                telemetry.update();
+//                sleep(200);
+//            }
+
+//End debugging with a step increment of 0.05
+
+                    //Begin  Wristxpitch do not use it any more
+//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+//            }
+//            if (gamepad1.dpad_down && !move) { //down
+//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
+//            }
+//End   Wristxpitch
+//            if (gamepad2.a && !move ) { //down
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad2.y && !move) { //up prepare forchameber
+//                moveVSlideToPosition(-POSITION_Y_LOW);
+//            }
+//            if (gamepad2.right_bumper && !move){ //upforchameber
+//                moveVSlideToPosition(-POSITION_Y_HIGH);
+//            }
+
+                    //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
+                    //for up
+                    //for down
+
+
+                    break;
+
+                // 如果需要更多模式，可以继续添加 case。
+            }
+
+
+////////////////////////////////////
+
+
+
+
+
+
+
         } //end of while loop
     } //end of run mode
 
@@ -338,7 +521,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         // This button choice was made so that it is hard to hit on accident,
         // it can be freely changed based on preference.
         // The equivalent button is start on Xbox-style controllers.
-        if (gamepad1.options) {
+        if (gamepad1.back) {
             robot.imu.resetYaw();
         }
 
