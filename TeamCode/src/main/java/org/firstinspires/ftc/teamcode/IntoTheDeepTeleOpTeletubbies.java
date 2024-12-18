@@ -59,16 +59,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad1.left_bumper && !move){ //upforchameber
                 moveVSlideToPosition(-POSITION_Y_HIGH);
             }
-
-//            if (gamepad2.a && !move ) { //down
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad2.y && !move) { //up prepare forchameber
-//                moveVSlideToPosition(-POSITION_Y_LOW);
-//            }
-//            if (gamepad2.right_bumper && !move){ //upforchameber
-//                moveVSlideToPosition(-POSITION_Y_HIGH);
-//            }
             if (gamepad2.left_bumper && !move){ //upforchameber
                 moveVSlideToPosition(-POSITION_Y_HIGHH);
             }
@@ -117,16 +107,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             }
 
 //one key ready for pick up
-
-//Begin  Wristxpitch do not use it any more
-//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-//            }
-//            if (gamepad1.dpad_down && !move) { //down
-//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
-//            }
-//End   Wristxpitch
-
 
 //Begin  IArm L and R
 
@@ -213,10 +193,25 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                sleep(200);
 //            }
 
-
-
 //End debugging with a step increment of 0.05
 
+            //Begin  Wristxpitch do not use it any more
+//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
+//            }
+//            if (gamepad1.dpad_down && !move) { //down
+//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
+//            }
+//End   Wristxpitch
+//            if (gamepad2.a && !move ) { //down
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad2.y && !move) { //up prepare forchameber
+//                moveVSlideToPosition(-POSITION_Y_LOW);
+//            }
+//            if (gamepad2.right_bumper && !move){ //upforchameber
+//                moveVSlideToPosition(-POSITION_Y_HIGH);
+//            }
 
             //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
             //for up
