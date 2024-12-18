@@ -60,15 +60,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 moveVSlideToPosition(-POSITION_Y_HIGH);
             }
 
-//            if (gamepad2.a && !move ) { //down
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad2.y && !move) { //up prepare forchameber
-//                moveVSlideToPosition(-POSITION_Y_LOW);
-//            }
-//            if (gamepad2.right_bumper && !move){ //upforchameber
-//                moveVSlideToPosition(-POSITION_Y_HIGH);
-//            }
+
             if (gamepad2.left_bumper && !move){ //upforchameber
                 moveVSlideToPosition(-POSITION_Y_HIGHH);
             }
@@ -216,7 +208,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 
 //End debugging with a step increment of 0.05
-
+//            if (gamepad2.a && !move ) { //down
+//                moveVSlideToPosition(POSITION_A_BOTTOM);
+//            }
+//            if (gamepad2.y && !move) { //up prepare forchameber
+//                moveVSlideToPosition(-POSITION_Y_LOW);
+//            }
+//            if (gamepad2.right_bumper && !move){ //upforchameber
+//                moveVSlideToPosition(-POSITION_Y_HIGH);
+//            }
 
             //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
             //for up
