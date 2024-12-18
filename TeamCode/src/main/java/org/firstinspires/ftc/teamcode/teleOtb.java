@@ -138,17 +138,7 @@ public class teleOtb extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-//        FtcDashboard dashboard = FtcDashboard.getInstance();
-//        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
-//        FtcDashboard.getInstance().startCameraStream(controlHubCam, 30);
 
-//        targetFound     = false;
-/*        boolean targetFound     = false;    // Set to true when an AprilTag target is detected
-        double  drive           = 0;        // Desired forward power/speed (-1 to +1)
-        double  strafe          = 0;        // Desired strafe power/speed (-1 to +1)
-        double  turn            = 0;        // Desired turning power/speed (-1 to +1)
-*/
-//        initVisionPortal() ;
         waitForStart();
 
         while (opModeIsActive()) {
