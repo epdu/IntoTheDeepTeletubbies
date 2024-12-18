@@ -66,7 +66,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             gamepad1YHandler.update(gamepad1.y);
             gamepad1AHandler.update(gamepad1.a);
 
-        if (gamepad1.start && !move) { // 切换控制模式
+        if (gamepad1.start) { // 切换控制模式
            controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
             telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
             telemetry.update();
@@ -103,15 +103,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
-                    if (gamepad1.b && !move) { //right
+                    if (gamepad1.b) { //right
                         robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
                     }
-                    if (gamepad1.x && !move) { //left
+                    if (gamepad1.x) { //left
                         robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
                     }
 
 //one key ready for pick
-                    if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+                    if (gamepad1.right_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                         robot.Wristxpitch.setPosition(0.65);
                         sleep(200);
                         robot.IClaw.setPosition(0.32);
@@ -149,11 +149,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //Begin  IArm L and R
 
-                    if (gamepad1.y && !move) { //up
+                    if (gamepad1.y) { //up
                         robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
                         robot.IArmR.setPosition(0.6);
                     }
-                    if (gamepad1.a && !move) { //down
+                    if (gamepad1.a ) { //down
                         robot.IArmL.setPosition(0.725);
                         robot.IArmR.setPosition(0.725); //
                     }
