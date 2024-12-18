@@ -24,11 +24,11 @@ import org.openftc.easyopencv.OpenCvCamera;
 //OpenCvVisionProcessor
 //HardwarePowerpuffs
 //works well except controlHubCam.stopStreaming(); check this 0225morning
-@Autonomous(name = "Auto specimen")
-public class AutonomousV0 extends LinearOpMode {
+@Autonomous(name = "TeleOtb")
+public class teleOtb extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();   // Use a Powerpuffs's hardware
-//    public String allianceColor="red";// "null" for init set to be "red" or "blue" for each match
-public String allianceColor="blue";
+    //    public String allianceColor="red";// "null" for init set to be "red" or "blue" for each match
+    public String allianceColor="blue";
     public String parkingSide="right";// "null" for init  set to be "left" or "right" for each match
     //    public String parkingSide="left";
     public double sleepingTime=0.0;// set to be any number if need to avoid collision with alliance
@@ -101,10 +101,10 @@ public String allianceColor="blue";
     public static final double focalLength = 922;  //Logitech C920 3.67mm pixel Size (µm): 3.98 pixel  C270  Replace with the focal length of the camera in pixels
 //    public static final double focalLength = 728;  // Replace with the focal length of the camera in pixels
 
-//    private static final boolean USE_WEBCAM = true;
+    //    private static final boolean USE_WEBCAM = true;
 //    private OpenCvVisionProcessor redTeamPropOpenCv;
- //   private OpenCvVisionProcessor blueTeamPropOpenCv;
- //   final double DESIRED_DISTANCE = 6.0; //  orignal =6 this is how close the camera should get to the target (inches)
+    //   private OpenCvVisionProcessor blueTeamPropOpenCv;
+    //   final double DESIRED_DISTANCE = 6.0; //  orignal =6 this is how close the camera should get to the target (inches)
     //  Set the GAIN constants to control the relationship between the measured position error, and how much power is
     //  applied to the drive motors to correct the error.
     //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
@@ -153,27 +153,25 @@ public String allianceColor="blue";
 
         while (opModeIsActive()) {
             // TODO: Need to do red or blue according to alliance color.
-                moveForward(0.2, 25); //32
-                sleep(100);
-                strafeLeft(0.2, 14);//16
-                sleep(100);
-                moveVSlideToPosition(-POSITION_Y_LOW);
-                sleep(600);
-                moveForward(0.1, 4); //32
-                sleep(100);
-                moveVSlideToPosition(-POSITION_Y_HIGH);
-                sleep(600);
-                robot.OClaw.setPosition(0.32); //12122024
-                sleep(100);
-                moveBackward(0.3,9);
-                sleep(100);
-                moveVSlideToPosition(-POSITION_A_BOTTOM);
-                moveBackward(0.3,10);
-                strafeRight(0.2, 50);//16
-                moveBackward(0.3,5);
-                sleep(600);
+            moveForward(0.2, 25); //32
+            sleep(100);
+            moveVSlideToPosition(-POSITION_Y_LOW);
+            sleep(600);
+            moveForward(0.1, 4); //32
+            sleep(100);
+            moveVSlideToPosition(-POSITION_Y_HIGH);
+            sleep(600);
+            robot.OClaw.setPosition(0.32); //12122024
+            sleep(100);
+            moveBackward(0.3,9);
+            sleep(100);
+            moveVSlideToPosition(-POSITION_A_BOTTOM);
+            strafeLeft(0.2, 50);//16
+            moveBackward(0.3,10);
+            moveBackward(0.3,5);
+            sleep(600);
 
- //
+            //
 
 //                moveForward(0.1, 4);
 //            sleep(100);
@@ -192,7 +190,7 @@ public String allianceColor="blue";
 //            sleep(100);
 
 
- //            while (found==false) {
+            //            while (found==false) {
 //                if (allianceColor.equals("red")) {
 //                    Point teamPropCentroid = redTeamPropOpenCv.getTeamPropCentroid();
 //                    cX = teamPropCentroid.x;
@@ -229,7 +227,7 @@ public String allianceColor="blue";
 //            isStopRequested();
 //            autoParking();
 //            if(autoParkingDone==true){
-                break;
+            break;
 //            }
         }
 //        dashboard.stopCameraStream();

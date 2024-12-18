@@ -25,8 +25,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_B_EXTRUDE_MORE = 400; //horizontal slides all the way out
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    private static final int POSITION_Y_HIGH = 1200;//Vertical slides all the way up
-    private static final int POSITION_Y_HIGHH = 1250;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGH = 1250;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.70; // Adjust as needed
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
@@ -160,7 +160,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 robot.OClaw.setPosition(0.32); //12122024
             }
             if (gamepad2.right_trigger > 0.3) { //close
-                robot.OClaw.setPosition(0.543); // 0.543 hold
+                robot.OClaw.setPosition(0.548); // 0.543 hold
             }
 
 //End open and close of outtakeclaw
@@ -243,7 +243,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
     public void liftVertSlidesHigh () {
-        double liftVertSlides_y = gamepad2.left_stick_y;
+        double liftVertSlides_y = -gamepad2.left_stick_y;
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.VSMotorL.setPower(liftVertSlides_y*0.45);

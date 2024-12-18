@@ -180,7 +180,7 @@ public class HardwareTeletubbies
 
 //Begin Definition and Initialization of outtake Claw Servo
                OClaw = hwMap.get(Servo.class, "OClaw");//expansion hub port  0
-               OClaw.setPosition(0.543);//  12122024
+               OClaw.setPosition(0.548);//  12122024
 //End Definition and Initialization of outtake Claw Servo
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
