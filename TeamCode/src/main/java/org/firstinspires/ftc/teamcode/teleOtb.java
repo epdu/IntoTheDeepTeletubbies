@@ -268,7 +268,6 @@ public class teleOtb extends LinearOpMode {
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         move = false;
     }
-
     public void moveRobot(double x, double y, double yaw) {
         telemetry.addData("x", x);
         telemetry.addData("y", y);
