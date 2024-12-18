@@ -24,7 +24,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 //OpenCvVisionProcessor
 //HardwarePowerpuffs
 //works well except controlHubCam.stopStreaming(); check this 0225morning
-@Autonomous(name = "Auto specimen")
+@Autonomous(name = "Auto specimen ")
 public class AutonomousV0 extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();   // Use a Powerpuffs's hardware
 //    public String allianceColor="red";// "null" for init set to be "red" or "blue" for each match
