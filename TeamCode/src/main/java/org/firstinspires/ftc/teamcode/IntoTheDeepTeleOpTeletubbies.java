@@ -450,8 +450,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
-
-
 //Begin Definition and Initialization of Horizontal Slides by gamepad2.left_stick_x  extrude slides long
 
     public void extrHoriSlidesLong() {
