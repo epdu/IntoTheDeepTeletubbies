@@ -102,10 +102,10 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
-                    if (gamepad1.b) { //right
+                    if (gamepad2.b) { //right
                         robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
                     }
-                    if (gamepad1.x) { //left
+                    if (gamepad2.x) { //left
                         robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
                     }
 
@@ -160,16 +160,16 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //end  IArm L and R
 
 
-//Begin  open and close of outtakeclaw 12122024 finetuned
-
-                    if (gamepad2.left_trigger > 0.3) { //open
-                        robot.OClaw.setPosition(0.32); //12122024
-                    }
-                    if (gamepad2.right_trigger > 0.3) { //close
-                        robot.OClaw.setPosition(0.548); // 0.543 hold
-                    }
-
-//End open and close of outtakeclaw
+////Begin  open and close of outtakeclaw 12122024 finetuned
+//
+//                    if (gamepad2.left_trigger > 0.3) { //open
+//                        robot.OClaw.setPosition(0.32); //12122024
+//                    }
+//                    if (gamepad2.right_trigger > 0.3) { //close
+//                        robot.OClaw.setPosition(0.548); // 0.543 hold
+//                    }
+//
+////End open and close of outtakeclaw
 
 //End Definition and Initialization of gamepad
 
