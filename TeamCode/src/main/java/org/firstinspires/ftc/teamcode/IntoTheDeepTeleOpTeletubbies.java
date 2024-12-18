@@ -49,6 +49,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
+
 //Begin  moveVSlideToPosition
             if (gamepad1.dpad_down && !move ) { //down
                 moveVSlideToPosition(POSITION_A_BOTTOM);
@@ -91,10 +92,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             if (gamepad1.x && !move) { //left
                 robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
             }
-//            if (gamepad1.right_bumper && !move) { //left
-//                robot.Wristzyaw.setPosition(0.5); // Wristzyaw middle  12122024
-//            }
-//End   Wristzyaw
 
 //one key ready for pick
             if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
@@ -231,9 +228,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.LBMotor.setPower(bl*DriveTrains_ReducePOWER);
         robot.RFMotor.setPower(fr*DriveTrains_ReducePOWER);
         robot.RBMotor.setPower(br*DriveTrains_ReducePOWER);
-
     }
-
 
 //Begin Definition and Initialization of Vertical Slides by gamepad2.left_stick_y
 
@@ -268,36 +263,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End Definition and Initialization of Horizontal Slides by gamepad2.left_stick_x
 
-//Begin Definition and Initialization of Horizontal Slides
-
-
-//    private void moveHSlideToPosition ( int targetPosition){
-//
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        telemetry.addData("targetPosition", targetPosition);
-//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
-//        telemetry.update();
-//        robot.HSMotor.setTargetPosition(-targetPosition);
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        robot.HSMotor.setPower(+SLIDE_POWER_H);
-//
-//        move = true;
-//
-//        while (robot.HSMotor.isBusy() &&  move) {
-//            // Wait until the motor reaches the target position
-//        }
-//
-//        robot.HSMotor.setPower(0);
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        move = false;
-//    }
-
-
-//End Definition and Initialization of Horizontal Slides
-
-
-    //Begin Definition and Initialization of Vertical Slides
+//Begin Definition and Initialization of Vertical Slides
     private void moveVSlideToPosition ( int targetPosition){
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -334,7 +300,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //End Definition and Initialization of Vertical Slides
 
-    //Begin Definition and Initialization of Horizontal Slides
+//Begin Definition and Initialization of Horizontal Slides
     private void moveHSlideToPosition ( int targetPosition){
         robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         telemetry.addData("targetPosition", targetPosition);
@@ -432,7 +398,33 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
     }
 
+//Begin Definition and Initialization of Horizontal Slides
 
+
+//    private void moveHSlideToPosition ( int targetPosition){
+//
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        telemetry.addData("targetPosition", targetPosition);
+//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
+//        telemetry.update();
+//        robot.HSMotor.setTargetPosition(-targetPosition);
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        robot.HSMotor.setPower(+SLIDE_POWER_H);
+//
+//        move = true;
+//
+//        while (robot.HSMotor.isBusy() &&  move) {
+//            // Wait until the motor reaches the target position
+//        }
+//
+//        robot.HSMotor.setPower(0);
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        move = false;
+//    }
+
+
+//End Definition and Initialization of Horizontal Slides
 
 
 
