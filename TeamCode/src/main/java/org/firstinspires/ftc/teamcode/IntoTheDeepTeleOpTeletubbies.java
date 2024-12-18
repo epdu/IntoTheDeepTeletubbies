@@ -33,7 +33,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
-    int controlMode = 0;
+    int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
     ButtonHandler leftBumperHandler = new ButtonHandler();
@@ -56,14 +56,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            extrHoriSlidesLong();
 
 //Begin Definition and Initialization of gamepad
-            dpadDownHandler.update(gamepad1.dpad_down);
-            dpadUpHandler.update(gamepad1.dpad_up);
-            leftBumperHandler.update(gamepad1.left_bumper);
-            rightBumperHandler.update(gamepad1.right_bumper);
-            gamepad1XHandler.update(gamepad1.x);
-            gamepad1BHandler.update(gamepad1.b);
-            gamepad1YHandler.update(gamepad1.y);
-            gamepad1AHandler.update(gamepad1.a);
+
 
         if (gamepad1.start) { // 切换控制模式
            controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
@@ -75,15 +68,26 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             switch (controlMode) {
                 case 0:
                     // intake
+                    dpadDownHandler.update(gamepad1.dpad_down);
+                    dpadUpHandler.update(gamepad1.dpad_up);
+                    leftBumperHandler.update(gamepad1.left_bumper);
+                    rightBumperHandler.update(gamepad1.right_bumper);
+                    gamepad1XHandler.update(gamepad1.x);
+                    gamepad1BHandler.update(gamepad1.b);
+                    gamepad1YHandler.update(gamepad1.y);
+                    gamepad1AHandler.update(gamepad1.a);
                     //Begin  moveHSlideToPosition
                     if (gamepad1BHandler.isShortPress()) { //IN
                         moveHSlideToPosition(POSITION_X_IN);
+                        gamepad1BHandler.reset();
                     }
                     if (gamepad1XHandler.isShortPress()) { //EXTRUDE
                         moveHSlideToPosition(POSITION_B_EXTRUDE);
+                        gamepad1XHandler.reset();
                     }
                     if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
                         moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
+                        gamepad1XHandler.reset();
                     }
                     //End  moveHSlideToPosition
 
@@ -248,20 +252,32 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
                 case 1:
                     // out take
+                    dpadDownHandler.update(gamepad1.dpad_down);
+                    dpadUpHandler.update(gamepad1.dpad_up);
+                    leftBumperHandler.update(gamepad1.left_bumper);
+                    rightBumperHandler.update(gamepad1.right_bumper);
+                    gamepad1XHandler.update(gamepad1.x);
+                    gamepad1BHandler.update(gamepad1.b);
+                    gamepad1YHandler.update(gamepad1.y);
+                    gamepad1AHandler.update(gamepad1.a);
                     //Begin  moveVSlideToPosition
 
                     // 左触发器双功能：轻按和深按
                     if (gamepad1BHandler.isShortPress()) { //IN
                         moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+                        gamepad1BHandler.reset();
                     }
                     if (gamepad1XHandler.isShortPress()) { //EXTRUDE
                         moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+                        gamepad1XHandler.reset();
                     }
                     if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
                         moveVSlideToPosition(-POSITION_Y_HIGH);// high
+                        gamepad1XHandler.reset();
                     }
                     if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
                         moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
+                        gamepad1XHandler.reset();
                     }
 
                     //End  moveVSlideToPosition
@@ -295,13 +311,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //Begin  open and close of outtakeclaw 12122024 finetuned
 
                     if (gamepad1.left_trigger > 0.3 && gamepad1.left_trigger <= 0.7) { // 轻按
-                        robot.IClaw.setPosition(0.32); //12122024
+                        robot.OClaw.setPosition(0.32); //12122024
                     }
                     if (gamepad1.right_trigger > 0.3 && gamepad1.right_trigger <= 0.7) { // 轻按
-                        robot.IClaw.setPosition(0.548);
+                        robot.OClaw.setPosition(0.548);
                     }
                     if (gamepad1.right_trigger > 0.7) { // 深按
-                        robot.IClaw.setPosition(0.549); //
+                        robot.OClaw.setPosition(0.549); //
                     }
 
 

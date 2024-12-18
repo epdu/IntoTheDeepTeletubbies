@@ -52,6 +52,7 @@ public class ButtonHandler {
 
     public void reset() {
         clickCount = 0;
+        isPressed= false;
         isLongPressHandled = false;
     }
 }
