@@ -193,8 +193,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                sleep(200);
 //            }
 
-
-
 //End debugging with a step increment of 0.05
 
             //Begin  Wristxpitch do not use it any more
