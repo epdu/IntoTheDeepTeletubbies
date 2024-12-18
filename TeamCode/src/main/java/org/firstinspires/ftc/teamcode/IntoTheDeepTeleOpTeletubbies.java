@@ -498,9 +498,41 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        // Fine-tune the position using a PID-like approach
+        holdSlidePosition(targetPosition);
         move = false;
     }
+    private void holdSlidePosition(int targetPosition) {
+        final double HOLD_POWER = 0.1; // Minimal power to hold the position
+        final int POSITION_TOLERANCE = 10; // Allowable deviation from the target
 
+        while (true) {
+            int currentPositionL = robot.VSMotorL.getCurrentPosition();
+            int currentPositionR = robot.VSMotorR.getCurrentPosition();
+
+            // Check if the slide is within the tolerance
+            if (Math.abs(currentPositionL + targetPosition) <= POSITION_TOLERANCE &&
+                    Math.abs(currentPositionR + targetPosition) <= POSITION_TOLERANCE) {
+                robot.VSMotorL.setPower(0);
+                robot.VSMotorR.setPower(0);
+            } else {
+                // Apply minimal power to correct the position
+                robot.VSMotorL.setPower(HOLD_POWER);
+                robot.VSMotorR.setPower(HOLD_POWER);
+            }
+
+            // Optionally break the loop based on a condition or timer
+            // Example: break if a stop flag is set
+            if (!move) {
+                break;
+            }
+
+            // Add telemetry to monitor holding behavior
+            telemetry.addData("Holding Position L", currentPositionL);
+            telemetry.addData("Holding Position R", currentPositionR);
+            telemetry.update();
+        }
+    }
 //End Definition and Initialization of Vertical Slides
 
 //Begin Definition and Initialization of Horizontal Slides
