@@ -20,8 +20,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     private static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 400;//horizontal slides  out //600
-    private static final int POSITION_B_EXTRUDE_MORE = 600; //horizontal slides all the way out 800
+    private static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //600
+    private static final int POSITION_B_EXTRUDETransfer = 460;//horizontal slides  out //600 is too much
+    private static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
     private static final int POSITION_Y_HIGH = 1250;//Vertical slides all the way up
@@ -85,7 +86,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                         moveHSlideToPosition(POSITION_B_EXTRUDE);
                         gamepad1XHandler.reset();
                     }
-                    if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
+                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
                         moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
                         gamepad1XHandler.reset();
                     }
@@ -114,7 +115,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     }
 
 //one key ready for pick
-                    if (gamepad1.right_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+                    if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                         robot.Wristxpitch.setPosition(0.65);
                         sleep(200);
                         robot.IClaw.setPosition(0.32);
@@ -127,23 +128,27 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //one key ready for transfer
                     if (gamepad1.right_bumper) { //
-
-                    robot.Wristxpitch.setPosition(0.35); // Wristxpitch
-                        sleep(200);
-                        robot.IArmL.setPosition(0.7);
-                        robot.IArmR.setPosition(0.7);
-                        sleep(200);
-                        robot.OClaw.setPosition(0.32); //12122024
-                        sleep(200);
-                        robot.OArmL.setPosition(0.99);
-                        robot.OArmR.setPosition(0.99);
-                        sleep(200);
-                        robot.OClaw.setPosition(0.548); // 0.543 hold
-                        sleep(200);
-                        robot.IClaw.setPosition(0.32); //12122024
+                        moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+                        sleep(600);
+                        robot.Wristxpitch.setPosition(0.1); // Wristxpitch
+                        sleep(600);
                         robot.OArmL.setPosition(0.06);
                         robot.OArmR.setPosition(0.06);
-                        sleep(200);
+                        robot.IArmL.setPosition(0.6);
+                        robot.IArmR.setPosition(0.6);
+                        sleep(600);
+                        robot.OClaw.setPosition(0.32); //12122024
+                        sleep(600);
+                        robot.OArmL.setPosition(0.99);
+                        robot.OArmR.setPosition(0.99);
+                        sleep(600);
+                        robot.OClaw.setPosition(0.548); // 0.543 hold
+                        sleep(600);
+                        robot.IClaw.setPosition(0.32); //12122024
+                        sleep(2000);
+                        robot.OArmL.setPosition(0.06);
+                        robot.OArmR.setPosition(0.06);
+                        sleep(600);
                         moveVSlideToPosition(-POSITION_Y_HIGH);// high
 
                     }
@@ -271,19 +276,19 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                         moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                         gamepad1XHandler.reset();
                     }
-                    if (gamepad1XHandler.isDoubleClick()) { //EXTRUDE_MORE
+                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
                         moveVSlideToPosition(-POSITION_Y_HIGH);// high
                         gamepad1XHandler.reset();
                     }
-                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
-                        gamepad1XHandler.reset();
-                    }
+//                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
+//                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
+//                        gamepad1XHandler.reset();
+//                    }
 
                     //End  moveVSlideToPosition
 
 //one key ready for pick
-                    if (gamepad1.right_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+                    if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                         robot.OArmL.setPosition(0.06);
                         robot.OArmR.setPosition(0.06);
                         sleep(200);
