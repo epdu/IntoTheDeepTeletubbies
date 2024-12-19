@@ -21,7 +21,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     boolean move = false;
     private static final int POSITION_X_IN = 0; // horizontal slides all the way in
     private static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //600
-    private static final int POSITION_B_EXTRUDETransfer = 460;//horizontal slides  out //600 is too much
+    private static final int POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
+    private static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
     private static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
@@ -130,26 +131,25 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     if (gamepad1.right_bumper) { //
                         moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
                         sleep(600);
+                        robot.OClaw.setPosition(0.32); //open
+                        sleep(600);
+                        robot.OArmL.setPosition(0.99);//transfer position
+                        robot.OArmR.setPosition(0.99);
+                        sleep(600);
                         robot.Wristxpitch.setPosition(0.1); // Wristxpitch
                         sleep(600);
-                        robot.OArmL.setPosition(0.06);
-                        robot.OArmR.setPosition(0.06);
                         robot.IArmL.setPosition(0.6);
                         robot.IArmR.setPosition(0.6);
                         sleep(600);
-                        robot.OClaw.setPosition(0.32); //12122024
+                        robot.OClaw.setPosition(0.548); // close 0.543 hold
                         sleep(600);
-                        robot.OArmL.setPosition(0.99);
-                        robot.OArmR.setPosition(0.99);
-                        sleep(600);
-                        robot.OClaw.setPosition(0.548); // 0.543 hold
-                        sleep(600);
-                        robot.IClaw.setPosition(0.32); //12122024
+                        robot.IClaw.setPosition(0.32); //open
+                        moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
                         sleep(2000);
                         robot.OArmL.setPosition(0.06);
                         robot.OArmR.setPosition(0.06);
                         sleep(600);
-                        moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                        moveVSlideToPosition(-POSITION_Y_HIGH);// high
 
                     }
 
