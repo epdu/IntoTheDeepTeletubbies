@@ -44,6 +44,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     ButtonHandler gamepad1BHandler = new ButtonHandler();
     ButtonHandler gamepad1YHandler = new ButtonHandler();
     ButtonHandler gamepad1AHandler = new ButtonHandler();
+    Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
+/*
+package mypackage; // 与 Gyro 类的包名一致
+        Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
+        gyro.turn();            // 调用 turn() 方法
+
+ */
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -56,6 +63,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //            moveDriveTrain(); //robot centric
             liftVertSlidesHigh();
 //            extrHoriSlidesLong();
+
 
 //Begin Definition and Initialization of gamepad
 
@@ -85,6 +93,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     }
                     if (gamepad1XHandler.isShortPress()) { //EXTRUDE
                         moveHSlideToPosition(POSITION_B_EXTRUDE);
+                        gyro.turn(90);            // 调用 turn() 方法turn(90);
                         gamepad1XHandler.reset();
                     }
                     if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
