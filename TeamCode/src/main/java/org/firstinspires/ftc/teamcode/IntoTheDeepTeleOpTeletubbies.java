@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -46,6 +48,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     ButtonHandler gamepad1AHandler = new ButtonHandler();
     Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
     private volatile boolean isRunning = true;
+    ElapsedTime delayTimer = new ElapsedTime();
 /*
 package mypackage; // 与 Gyro 类的包名一致
         Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
@@ -54,6 +57,7 @@ package mypackage; // 与 Gyro 类的包名一致
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
+        gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
         Thread intakeThread = new Thread(this::runIntake);
         Thread outtakeThread = new Thread(this::runOuttake);
@@ -65,12 +69,23 @@ package mypackage; // 与 Gyro 类的包名一致
         waitForStart();
 
         while (opModeIsActive()) {
-            telemetry.addData("Status", "All systems running...");
-            telemetry.update();
+//            telemetry.addData("Status", "All systems running...");
+//            telemetry.update();
 //            moveDriveTrain_RobotCentric(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
             moveDriveTrain_FieldCentric() ;
+            if (gamepad1.start) { // 切换控制模式
+                controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
+                telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
+                telemetry.update();
+                // Non-blocking delay to prevent rapid mode switching
+                delayTimer.reset();
+                while (delayTimer.milliseconds() < 300 && opModeIsActive()) {
+                    // Other tasks can be processed here
+                } // 防止快速连击导致模式快速切换
+            }
             intake();
             outtake();
+
 //            moveDriveTrain(); //robot centric
 //            liftVertSlidesHigh();
 //            extrHoriSlidesLong();
@@ -95,7 +110,10 @@ package mypackage; // 与 Gyro 类的包名一致
     private void runDriveTrain() {
         while (isRunning) {
             moveDriveTrain_FieldCentric();
-            sleep(50); // Add a short delay to prevent CPU overutilization
+//            sleep(50); // Add a short delay to prevent CPU overutilization
+            while (delayTimer.milliseconds() < 50 && opModeIsActive()) {
+                // Other tasks can be processed here
+            }
         }
     }
 
@@ -103,7 +121,10 @@ package mypackage; // 与 Gyro 类的包名一致
     private void runIntake() {
         while (isRunning) {
             intake();
-            sleep(50); // Add a short delay to prevent CPU overutilization
+//            sleep(50); // Add a short delay to prevent CPU overutilization
+            while (delayTimer.milliseconds() < 50 && opModeIsActive()) {
+                // Other tasks can be processed here
+            }
         }
     }
 
@@ -111,7 +132,10 @@ package mypackage; // 与 Gyro 类的包名一致
     private void runOuttake() {
         while (isRunning) {
             outtake();
-            sleep(50); // Add a short delay to prevent CPU overutilization
+//            sleep(50); // Add a short delay to prevent CPU overutilization
+            while (delayTimer.milliseconds() < 50 && opModeIsActive()) {
+                // Other tasks can be processed here
+            }
         }
     }
 
@@ -120,12 +144,12 @@ package mypackage; // 与 Gyro 类的包名一致
     public void intake() {
 
 //Begin Definition and Initialization of gamepad
-        if (gamepad1.start) { // 切换控制模式
-            controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
-            telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
-            telemetry.update();
-            sleep(300); // 防止快速连击导致模式快速切换
-        }
+//        if (gamepad1.start) { // 切换控制模式
+//            controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
+//            telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
+//            telemetry.update();
+//            sleep(300); // 防止快速连击导致模式快速切换
+//        }
 // 根据不同模式定义按键功能
         switch (controlMode) {
             case 0:
@@ -141,11 +165,19 @@ package mypackage; // 与 Gyro 类的包名一致
                 //Begin  moveHSlideToPosition
                 if (gamepad1BHandler.isShortPress()) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
+                    telemetry.addData("Status", "POSITION_X_IN");
+                    telemetry.update();
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
                     moveHSlideToPosition(POSITION_B_EXTRUDE);
-                    gyro.turn(90);            // 调用 turn() 方法turn(90);
+                    telemetry.addData("Status", "POSITION_B_EXTRUDE");
+                    telemetry.update();
+//                    sleep(600);
+//                    gyro.turn(90);// 调用 turn() 方法turn(90);
+//                    telemetry.addData("Status", "gyro.turn");
+//                    telemetry.update();
+//                    sleep(1000);
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
