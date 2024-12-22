@@ -1,4 +1,6 @@
 package org.firstinspires.ftc.teamcode;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -37,8 +39,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
-    private PIDController pidControllerL = new PIDController(0.01, 0.0, 0.0); // Tune these values
-    private PIDController pidControllerR = new PIDController(0.01, 0.0, 0.0); // Tune these values
+    private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
+    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
@@ -58,6 +60,7 @@ package mypackage; // 与 Gyro 类的包名一致
  */
     @Override
     public void runOpMode() {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
@@ -250,7 +253,7 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //one key ready for transfer
 
-//Begin  IArm L and R
+//******************Begin  IArm L and R****************
 
                 if (gamepad1.y) { //up
                     robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
@@ -261,7 +264,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.IArmR.setPosition(0.725); //
                 }
 
-//end  IArm L and R
+//******************end  IArm L and R*****************
 
 
                 break;
@@ -299,7 +302,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //                        gamepad1XHandler.reset();
 //                    }
 
-                //End  moveVSlideToPosition
+                //************End  moveVSlideToPosition***************
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
@@ -608,6 +611,12 @@ package mypackage; // 与 Gyro 类的包名一致
             if (pidControllerL.onTarget() && pidControllerR.onTarget()) {
                 move = false;
             }
+            telemetry.addData("Target Position", targetPosition);
+            telemetry.addData("Current Position L", currentPositionL);
+            telemetry.addData("Current Position R", currentPositionR);
+            telemetry.addData("Power L", powerL);
+            telemetry.addData("Power R", powerR);
+            telemetry.update();
         }
 
         // Stop motors and set braking behavior
