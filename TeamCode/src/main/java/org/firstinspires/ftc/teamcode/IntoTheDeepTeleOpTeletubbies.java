@@ -246,6 +246,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmL.setPosition(0.06);
                     robot.OArmR.setPosition(0.06);
                     sleep(600);
+                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
 
                 }
