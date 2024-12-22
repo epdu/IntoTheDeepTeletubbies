@@ -29,7 +29,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
     private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    private static final int POSITION_Y_HIGH = 1250;//Vertical slides all the way up
+    private static final int POSITION_Y_HIGH = 1270;//Vertical slides all the way up
     private static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.70; // Adjust as needed
@@ -243,7 +243,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmR.setPosition(OArmTransferPosition);
                     sleep(600);
                     robot.IClaw.setPosition(IClawCloseLose); //  0.54
-                    robot.Wristxpitch.setPosition(0.3); // Wristxpitch
+                    robot.Wristxpitch.setPosition(0.5); // Wristxpitch
                     sleep(600);
                     robot.IClaw.setPosition(IClawCloseTight); //  0.54
                     sleep(600);
@@ -279,6 +279,7 @@ package mypackage; // 与 Gyro 类的包名一致
                 }
 
 //******************end  IArm L and R*****************
+
 
 
                 break;
