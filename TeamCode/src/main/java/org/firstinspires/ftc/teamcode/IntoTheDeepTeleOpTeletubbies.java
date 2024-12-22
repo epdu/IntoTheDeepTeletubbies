@@ -33,6 +33,15 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
     private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
     private static final double SLIDE_POWER_V = 0.70; // Adjust as needed
+    private static final double IClawOpen = 0.32;
+      private static final double IClawCloseLose = 0.54;
+    private static final double IClawCloseTight = 0.543;
+    private static final double OClawOpen = 0.32;
+    private static final double OClawCloseLose = 0.54;
+    private static final double OClawCloseTight = 0.548;
+    private static final double OArmTransferPosition = 0.99;
+    private static final double OArmRearSpecimenPick = 0.06;
+    private static final double OClawSpecimenChambers = 0.548;
     private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     double servoPosition = 0.5;
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
@@ -193,13 +202,13 @@ package mypackage; // 与 Gyro 类的包名一致
 //Begin  open and close of intakeclaw 12122024 finetuned
 
                 if (gamepad1.left_trigger > 0.3 && gamepad1.left_trigger <= 0.7) { // 轻按
-                    robot.IClaw.setPosition(0.32); //12122024
+                    robot.IClaw.setPosition(IClawOpen); //12122024
                 }
                 if (gamepad1.right_trigger > 0.3 && gamepad1.right_trigger <= 0.7) { // 轻按
-                    robot.IClaw.setPosition(0.542); //0.54 moveable 0.542 barely movable 0.543 hold
+                    robot.IClaw.setPosition(IClawCloseLose); //0.54 moveable 0.542 barely movable 0.543 hold
                 }
                 if (gamepad1.right_trigger > 0.7) { // 深按
-                    robot.IClaw.setPosition(0.543); //0.54 moveable 0.542 barely movable 0.543 hold
+                    robot.IClaw.setPosition(IClawCloseTight); //0.54 moveable 0.542 barely movable 0.543 hold
                 }
 
 //End open and close of intakeclaw
@@ -216,7 +225,7 @@ package mypackage; // 与 Gyro 类的包名一致
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                     robot.Wristxpitch.setPosition(0.65);
                     sleep(200);
-                    robot.IClaw.setPosition(0.32);
+                    robot.IClaw.setPosition(IClawOpen);
                     sleep(200);
                     robot.IArmL.setPosition(0.7);
                     robot.IArmR.setPosition(0.7);
@@ -230,8 +239,13 @@ package mypackage; // 与 Gyro 类的包名一致
                     sleep(600);
                     robot.OClaw.setPosition(0.32); //open
                     sleep(600);
-                    robot.OArmL.setPosition(0.99);//transfer position
-                    robot.OArmR.setPosition(0.99);
+                    robot.OArmL.setPosition(OArmTransferPosition);//transfer position
+                    robot.OArmR.setPosition(OArmTransferPosition);
+                    sleep(600);
+                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
+                    robot.Wristxpitch.setPosition(0.3); // Wristxpitch
+                    sleep(600);
+                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
                     sleep(600);
                     robot.Wristxpitch.setPosition(0.1); // Wristxpitch
                     sleep(600);
@@ -240,11 +254,11 @@ package mypackage; // 与 Gyro 类的包名一致
                     sleep(600);
                     robot.OClaw.setPosition(0.548); // close 0.543 hold
                     sleep(600);
-                    robot.IClaw.setPosition(0.32); //open
+                    robot.IClaw.setPosition(IClawOpen); //open
                     moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
                     sleep(2000);
-                    robot.OArmL.setPosition(0.06);
-                    robot.OArmR.setPosition(0.06);
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     sleep(600);
                     moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
@@ -306,10 +320,10 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
-                    robot.OArmL.setPosition(0.06);
-                    robot.OArmR.setPosition(0.06);
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     sleep(200);
-                    robot.IClaw.setPosition(0.32);
+                    robot.IClaw.setPosition(IClawOpen);
                     sleep(200);
                 }
 
@@ -319,13 +333,13 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //Begin  OArm L and R
 
-                if (gamepad1.y) { //rear specimen
-                    robot.OArmL.setPosition(0.06);
-                    robot.OArmR.setPosition(0.06);
+                if (gamepad1.y) { //rear specimen    OArmTransferPosition   OArmRearSpecimenPick
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                 }
                 if (gamepad1.a) { //front transfer
-                    robot.OArmL.setPosition(0.99);
-                    robot.OArmR.setPosition(0.99);
+                    robot.OArmL.setPosition(OArmTransferPosition);
+                    robot.OArmR.setPosition(OArmTransferPosition);
                 }
 
 //end  OArm L and R
@@ -342,14 +356,9 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OClaw.setPosition(0.549); //
                 }
 
-
-
 //End open and close of outtakeclaw
 
 //End Definition and Initialization of gamepad
-
-
-
 
                 break;
 
