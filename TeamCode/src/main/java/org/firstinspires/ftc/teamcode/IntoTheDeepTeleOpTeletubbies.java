@@ -37,6 +37,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
+    private PIDController pidControllerL = new PIDController(0.01, 0.0, 0.0); // Tune these values
+    private PIDController pidControllerR = new PIDController(0.01, 0.0, 0.0); // Tune these values
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
@@ -242,7 +244,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmL.setPosition(0.06);
                     robot.OArmR.setPosition(0.06);
                     sleep(600);
-//                        moveVSlideToPosition(-POSITION_Y_HIGH);// high
+                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
 
                 }
 
@@ -278,15 +280,18 @@ package mypackage; // 与 Gyro 类的包名一致
 
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
-                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+//                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-                    moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+//                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
+                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
+//                moveVSlideToPosition(-POSITION_Y_HIGH);// high
                     gamepad1XHandler.reset();
                 }
 //                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
@@ -562,6 +567,59 @@ package mypackage; // 与 Gyro 类的包名一致
         holdSlidePosition(targetPosition);
         move = false;
     }
+//////////////////////////
+    private void moveVSlideToPositionPID(int targetPosition) {
+        // Set motors to use encoders
+        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Initialize PID Controllers
+        pidControllerL.reset();
+        pidControllerR.reset();
+        pidControllerL.setSetpoint(targetPosition);
+        pidControllerR.setSetpoint(targetPosition);
+        pidControllerL.setTolerance(10); // Allowable position error
+        pidControllerR.setTolerance(10);
+
+        move = true;
+
+        // Main control loop
+        while (move) {
+            int currentPositionL = robot.VSMotorL.getCurrentPosition();
+            int currentPositionR = robot.VSMotorR.getCurrentPosition();
+
+            // Calculate PID outputs
+            double powerL = pidControllerL.performPID(currentPositionL);
+            double powerR = pidControllerR.performPID(currentPositionR);
+
+            // Set motor power based on PID outputs
+            robot.VSMotorL.setPower(powerL);
+            robot.VSMotorR.setPower(powerR);
+
+            // Telemetry for debugging
+            telemetry.addData("Target Position", targetPosition);
+            telemetry.addData("Current Position L", currentPositionL);
+            telemetry.addData("Current Position R", currentPositionR);
+            telemetry.addData("Power L", powerL);
+            telemetry.addData("Power R", powerR);
+            telemetry.update();
+
+            // Check if both motors are on target
+            if (pidControllerL.onTarget() && pidControllerR.onTarget()) {
+                move = false;
+            }
+        }
+
+        // Stop motors and set braking behavior
+        robot.VSMotorL.setPower(0);
+        robot.VSMotorR.setPower(0);
+        robot.VSMotorL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.VSMotorR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+
+
+///////////////////////////
     private void holdSlidePosition(int targetPosition) {
         final double HOLD_POWER = 0.1; // Minimal power to hold the position
         final int POSITION_TOLERANCE = 10; // Allowable deviation from the target
