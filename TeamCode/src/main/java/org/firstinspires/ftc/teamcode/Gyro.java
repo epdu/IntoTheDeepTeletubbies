@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 public class Gyro extends LinearOpMode{
 
     /* Declare OpMode members. */
-    HardwareTeletubbies         robot   = new HardwareTeletubbies();   // Use a Pushbot's hardware
+    HardwareTeletubbies robot = new HardwareTeletubbies(); // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
@@ -34,7 +34,7 @@ public class Gyro extends LinearOpMode{
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 //actions or stuff to do in the program
-        final int STAGE = 2;
+        final int STAGE = 1;
 //        final int STAGE = 2;
         if (STAGE == 1) {
             turn(90);
@@ -56,7 +56,8 @@ public class Gyro extends LinearOpMode{
 
         // Get current orientation
         Orientation orientation = robot.imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
+        telemetry.addData("Yaw", orientation.firstAngle);
+        telemetry.update();
         // Change in angle = current angle - previous angle,     helps it to the angles
         double deltaAngle = orientation.firstAngle - lastAngles.firstAngle;
 
