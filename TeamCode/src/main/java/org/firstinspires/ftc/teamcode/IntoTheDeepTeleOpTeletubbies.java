@@ -246,7 +246,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmL.setPosition(0.06);
                     robot.OArmR.setPosition(0.06);
                     sleep(600);
-                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
+//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
 
                 }
 
@@ -292,8 +292,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
-//                moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
+                moveVSlideToPosition(-POSITION_Y_HIGH);// high
                     gamepad1XHandler.reset();
                 }
 //                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
