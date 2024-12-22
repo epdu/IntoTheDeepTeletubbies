@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -37,8 +38,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private static final double SLIDE_POWER = 0.8; // Adjust as needed
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
-    private PIDController pidControllerL = new PIDController(0.01, 0.0, 0.0); // Tune these values
-    private PIDController pidControllerR = new PIDController(0.01, 0.0, 0.0); // Tune these values
+    private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
+    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
@@ -58,6 +59,7 @@ package mypackage; // 与 Gyro 类的包名一致
  */
     @Override
     public void runOpMode() {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
@@ -250,7 +252,7 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //one key ready for transfer
 
-//Begin  IArm L and R
+//******************Begin  IArm L and R****************
 
                 if (gamepad1.y) { //up
                     robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
@@ -261,7 +263,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.IArmR.setPosition(0.725); //
                 }
 
-//end  IArm L and R
+//******************end  IArm L and R*****************
 
 
                 break;
@@ -280,13 +282,13 @@ package mypackage; // 与 Gyro 类的包名一致
 
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
-                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
-//                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+//                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-                    moveVSlideToPositionPID(-POSITION_Y_LOW);
-//                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+//                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
@@ -299,7 +301,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //                        gamepad1XHandler.reset();
 //                    }
 
-                //End  moveVSlideToPosition
+                //************End  moveVSlideToPosition***************
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
@@ -564,7 +566,7 @@ package mypackage; // 与 Gyro 类的包名一致
         robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
         // Fine-tune the position using a PID-like approach
-        holdSlidePosition(targetPosition);
+//        holdSlidePosition(targetPosition);
         move = false;
     }
 //////////////////////////
@@ -608,6 +610,12 @@ package mypackage; // 与 Gyro 类的包名一致
             if (pidControllerL.onTarget() && pidControllerR.onTarget()) {
                 move = false;
             }
+            telemetry.addData("Target Position", targetPosition);
+            telemetry.addData("Current Position L", currentPositionL);
+            telemetry.addData("Current Position R", currentPositionR);
+            telemetry.addData("Power L", powerL);
+            telemetry.addData("Power R", powerR);
+            telemetry.update();
         }
 
         // Stop motors and set braking behavior
