@@ -130,7 +130,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     // Other tasks can be processed here
                 } // 防止快速连击导致模式快速切换
             }
-            moveDriveTrain_FieldCentric() ;
+
             if (gamepad1.start) { // 切换控制模式
                 controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
                 telemetry.addData("Control Mode", controlMode == 0 ? "Mode 0: Standard" : "Mode 1: Advanced");
@@ -141,6 +141,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     // Other tasks can be processed here
                 } // 防止快速连击导致模式快速切换
             }
+
+            moveDriveTrain_FieldCentric() ;
             intake();
             outtake();
 
