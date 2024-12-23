@@ -74,7 +74,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     boolean move = false;
     // 在类顶部声明PID控制器
 
-    private PIDController pidController = new PIDController(1.9, 0.014, 4.9);
+    private PIDController pidController = new PIDController(0.0, 0.0, 0.0);//(1.9, 0.014, 4.9)
     // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
 
 //    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
@@ -364,7 +364,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+//                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+                    moveVSlideToPositionPID(POSITION_Y_LOWForTest);
 //                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
@@ -648,17 +649,15 @@ package mypackage; // 与 Gyro 类的包名一致
         // Set motors to use encoders
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         // Initialize PID Controllers
         pidController.reset();
         pidController.enable();
 //        pidControllerL.reset();
 //        pidControllerR.reset();
         pidController.setSetpoint(targetPosition);
-
 //        pidControllerL.setSetpoint(targetPosition);
 //        pidControllerR.setSetpoint(targetPosition);
-        pidController.setTolerance(10);
+        pidController.setTolerance(20);
 //        pidControllerL.setTolerance(10); // Allowable position error
 //        pidControllerR.setTolerance(10);
 
@@ -667,20 +666,16 @@ package mypackage; // 与 Gyro 类的包名一致
         // Main control loop
         while (move && opModeIsActive()) {
             int currentPositionL = robot.VSMotorL.getCurrentPosition();
-
 //            int currentPositionL = robot.VSMotorL.getCurrentPosition();
 //            int currentPositionR = robot.VSMotorR.getCurrentPosition();
-
             // Calculate PID outputs
             double powerL = pidController.performPID(currentPositionL);
             double powerR =  powerL;
 //            double powerL = pidControllerL.performPID(currentPositionL);
 //            double powerR = pidControllerR.performPID(currentPositionR);
-
             // Set motor power based on PID outputs
             robot.VSMotorL.setPower(powerL);
             robot.VSMotorR.setPower(powerR);
-
             // Telemetry for debugging
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
