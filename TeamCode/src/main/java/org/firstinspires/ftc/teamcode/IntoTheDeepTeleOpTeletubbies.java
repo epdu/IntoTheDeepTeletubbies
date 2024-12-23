@@ -25,6 +25,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_A_BOTTOM;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_LOW;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_HIGH;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_HIGHH;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_HIGHHH;
 import static org.firstinspires.ftc.teamcode.Constants_CS.SLIDE_POWER_H;
 import static org.firstinspires.ftc.teamcode.Constants_CS.SLIDE_POWER_V;
 import static org.firstinspires.ftc.teamcode.Constants_CS.IClawOpen;
@@ -62,7 +63,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
-@TeleOp(name = "A QualTeleOp 12202024 V0")
+@TeleOp(name = "A TeleOp 12222024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public float DriveTrains_ReducePOWER=0.75f;
  //   DriveTrains_ReducePOWER = 0.75f;
@@ -93,7 +94,7 @@ package mypackage; // 与 Gyro 类的包名一致
  */
     @Override
     public void runOpMode() {
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+//        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
@@ -294,7 +295,11 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmL.setPosition(OArmTransferPosition);//transfer position
                     robot.OArmR.setPosition(OArmTransferPosition);
                     robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
-                    sleep(600);
+//                    sleep(600);
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    } // 防止快速连击导致模式快速切换
                     robot.IClaw.setPosition(IClawCloseTight); //  0.54
                     moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
                     sleep(600);
@@ -360,7 +365,9 @@ package mypackage; // 与 Gyro 类的包名一致
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
 //                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
-                moveVSlideToPosition(-POSITION_Y_HIGH);// high
+                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
+//                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
                     gamepad1XHandler.reset();
                 }
 //                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
@@ -621,13 +628,13 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("after while liftMotorR.getCurrentPosition()",robot.VSMotorR.getCurrentPosition());
         telemetry.update();
 
-        robot.VSMotorL.setPower(0);
-        robot.VSMotorR.setPower(0);
-        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        // Fine-tune the position using a PID-like approach
+//        robot.VSMotorL.setPower(0);
+//        robot.VSMotorR.setPower(0);
+//        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        robot.VSMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+// Fine-tune the position using a PID-like approach
 //        holdSlidePosition(targetPosition);
         move = false;
     }
@@ -742,9 +749,9 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("targetPosition", targetPosition);
         telemetry.addData("after while HSMotor.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
         telemetry.update();
-        robot.HSMotor.setPower(0);
-        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        robot.HSMotor.setPower(0);
+//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
         move = false;
     }
