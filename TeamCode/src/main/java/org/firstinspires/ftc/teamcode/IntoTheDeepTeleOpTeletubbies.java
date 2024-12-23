@@ -63,7 +63,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
-@TeleOp(name = "A TeleOp 12222024 V0")
+@TeleOp(name = "AAAAA TeleOp 12222024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public float DriveTrains_ReducePOWER=0.75f;
  //   DriveTrains_ReducePOWER = 0.75f;
