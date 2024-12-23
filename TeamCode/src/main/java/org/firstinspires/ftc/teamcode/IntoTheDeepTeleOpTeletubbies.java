@@ -749,7 +749,7 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("targetPosition", targetPosition);
         telemetry.addData("after while HSMotor.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
         telemetry.update();
-        robot.HSMotor.setPower(.15);
+//        robot.HSMotor.setPower(.15);
 //        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 
