@@ -116,7 +116,7 @@ package mypackage; // 与 Gyro 类的包名一致
                 telemetry.update();
                 // Non-blocking delay to prevent rapid mode switching
                 delayTimer.reset();
-                while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                while (delayTimer.milliseconds() < 300 && opModeIsActive()) {
                     // Other tasks can be processed here
                 } // 防止快速连击导致模式快速切换
             }
@@ -126,7 +126,7 @@ package mypackage; // 与 Gyro 类的包名一致
                 telemetry.update();
                 // Non-blocking delay to prevent rapid mode switching
                 delayTimer.reset();
-                while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                while (delayTimer.milliseconds() < 300 && opModeIsActive()) {
                     // Other tasks can be processed here
                 } // 防止快速连击导致模式快速切换
             }
