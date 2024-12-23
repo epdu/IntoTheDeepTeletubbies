@@ -37,8 +37,6 @@ public class Constants_CS {
     public static final double  IArmRDownForPick = 0.725;
     public static final double IArmLUp = 0.6;
     public static final double  IArmRUp = 0.6;
-
-
     public static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
     public static final double servoPosition = 0.5;
     public static final double SLIDE_POWER = 0.8; // Adjust as needed
