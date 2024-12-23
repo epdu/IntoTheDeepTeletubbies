@@ -200,6 +200,7 @@ package mypackage; // 与 Gyro 类的包名一致
                 gamepad1BHandler.update(gamepad1.b);
                 gamepad1YHandler.update(gamepad1.y);
                 gamepad1AHandler.update(gamepad1.a);
+                gamepad1BackHandler.update(gamepad1.back);
                 //Begin  moveHSlideToPosition
                 if (gamepad1BHandler.isShortPress()) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
