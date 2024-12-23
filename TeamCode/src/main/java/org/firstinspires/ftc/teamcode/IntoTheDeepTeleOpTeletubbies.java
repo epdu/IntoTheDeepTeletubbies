@@ -271,43 +271,36 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+                    robot.OClaw.setPosition(OClawOpen); //
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    }
                     robot.Wristxpitch.setPosition(WristxpitchDown);
-                    robot.OClaw.setPosition(OClawOpen); //open
-                    delayTimer.reset();
-                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
-                        // Other tasks can be processed here
-                    }
                     robot.IClaw.setPosition(IClawOpen);
-                    delayTimer.reset();
-                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
-                        // Other tasks can be processed here
-                    }
                     robot.IArmL.setPosition(IArmLDown);
                     robot.IArmR.setPosition(IArmRDown);
+                    //                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+//                    sleep(500);
+                    //                    robot.OClaw.setPosition(OClawOpen); //open
                 }
 
 //one key ready for pick up
 
 //one key ready for transfer
                 if (gamepad1.right_bumper) { //
-//                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-//                    robot.OArmR.setPosition(OArmRearSpecimenPick);
-//                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
-                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
                     robot.OArmL.setPosition(OArmTransferPosition);//transfer position
                     robot.OArmR.setPosition(OArmTransferPosition);
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
-
-                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
                     sleep(300);
-//                    sleep(300);
-//                    sleep(600);
-//                    sleep(300);
+                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
                     robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
-//                    sleep(600);
                     robot.IArmL.setPosition(IArmLUp);
                     robot.IArmR.setPosition(IArmRUp);
-                    sleep(300);
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+                    sleep(600);
                     robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
                     sleep(600);
                     robot.IClaw.setPosition(IClawOpen); //open
@@ -316,8 +309,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     sleep(300);
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
-                    sleep(600);
-                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                    sleep(600);
+//                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
 
                 }
