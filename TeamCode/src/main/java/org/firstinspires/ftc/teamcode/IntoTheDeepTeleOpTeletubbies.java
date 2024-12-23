@@ -82,6 +82,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     ButtonHandler gamepad1BHandler = new ButtonHandler();
     ButtonHandler gamepad1YHandler = new ButtonHandler();
     ButtonHandler gamepad1AHandler = new ButtonHandler();
+    ButtonHandler gamepad1BackHandler = new ButtonHandler();
     Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
     private volatile boolean isRunning = true;
     ElapsedTime delayTimer = new ElapsedTime();
@@ -764,8 +765,18 @@ package mypackage; // 与 Gyro 类的包名一致
         double backLeftPower = (rotY - rotX + rx) / denominator;
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
-        if (gamepad1.back) { //fix it later;
+        if (gamepad1BackHandler.isShortPress()) { //fix it later;
             DriveTrains_ReducePOWER = 0.35f;
+            telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
+            telemetry.update();
+            // Non-blocking delay to prevent rapid mode switching
+            delayTimer.reset();
+            while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                // Other tasks can be processed here
+            } // 防止快速连击导致模式快速切换
+        }
+        if (gamepad1BackHandler.isLongPress()) { //fix it later;
+            DriveTrains_ReducePOWER = 0.75f;
             telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
             telemetry.update();
             // Non-blocking delay to prevent rapid mode switching
