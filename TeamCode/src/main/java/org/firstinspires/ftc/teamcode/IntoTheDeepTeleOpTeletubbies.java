@@ -765,7 +765,7 @@ package mypackage; // 与 Gyro 类的包名一致
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
         if (gamepad1.back) { //fix it later;
-            DriveTrains_ReducePOWER = 0.45f;
+            DriveTrains_ReducePOWER = 0.35f;
             telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
             telemetry.update();
             // Non-blocking delay to prevent rapid mode switching
