@@ -672,7 +672,7 @@ package mypackage; // 与 Gyro 类的包名一致
 
             // Calculate PID outputs
             double powerL = pidController.performPID(currentPositionL);
-            double powerR =  pidController.performPID(currentPositionL);
+            double powerR =  powerL;
 //            double powerL = pidControllerL.performPID(currentPositionL);
 //            double powerR = pidControllerR.performPID(currentPositionR);
 
