@@ -16,6 +16,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import static org.firstinspires.ftc.teamcode.Constants_CS.*;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_X_IN;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDE;
 import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDETransfer;
