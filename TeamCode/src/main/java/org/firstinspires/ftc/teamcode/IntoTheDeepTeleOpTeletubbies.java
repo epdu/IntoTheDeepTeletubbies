@@ -358,18 +358,18 @@ package mypackage; // 与 Gyro 类的包名一致
 
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
-//                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
-                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+//                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-//                    moveVSlideToPositionPID(-POSITION_Y_LOW);
-                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+//                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
-                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
+                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
+//                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
                     gamepad1XHandler.reset();
