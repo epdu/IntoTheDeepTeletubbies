@@ -628,8 +628,8 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("after while liftMotorR.getCurrentPosition()",robot.VSMotorR.getCurrentPosition());
         telemetry.update();
 
-//        robot.VSMotorL.setPower(0);
-//        robot.VSMotorR.setPower(0);
+        robot.VSMotorL.setPower(0.2);
+        robot.VSMotorR.setPower(0.2);
 //        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.VSMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
@@ -749,7 +749,7 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("targetPosition", targetPosition);
         telemetry.addData("after while HSMotor.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
         telemetry.update();
-//        robot.HSMotor.setPower(0);
+        robot.HSMotor.setPower(.15);
 //        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
 

@@ -15,7 +15,7 @@ public class Constants_CS {
     public static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
     public static final int POSITION_Y_HIGHHH = 1500;//Vertical slides all the way up
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
-    public static final double SLIDE_POWER_V = 0.90; // Adjust as needed
+    public static final double SLIDE_POWER_V = 0.8; // Adjust as needed
     public static final double IClawOpen = 0.32;
     public static final double IClawCloseLose = 0.54;
     public static final double IClawCloseTight = 0.543;
