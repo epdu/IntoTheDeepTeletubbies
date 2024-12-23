@@ -651,6 +651,7 @@ package mypackage; // 与 Gyro 类的包名一致
 
         // Initialize PID Controllers
         pidController.reset();
+        pidController.enable();
 //        pidControllerL.reset();
 //        pidControllerR.reset();
         pidController.setSetpoint(targetPosition);
@@ -664,7 +665,7 @@ package mypackage; // 与 Gyro 类的包名一致
         move = true;
 
         // Main control loop
-        while (move) {
+        while (move && opModeIsActive()) {
             int currentPositionL = robot.VSMotorL.getCurrentPosition();
 
 //            int currentPositionL = robot.VSMotorL.getCurrentPosition();
