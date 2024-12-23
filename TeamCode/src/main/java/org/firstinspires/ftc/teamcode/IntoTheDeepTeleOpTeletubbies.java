@@ -272,6 +272,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                     robot.Wristxpitch.setPosition(WristxpitchDown);
+                    robot.OClaw.setPosition(OClawOpen); //open
                     delayTimer.reset();
                     while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
                         // Other tasks can be processed here
@@ -289,30 +290,30 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //one key ready for transfer
                 if (gamepad1.right_bumper) { //
-                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-                    robot.OArmR.setPosition(OArmRearSpecimenPick);
-                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
+//                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+//                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
                     robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
-                    sleep(600);
-                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
-                    sleep(600);
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
-                    sleep(600);
-                    robot.OClaw.setPosition(OClawOpen); //open
-                    sleep(600);
                     robot.OArmL.setPosition(OArmTransferPosition);//transfer position
                     robot.OArmR.setPosition(OArmTransferPosition);
-                    sleep(600);
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+
+                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    sleep(300);
+//                    sleep(300);
+//                    sleep(600);
+//                    sleep(300);
                     robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
-                    sleep(600);
+//                    sleep(600);
                     robot.IArmL.setPosition(IArmLUp);
                     robot.IArmR.setPosition(IArmRUp);
-                    sleep(600);
+                    sleep(300);
                     robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
                     sleep(600);
                     robot.IClaw.setPosition(IClawOpen); //open
+                    sleep(300);
                     moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
-                    sleep(2000);
+                    sleep(300);
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
                     sleep(600);
