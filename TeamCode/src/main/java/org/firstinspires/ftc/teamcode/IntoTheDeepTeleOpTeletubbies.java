@@ -71,9 +71,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
+    // 在类顶部声明PID控制器
 
-    private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
-    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
+    private PIDController pidController = new PIDController(1.9, 0.014, 4.9);
+    // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
+
+//    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
+//private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
@@ -645,23 +649,31 @@ package mypackage; // 与 Gyro 类的包名一致
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Initialize PID Controllers
-        pidControllerL.reset();
-        pidControllerR.reset();
-        pidControllerL.setSetpoint(targetPosition);
-        pidControllerR.setSetpoint(targetPosition);
-        pidControllerL.setTolerance(10); // Allowable position error
-        pidControllerR.setTolerance(10);
+        pidController.reset();
+//        pidControllerL.reset();
+//        pidControllerR.reset();
+        pidController.setSetpoint(targetPosition);
+
+//        pidControllerL.setSetpoint(targetPosition);
+//        pidControllerR.setSetpoint(targetPosition);
+        pidController.setTolerance(10);
+//        pidControllerL.setTolerance(10); // Allowable position error
+//        pidControllerR.setTolerance(10);
 
         move = true;
 
         // Main control loop
         while (move) {
             int currentPositionL = robot.VSMotorL.getCurrentPosition();
-            int currentPositionR = robot.VSMotorR.getCurrentPosition();
+
+//            int currentPositionL = robot.VSMotorL.getCurrentPosition();
+//            int currentPositionR = robot.VSMotorR.getCurrentPosition();
 
             // Calculate PID outputs
-            double powerL = pidControllerL.performPID(currentPositionL);
-            double powerR = pidControllerR.performPID(currentPositionR);
+            double powerL = pidController.performPID(currentPositionL);
+            double powerR =  pidController.performPID(currentPositionL);
+//            double powerL = pidControllerL.performPID(currentPositionL);
+//            double powerR = pidControllerR.performPID(currentPositionR);
 
             // Set motor power based on PID outputs
             robot.VSMotorL.setPower(powerL);
@@ -670,18 +682,16 @@ package mypackage; // 与 Gyro 类的包名一致
             // Telemetry for debugging
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
-            telemetry.addData("Current Position R", currentPositionR);
             telemetry.addData("Power L", powerL);
             telemetry.addData("Power R", powerR);
             telemetry.update();
 
             // Check if both motors are on target
-            if (pidControllerL.onTarget() && pidControllerR.onTarget()) {
+            if (pidController.onTarget() ) {
                 move = false;
             }
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
-            telemetry.addData("Current Position R", currentPositionR);
             telemetry.addData("Power L", powerL);
             telemetry.addData("Power R", powerR);
             telemetry.update();
