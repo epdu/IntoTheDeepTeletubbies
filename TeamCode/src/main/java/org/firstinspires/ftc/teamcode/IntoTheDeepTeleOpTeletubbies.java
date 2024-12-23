@@ -110,6 +110,26 @@ package mypackage; // 与 Gyro 类的包名一致
 //            telemetry.addData("Status", "All systems running...");
 //            telemetry.update();
 //            moveDriveTrain_RobotCentric(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
+            if (gamepad1BackHandler.isShortPress()) { //fix it later;
+                DriveTrains_ReducePOWER = 0.25f;
+                telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
+                telemetry.update();
+                // Non-blocking delay to prevent rapid mode switching
+                delayTimer.reset();
+                while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                    // Other tasks can be processed here
+                } // 防止快速连击导致模式快速切换
+            }
+            if (gamepad1BackHandler.isLongPress()) { //fix it later;
+                DriveTrains_ReducePOWER = 0.75f;
+                telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
+                telemetry.update();
+                // Non-blocking delay to prevent rapid mode switching
+                delayTimer.reset();
+                while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                    // Other tasks can be processed here
+                } // 防止快速连击导致模式快速切换
+            }
             moveDriveTrain_FieldCentric() ;
             if (gamepad1.start) { // 切换控制模式
                 controlMode = (controlMode + 1) % 2; // 假设两种模式 0 和 1
@@ -766,26 +786,7 @@ package mypackage; // 与 Gyro 类的包名一致
         double backLeftPower = (rotY - rotX + rx) / denominator;
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
-        if (gamepad1BackHandler.isShortPress()) { //fix it later;
-            DriveTrains_ReducePOWER = 0.35f;
-            telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
-            telemetry.update();
-            // Non-blocking delay to prevent rapid mode switching
-            delayTimer.reset();
-            while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
-                // Other tasks can be processed here
-            } // 防止快速连击导致模式快速切换
-        }
-        if (gamepad1BackHandler.isLongPress()) { //fix it later;
-            DriveTrains_ReducePOWER = 0.75f;
-            telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
-            telemetry.update();
-            // Non-blocking delay to prevent rapid mode switching
-            delayTimer.reset();
-            while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
-                // Other tasks can be processed here
-            } // 防止快速连击导致模式快速切换
-        }
+
         robot.LFMotor.setPower(frontLeftPower * DriveTrains_ReducePOWER);
         robot.LBMotor.setPower(backLeftPower * DriveTrains_ReducePOWER);
         robot.RFMotor.setPower(frontRightPower * DriveTrains_ReducePOWER);
