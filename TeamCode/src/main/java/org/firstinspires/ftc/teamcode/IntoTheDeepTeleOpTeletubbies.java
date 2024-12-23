@@ -16,37 +16,61 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.FieldCentricMecanumTeleOpTeletubbies.DriveTrains_ReducePOWER;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_X_IN;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDE;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDETransfer;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDETransferC;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_B_EXTRUDE_MORE;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_A_BOTTOM;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_LOW;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_HIGH;
+import static org.firstinspires.ftc.teamcode.Constants_CS.POSITION_Y_HIGHH;
+import static org.firstinspires.ftc.teamcode.Constants_CS.SLIDE_POWER_H;
+import static org.firstinspires.ftc.teamcode.Constants_CS.SLIDE_POWER_V;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IClawOpen;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IClawCloseLose;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IClawCloseTight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OClawOpen;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OClawCloseLose;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OClawCloseTight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OArmTransferPosition;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OArmRearSpecimenPick;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OClawSpecimenChambers;
+import static org.firstinspires.ftc.teamcode.Constants_CS.SERVO_STEP;
+import static org.firstinspires.ftc.teamcode.Constants_CS.SLIDE_POWER;
+import static org.firstinspires.ftc.teamcode.Constants_CS.speedMultiplier;
+import static org.firstinspires.ftc.teamcode.Constants_CS.speedLimiter1;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawLeft;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmLDown;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmRDown;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristxpitchDown;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristxpitchUp;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmLUp;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmRUp;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmLDownForPick;
+import static org.firstinspires.ftc.teamcode.Constants_CS.IArmRDownForPick;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristxpitchIntermedia4PositionAdjust;
+import static org.firstinspires.ftc.teamcode.Constants_CS.OClawCloseSuperTight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.speedLimiterFaster;
+import static org.firstinspires.ftc.teamcode.Constants_CS.speedLimiterSlower;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
+import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 @TeleOp(name = "A QualTeleOp 12202024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
-    public static final double DriveTrains_ReducePOWER = 0.75;
+    public float DriveTrains_ReducePOWER=0.75f;
+ //   DriveTrains_ReducePOWER = 0.75f;
+//    DriveTrains_ReducePOWER = speedLimiterSlower;//************************
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
-    private static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    private static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //600
-    private static final int POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
-    private static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
-    private static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
-    private static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
-    private static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    private static final int POSITION_Y_HIGH = 1270;//Vertical slides all the way up
-    private static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
-    private static final double SLIDE_POWER_H = 0.4; // Adjust as needed
-    private static final double SLIDE_POWER_V = 0.70; // Adjust as needed
-    private static final double IClawOpen = 0.32;
-      private static final double IClawCloseLose = 0.54;
-    private static final double IClawCloseTight = 0.543;
-    private static final double OClawOpen = 0.32;
-    private static final double OClawCloseLose = 0.54;
-    private static final double OClawCloseTight = 0.548;
-    private static final double OArmTransferPosition = 0.99;
-    private static final double OArmRearSpecimenPick = 0.06;
-    private static final double OClawSpecimenChambers = 0.548;
-    private static final double SERVO_STEP = 0.01; // 每次调整的伺服步长
-    double servoPosition = 0.5;
-    private static final double SLIDE_POWER = 0.8; // Adjust as needed
-    public float speedMultiplier = 0.5f;
-    public float speedLimiter = 0.05f;
+
     private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
     private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
     int controlMode = 1;
@@ -215,44 +239,52 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //Begin  Wristzyaw
                 if (gamepad2.b) { //right
-                    robot.Wristzyaw.setPosition(0.22); //Wristzyaw right 45 degree 12122024
+                    robot.Wristzyaw.setPosition(WristzyawRight); //Wristzyaw right 45 degree 12122024
                 }
                 if (gamepad2.x) { //left
-                    robot.Wristzyaw.setPosition(0.5); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
+                    robot.Wristzyaw.setPosition(WristzyawLeft); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
                 }
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
-                    robot.Wristxpitch.setPosition(0.65);
-                    sleep(200);
+                    robot.Wristxpitch.setPosition(WristxpitchDown);
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    }
                     robot.IClaw.setPosition(IClawOpen);
-                    sleep(200);
-                    robot.IArmL.setPosition(0.7);
-                    robot.IArmR.setPosition(0.7);
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    }
+                    robot.IArmL.setPosition(IArmLDown);
+                    robot.IArmR.setPosition(IArmRDown);
                 }
 
 //one key ready for pick up
 
 //one key ready for transfer
                 if (gamepad1.right_bumper) { //
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
+                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
+                    sleep(600);
+                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    sleep(600);
                     moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
                     sleep(600);
-                    robot.OClaw.setPosition(0.32); //open
+                    robot.OClaw.setPosition(OClawOpen); //open
                     sleep(600);
                     robot.OArmL.setPosition(OArmTransferPosition);//transfer position
                     robot.OArmR.setPosition(OArmTransferPosition);
                     sleep(600);
-                    robot.IClaw.setPosition(IClawCloseLose); //  0.54
-                    robot.Wristxpitch.setPosition(0.5); // Wristxpitch
+                    robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
                     sleep(600);
-                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    robot.IArmL.setPosition(IArmLUp);
+                    robot.IArmR.setPosition(IArmRUp);
                     sleep(600);
-                    robot.Wristxpitch.setPosition(0.1); // Wristxpitch
-                    sleep(600);
-                    robot.IArmL.setPosition(0.6);
-                    robot.IArmR.setPosition(0.6);
-                    sleep(600);
-                    robot.OClaw.setPosition(0.548); // close 0.543 hold
+                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
                     sleep(600);
                     robot.IClaw.setPosition(IClawOpen); //open
                     moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
@@ -270,12 +302,12 @@ package mypackage; // 与 Gyro 类的包名一致
 //******************Begin  IArm L and R****************
 
                 if (gamepad1.y) { //up
-                    robot.IArmL.setPosition(0.6);  // always same as hardware IArmL.setPosition(0.6);
-                    robot.IArmR.setPosition(0.6);
+                    robot.IArmL.setPosition(IArmLUp);  // always same as hardware IArmL.setPosition(0.6);
+                    robot.IArmR.setPosition(IArmRUp);
                 }
                 if (gamepad1.a ) { //down
-                    robot.IArmL.setPosition(0.725);
-                    robot.IArmR.setPosition(0.725); //
+                    robot.IArmL.setPosition(IArmLDownForPick);
+                    robot.IArmR.setPosition(IArmRDownForPick); //
                 }
 
 //******************end  IArm L and R*****************
@@ -348,13 +380,13 @@ package mypackage; // 与 Gyro 类的包名一致
 //Begin  open and close of outtakeclaw 12122024 finetuned
 
                 if (gamepad1.left_trigger > 0.3 && gamepad1.left_trigger <= 0.7) { // 轻按
-                    robot.OClaw.setPosition(0.32); //12122024
+                    robot.OClaw.setPosition(OClawOpen); //12122024
                 }
                 if (gamepad1.right_trigger > 0.3 && gamepad1.right_trigger <= 0.7) { // 轻按
-                    robot.OClaw.setPosition(0.548);
+                    robot.OClaw.setPosition(OClawCloseTight);
                 }
                 if (gamepad1.right_trigger > 0.7) { // 深按
-                    robot.OClaw.setPosition(0.549); //
+                    robot.OClaw.setPosition(OClawCloseSuperTight); //
                 }
 
 //End open and close of outtakeclaw
@@ -710,9 +742,11 @@ package mypackage; // 与 Gyro 类的包名一致
         // This button choice was made so that it is hard to hit on accident,
         // it can be freely changed based on preference.
         // The equivalent button is start on Xbox-style controllers.
-        if (gamepad1.back) {
-            robot.imu.resetYaw();
-        }
+        //******************************************temp
+//        if (gamepad1.back) {
+//            robot.imu.resetYaw();
+//        }
+//******************************************temp
 
         double botHeading = robot.imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
@@ -730,7 +764,16 @@ package mypackage; // 与 Gyro 类的包名一致
         double backLeftPower = (rotY - rotX + rx) / denominator;
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
-
+        if (gamepad1.back) { //fix it later;
+            DriveTrains_ReducePOWER = 0.45f;
+            telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
+            telemetry.update();
+            // Non-blocking delay to prevent rapid mode switching
+            delayTimer.reset();
+            while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                // Other tasks can be processed here
+            } // 防止快速连击导致模式快速切换
+        }
         robot.LFMotor.setPower(frontLeftPower * DriveTrains_ReducePOWER);
         robot.LBMotor.setPower(backLeftPower * DriveTrains_ReducePOWER);
         robot.RFMotor.setPower(frontRightPower * DriveTrains_ReducePOWER);
