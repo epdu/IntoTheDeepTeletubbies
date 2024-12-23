@@ -74,7 +74,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     boolean move = false;
     // 在类顶部声明PID控制器
 
-    private PIDController pidController = new PIDController(0.0, 0.0, 0.0);//(1.9, 0.014, 4.9)
+    private PIDController pidController = new PIDController(0.0004, 0.000001, 0.04);//(1.9, 0.014, 4.9)
     // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
 
 //    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
@@ -674,8 +674,8 @@ package mypackage; // 与 Gyro 类的包名一致
 //            double powerL = pidControllerL.performPID(currentPositionL);
 //            double powerR = pidControllerR.performPID(currentPositionR);
             // Set motor power based on PID outputs
-            robot.VSMotorL.setPower(powerL);
-            robot.VSMotorR.setPower(powerR);
+            robot.VSMotorL.setPower(powerL*0.2);
+            robot.VSMotorR.setPower(powerR*0.2);
             // Telemetry for debugging
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
