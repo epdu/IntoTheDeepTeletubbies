@@ -63,7 +63,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
-@TeleOp(name = "A TeleOp 12222024 V0")
+@TeleOp(name = "AAAAA TeleOp 12222024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public float DriveTrains_ReducePOWER=0.75f;
  //   DriveTrains_ReducePOWER = 0.75f;
@@ -71,9 +71,13 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
+    // 在类顶部声明PID控制器
 
-    private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
-    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
+    private PIDController pidController = new PIDController(1.9, 0.014, 4.9);
+    // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
+
+//    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
+//private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
@@ -354,18 +358,18 @@ package mypackage; // 与 Gyro 类的包名一致
 
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
-//                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
-                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
+                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+//                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-//                    moveVSlideToPositionPID(-POSITION_Y_LOW);
-                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
+                    moveVSlideToPositionPID(-POSITION_Y_LOW);
+//                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
-                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
+                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
+//                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
                     gamepad1XHandler.reset();
@@ -645,23 +649,31 @@ package mypackage; // 与 Gyro 类的包名一致
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Initialize PID Controllers
-        pidControllerL.reset();
-        pidControllerR.reset();
-        pidControllerL.setSetpoint(targetPosition);
-        pidControllerR.setSetpoint(targetPosition);
-        pidControllerL.setTolerance(10); // Allowable position error
-        pidControllerR.setTolerance(10);
+        pidController.reset();
+//        pidControllerL.reset();
+//        pidControllerR.reset();
+        pidController.setSetpoint(targetPosition);
+
+//        pidControllerL.setSetpoint(targetPosition);
+//        pidControllerR.setSetpoint(targetPosition);
+        pidController.setTolerance(10);
+//        pidControllerL.setTolerance(10); // Allowable position error
+//        pidControllerR.setTolerance(10);
 
         move = true;
 
         // Main control loop
         while (move) {
             int currentPositionL = robot.VSMotorL.getCurrentPosition();
-            int currentPositionR = robot.VSMotorR.getCurrentPosition();
+
+//            int currentPositionL = robot.VSMotorL.getCurrentPosition();
+//            int currentPositionR = robot.VSMotorR.getCurrentPosition();
 
             // Calculate PID outputs
-            double powerL = pidControllerL.performPID(currentPositionL);
-            double powerR = pidControllerR.performPID(currentPositionR);
+            double powerL = pidController.performPID(currentPositionL);
+            double powerR =  pidController.performPID(currentPositionL);
+//            double powerL = pidControllerL.performPID(currentPositionL);
+//            double powerR = pidControllerR.performPID(currentPositionR);
 
             // Set motor power based on PID outputs
             robot.VSMotorL.setPower(powerL);
@@ -670,18 +682,16 @@ package mypackage; // 与 Gyro 类的包名一致
             // Telemetry for debugging
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
-            telemetry.addData("Current Position R", currentPositionR);
             telemetry.addData("Power L", powerL);
             telemetry.addData("Power R", powerR);
             telemetry.update();
 
             // Check if both motors are on target
-            if (pidControllerL.onTarget() && pidControllerR.onTarget()) {
+            if (pidController.onTarget() ) {
                 move = false;
             }
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
-            telemetry.addData("Current Position R", currentPositionR);
             telemetry.addData("Power L", powerL);
             telemetry.addData("Power R", powerR);
             telemetry.update();
