@@ -294,12 +294,13 @@ package mypackage; // 与 Gyro 类的包名一致
                     robot.OArmL.setPosition(OArmTransferPosition);//transfer position
                     robot.OArmR.setPosition(OArmTransferPosition);
                     robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
-                    sleep(300);
+                    sleep(600);
                     robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+                    sleep(600);
                     robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
                     robot.IArmL.setPosition(IArmLUp);
                     robot.IArmR.setPosition(IArmRUp);
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
                     sleep(600);
                     robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
                     sleep(600);
