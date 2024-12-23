@@ -370,7 +370,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                    moveVSlideToPositionPID(-POSITION_Y_HIGH);
+                    moveVSlideToPositionPID(POSITION_Y_HIGH);
 //                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
@@ -687,11 +687,11 @@ package mypackage; // 与 Gyro 类的包名一致
             if (pidController.onTarget() ) {
                 move = false;
             }
-            telemetry.addData("Target Position", targetPosition);
-            telemetry.addData("Current Position L", currentPositionL);
-            telemetry.addData("Power L", powerL);
-            telemetry.addData("Power R", powerR);
-            telemetry.update();
+//            telemetry.addData("Target Position", targetPosition);
+//            telemetry.addData("Current Position L", currentPositionL);
+//            telemetry.addData("Power L", powerL);
+//            telemetry.addData("Power R", powerR);
+//            telemetry.update();
         }
 
         // Stop motors and set braking behavior
