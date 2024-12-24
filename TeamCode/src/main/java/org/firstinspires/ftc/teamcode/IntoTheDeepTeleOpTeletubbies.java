@@ -73,7 +73,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String fieldOrRobotCentric = "robot";
     boolean move = false;
     // 在类顶部声明PID控制器
-
+    // 状态变量
+    private boolean pidActive = false; // PID 控制是否激活
+    private int pidTargetPosition = 0; // PID 控制目标位置
     private PIDController pidController = new PIDController(0.005, 0.0000005, 0.0002);// (0.005, 0.0000005, 0.0002) good for target 300 (1.9, 0.014, 4.9)
     // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
 
@@ -149,6 +151,7 @@ package mypackage; // 与 Gyro 类的包名一致
             }
 
             moveDriveTrain_FieldCentric() ;
+            updateVSlidePIDControl();
             intake();
             outtake();
 
@@ -359,18 +362,21 @@ package mypackage; // 与 Gyro 类的包名一致
 
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
-                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+//                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
+                    startVSlidePIDControl(POSITION_A_BOTTOM);
 //                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-                    moveVSlideToPositionPID(POSITION_Y_LOW);
+//                    moveVSlideToPositionPID(POSITION_Y_LOW);
+                    startVSlidePIDControl(POSITION_Y_LOW);
 //                    moveVSlideToPositionPID(POSITION_Y_LOWForTest);
 //                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                    moveVSlideToPositionPID(POSITION_Y_HIGH);
+//                    moveVSlideToPositionPID(POSITION_Y_HIGH);
+                    startVSlidePIDControl(POSITION_Y_HIGH);
 //                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
@@ -380,6 +386,10 @@ package mypackage; // 与 Gyro 类的包名一致
 //                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
 //                        gamepad1XHandler.reset();
 //                    }
+/////
+
+
+///////////////////////////////////////
 
                 //************End  moveVSlideToPosition***************
 
@@ -703,6 +713,135 @@ package mypackage; // 与 Gyro 类的包名一致
         robot.VSMotorR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
+    //////////////////////////
+
+ /// 初始化 PID 控制器
+        private void startVSlidePIDControl(int targetPosition) {
+            robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            pidController.reset();
+            pidController.enable();
+            pidController.setSetpoint(targetPosition);
+            pidController.setTolerance(10); // 允许误差范围
+            pidTargetPosition = targetPosition;
+            pidActive = true; // 激活 PID 控制
+        }
+    // 在主循环中调用的非阻塞 PID 控制逻辑
+    private void updateVSlidePIDControl() {
+        if (!pidActive) return; // 如果 PID 未激活，直接返回
+
+        int currentPositionL = robot.VSMotorL.getCurrentPosition();
+
+        // 计算 PID 输出
+        double powerL = pidController.performPID(currentPositionL);
+        robot.VSMotorL.setPower(powerL);
+        robot.VSMotorR.setPower(powerL);
+
+        // 输出 Telemetry 信息
+        telemetry.addData("PID Target", pidTargetPosition);
+        telemetry.addData("Current Position L", currentPositionL);
+        telemetry.addData("Power L", powerL);
+        telemetry.update();
+
+        // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
+        if (pidController.onTarget()) {
+            robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
+            robot.VSMotorR.setPower(0.1);
+            pidActive = false; // 停止 PID 控制
+        }
+        // 在 updateVSlidePIDControl 中加入抗重力逻辑
+        if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
+            double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
+            robot.VSMotorL.setPower(holdPower);
+            robot.VSMotorR.setPower(holdPower);
+            pidActive = false; // 停止 PID 控制
+        }
+
+    }
+
+
+///////////////////////////
+
+/*****
+ // 状态变量
+ private boolean pidActive = false; // PID 控制是否激活
+ private int pidTargetPosition = 0; // PID 控制目标位置
+
+ // 初始化 PID 控制器
+ private void startVSlidePIDControl(int targetPosition) {
+ pidController.reset();
+ pidController.enable();
+ pidController.setSetpoint(targetPosition);
+ pidController.setTolerance(10); // 允许误差范围
+ pidTargetPosition = targetPosition;
+ pidActive = true; // 激活 PID 控制
+ }
+
+ // 在主循环中调用的非阻塞 PID 控制逻辑
+ private void updateVSlidePIDControl() {
+ if (!pidActive) return; // 如果 PID 未激活，直接返回
+
+ int currentPositionL = robot.VSMotorL.getCurrentPosition();
+
+ // 计算 PID 输出
+ double powerL = pidController.performPID(currentPositionL);
+ robot.VSMotorL.setPower(powerL);
+ robot.VSMotorR.setPower(powerL);
+
+ // 输出 Telemetry 信息
+ telemetry.addData("PID Target", pidTargetPosition);
+ telemetry.addData("Current Position L", currentPositionL);
+ telemetry.addData("Power L", powerL);
+ telemetry.update();
+
+ // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
+ if (pidController.onTarget()) {
+ robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
+ robot.VSMotorR.setPower(0.1);
+ pidActive = false; // 停止 PID 控制
+ }
+ }
+
+
+ ///////***************************************
+
+ @Override
+ public void runOpMode() {
+ robot.init(hardwareMap);
+
+ waitForStart();
+
+ while (opModeIsActive()) {
+ // 定期更新滑轨的 PID 控制状态
+ updateVSlidePIDControl();
+
+ // 其他操作逻辑，例如按键控制机器人
+ if (gamepad1.a) {
+ startVSlidePIDControl(POSITION_Y_LOW); // 按下 A 键，移动滑轨到低位
+ }
+
+ if (gamepad1.b) {
+ startVSlidePIDControl(POSITION_Y_HIGH); // 按下 B 键，移动滑轨到高位
+ }
+
+ // 继续处理其他操作
+ moveDriveTrain_FieldCentric();
+ intake();
+ outtake();
+ }
+ }
+//***************************
+ // 在 updateVSlidePIDControl 中加入抗重力逻辑
+ if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
+ double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
+ robot.VSMotorL.setPower(holdPower);
+ robot.VSMotorR.setPower(holdPower);
+ }
+
+
+
+
+ */
 
 
 ///////////////////////////
