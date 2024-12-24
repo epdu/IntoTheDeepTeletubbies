@@ -11,9 +11,9 @@ public class Constants_CS {
     public static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
     public static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     public static final int POSITION_Y_LOWForTest = 300; // Vertical slides up //800 //1000 too high
-    public static final int POSITION_Y_LOW = 800; // Vertical slides up //800 //1000 too high
-    public static final int POSITION_Y_HIGH = 1270;//Vertical slides all the way up
-    public static final int POSITION_Y_HIGHH = 1300;//Vertical slides all the way up
+    public static final int POSITION_Y_LOW = 400; // Vertical slides up //800 //1000 too high
+    public static final int POSITION_Y_HIGH = 800;// 1270Vertical slides all the way up
+    public static final int POSITION_Y_HIGHH = 1300;// 1300Vertical slides all the way up
     public static final int POSITION_Y_HIGHHH = 1265;//Vertical slides all the way up
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
     public static final double SLIDE_POWER_V = 0.8; // Adjust as needed

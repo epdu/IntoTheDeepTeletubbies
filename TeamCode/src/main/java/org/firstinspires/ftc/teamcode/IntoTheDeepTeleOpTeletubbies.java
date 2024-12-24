@@ -743,12 +743,12 @@ package mypackage; // 与 Gyro 类的包名一致
         telemetry.addData("Power L", powerL);
         telemetry.update();
 
-        // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
-        if (pidController.onTarget()) {
-            robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
-            robot.VSMotorR.setPower(0.1);
-            pidActive = false; // 停止 PID 控制
-        }
+//        // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
+//        if (pidController.onTarget()) {
+//            robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
+//            robot.VSMotorR.setPower(0.1);
+//            pidActive = false; // 停止 PID 控制
+//        }
         // 在 updateVSlidePIDControl 中加入抗重力逻辑
         if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
             double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
