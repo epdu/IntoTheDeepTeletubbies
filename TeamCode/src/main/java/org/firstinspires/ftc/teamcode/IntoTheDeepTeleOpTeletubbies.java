@@ -84,6 +84,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
     ButtonHandler dpadUpHandler = new ButtonHandler();
+    ButtonHandler dpadLeftHandler = new ButtonHandler();
+    ButtonHandler dpadRightHandler = new ButtonHandler();
     ButtonHandler leftBumperHandler = new ButtonHandler();
     ButtonHandler rightBumperHandler = new ButtonHandler();
     ButtonHandler gamepad1XHandler = new ButtonHandler();
@@ -105,10 +107,12 @@ package mypackage; // 与 Gyro 类的包名一致
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
+        Thread updateVSlidePIDControl = new Thread(this::runupdateVSlidePIDControl);
         Thread intakeThread = new Thread(this::runIntake);
         Thread outtakeThread = new Thread(this::runOuttake);
 
         driveTrainThread.start();
+        updateVSlidePIDControl();
         intakeThread.start();
         outtakeThread.start();
 
@@ -186,6 +190,17 @@ package mypackage; // 与 Gyro 类的包名一致
         }
     }
 
+    // Thread for drive train
+    private void runupdateVSlidePIDControl() {
+        while (isRunning) {
+            updateVSlidePIDControl();
+//            sleep(50); // Add a short delay to prevent CPU overutilization
+            while (delayTimer.milliseconds() < 50 && opModeIsActive()) {
+                // Other tasks can be processed here
+            }
+        }
+    }
+
     // Thread for intake
     private void runIntake() {
         while (isRunning) {
@@ -225,6 +240,8 @@ package mypackage; // 与 Gyro 类的包名一致
                 // intake
                 dpadDownHandler.update(gamepad1.dpad_down);
                 dpadUpHandler.update(gamepad1.dpad_up);
+                dpadLeftHandler.update(gamepad1.dpad_left);
+                dpadRightHandler.update(gamepad1.dpad_right);
                 leftBumperHandler.update(gamepad1.left_bumper);
                 rightBumperHandler.update(gamepad1.right_bumper);
                 gamepad1XHandler.update(gamepad1.x);
@@ -233,6 +250,26 @@ package mypackage; // 与 Gyro 类的包名一致
                 gamepad1AHandler.update(gamepad1.a);
                 gamepad1BackHandler.update(gamepad1.back);
                 //Begin  moveHSlideToPosition
+
+                if (gamepad1.dpad_left) { //IN
+                    moveHSlideToPosition(POSITION_X_IN);
+                    gamepad1BHandler.reset();
+                }
+                if (gamepad1.dpad_down) { //EXTRUDE
+                    moveHSlideToPosition(POSITION_B_EXTRUDE);
+                    gamepad1XHandler.reset();
+                }
+                if (gamepad1.dpad_up) { //EXTRUDE_MORE
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+                    gamepad1XHandler.reset();
+                }
+                if (gamepad1.dpad_right) { //EXTRUDE_MORE
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+                    gamepad1XHandler.reset();
+                }
+
+ /*
+
                 if (gamepad1BHandler.isShortPress()) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
                     telemetry.addData("Status", "POSITION_X_IN");
@@ -254,6 +291,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
                     gamepad1XHandler.reset();
                 }
+
+                */
                 //End  moveHSlideToPosition
 
 //Begin  open and close of intakeclaw 12122024 finetuned
@@ -271,10 +310,10 @@ package mypackage; // 与 Gyro 类的包名一致
 //End open and close of intakeclaw
 
 //Begin  Wristzyaw
-                if (gamepad2.b) { //right
+                if (gamepad1.b) { //right
                     robot.Wristzyaw.setPosition(WristzyawRight); //Wristzyaw right 45 degree 12122024
                 }
-                if (gamepad2.x) { //left
+                if (gamepad1.x) { //left
                     robot.Wristzyaw.setPosition(WristzyawLeft); // Wristzyaw left 45 degree 12122024 // robot.Wristzyaw.setPosition(0.65); for left
                 }
 
@@ -345,13 +384,14 @@ package mypackage; // 与 Gyro 类的包名一致
 //******************end  IArm L and R*****************
 
 
-
                 break;
 
             case 1:
                 // out take
                 dpadDownHandler.update(gamepad1.dpad_down);
                 dpadUpHandler.update(gamepad1.dpad_up);
+                dpadLeftHandler.update(gamepad1.dpad_left);
+                dpadRightHandler.update(gamepad1.dpad_right);
                 leftBumperHandler.update(gamepad1.left_bumper);
                 rightBumperHandler.update(gamepad1.right_bumper);
                 gamepad1XHandler.update(gamepad1.x);
@@ -359,7 +399,24 @@ package mypackage; // 与 Gyro 类的包名一致
                 gamepad1YHandler.update(gamepad1.y);
                 gamepad1AHandler.update(gamepad1.a);
                 //Begin  moveVSlideToPosition
-
+                // 左触发器双功能：轻按和深按
+                if (gamepad1.dpad_left) { //IN
+                    startVSlidePIDControl(POSITION_A_BOTTOM);
+                    gamepad1BHandler.reset();
+                }
+                if (gamepad1.dpad_down) { //EXTRUDE
+                    startVSlidePIDControl(POSITION_Y_LOW);
+                    gamepad1XHandler.reset();
+                }
+                if (gamepad1.dpad_up) { //EXTRUDE_MORE/                    moveVSlideToPositionPID(POSITION_Y_HIGH);
+                    startVSlidePIDControl(POSITION_Y_HIGH);
+                    gamepad1XHandler.reset();
+                }
+                    if (gamepad1.dpad_right) { //EXTRUDE_MORE
+                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
+                        gamepad1XHandler.reset();
+                    }
+                /*
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
 //                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
@@ -374,8 +431,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
-                if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-//                    moveVSlideToPositionPID(POSITION_Y_HIGH);
+                if (gamepad1XHandler.isShortPress() && gamepad1BHandler.isShortPress()) { //EXTRUDE_MORE/                    moveVSlideToPositionPID(POSITION_Y_HIGH);
                     startVSlidePIDControl(POSITION_Y_HIGH);
 //                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
@@ -387,7 +443,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //                        gamepad1XHandler.reset();
 //                    }
 /////
-
+*/
 
 ///////////////////////////////////////
 
@@ -734,8 +790,8 @@ package mypackage; // 与 Gyro 类的包名一致
 
         // 计算 PID 输出
         double powerL = pidController.performPID(currentPositionL);
-        robot.VSMotorL.setPower(powerL);
-        robot.VSMotorR.setPower(powerL);
+        robot.VSMotorL.setPower(powerL*0.4);
+        robot.VSMotorR.setPower(powerL*0.4);
 
         // 输出 Telemetry 信息
         telemetry.addData("PID Target", pidTargetPosition);

@@ -7,24 +7,24 @@ public class ButtonHandler {
     private int clickCount = 0;
     private long lastClickTime = 0;
 
-    private static final long LONG_PRESS_THRESHOLD = 500; // 长按时间阈值（毫秒）
-    private static final long DOUBLE_CLICK_INTERVAL = 300; // 双击时间间隔（毫秒）
+    private static final long LONG_PRESS_THRESHOLD = 500; // Long press time threshold (milliseconds)
+    private static final long DOUBLE_CLICK_INTERVAL = 300;// Long press time threshold (milliseconds)
 
     public void update(boolean isButtonPressed) {
         long currentTime = System.currentTimeMillis();
 
         if (isButtonPressed) {
-            if (!isPressed) { // 按键刚刚按下
+            if (!isPressed) { // The button was just pressed
                 isPressed = true;
                 pressStartTime = currentTime;
                 clickCount++;
             } else if (currentTime - pressStartTime >= LONG_PRESS_THRESHOLD && !isLongPressHandled) {
-                isLongPressHandled = true; // 标记长按已经处理
+                isLongPressHandled = true; // Mark that the long press has been handled
             }
         } else { // 按键释放
             if (isPressed) {
                 if (isLongPressHandled) {
-                    // 如果是长按，按键释放后重置长按处理标志
+                    // If it's a long press, reset the long press handling flag after the button is released
                     isLongPressHandled = false;
                 } else {
                     // 短按逻辑
