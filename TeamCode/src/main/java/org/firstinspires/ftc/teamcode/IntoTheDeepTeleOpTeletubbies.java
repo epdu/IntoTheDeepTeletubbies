@@ -74,7 +74,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     boolean move = false;
     // 在类顶部声明PID控制器
 
-    private PIDController pidController = new PIDController(0.0004, 0.000001, 0.04);//(1.9, 0.014, 4.9)
+    private PIDController pidController = new PIDController(0.005, 0.0000005, 0.0002);// (0.005, 0.0000005, 0.0002) good for target 300 (1.9, 0.014, 4.9)
     // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
 
 //    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
@@ -99,7 +99,7 @@ package mypackage; // 与 Gyro 类的包名一致
  */
     @Override
     public void runOpMode() {
-//        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
         Thread driveTrainThread = new Thread(this::runDriveTrain);
@@ -364,8 +364,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-//                    moveVSlideToPositionPID(-POSITION_Y_LOW);
-                    moveVSlideToPositionPID(POSITION_Y_LOWForTest);
+                    moveVSlideToPositionPID(POSITION_Y_LOW);
+//                    moveVSlideToPositionPID(POSITION_Y_LOWForTest);
 //                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
                     gamepad1XHandler.reset();
                 }
@@ -657,7 +657,7 @@ package mypackage; // 与 Gyro 类的包名一致
         pidController.setSetpoint(targetPosition);
 //        pidControllerL.setSetpoint(targetPosition);
 //        pidControllerR.setSetpoint(targetPosition);
-        pidController.setTolerance(20);
+        pidController.setTolerance(50);
 //        pidControllerL.setTolerance(10); // Allowable position error
 //        pidControllerR.setTolerance(10);
 
@@ -674,8 +674,8 @@ package mypackage; // 与 Gyro 类的包名一致
 //            double powerL = pidControllerL.performPID(currentPositionL);
 //            double powerR = pidControllerR.performPID(currentPositionR);
             // Set motor power based on PID outputs
-            robot.VSMotorL.setPower(powerL*0.2);
-            robot.VSMotorR.setPower(powerR*0.2);
+            robot.VSMotorL.setPower(powerL);
+            robot.VSMotorR.setPower(powerR);
             // Telemetry for debugging
             telemetry.addData("Target Position", targetPosition);
             telemetry.addData("Current Position L", currentPositionL);
@@ -683,9 +683,11 @@ package mypackage; // 与 Gyro 类的包名一致
             telemetry.addData("Power R", powerR);
             telemetry.update();
 
-            // Check if both motors are on target
-            if (pidController.onTarget() ) {
+            // Check if both motors are on target  (pidController.onTarget()   Math.abs(currentPositionL - targetPosition) < 50
+            if (Math.abs(currentPositionL - targetPosition)<10) {
                 move = false;
+                telemetry.addData("move", move);
+                telemetry.update();
             }
 //            telemetry.addData("Target Position", targetPosition);
 //            telemetry.addData("Current Position L", currentPositionL);
