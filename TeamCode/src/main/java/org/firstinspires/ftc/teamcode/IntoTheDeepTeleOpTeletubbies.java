@@ -67,7 +67,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 @TeleOp(name = "AAAAA TeleOp 12222024 V0")
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public float DriveTrains_ReducePOWER=0.75f;
- //   DriveTrains_ReducePOWER = 0.75f;
+    //   DriveTrains_ReducePOWER = 0.75f;
 //    DriveTrains_ReducePOWER = speedLimiterSlower;//************************
     HardwareTeletubbies robot = new HardwareTeletubbies();
     public String fieldOrRobotCentric = "robot";
@@ -79,7 +79,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     private PIDController pidController = new PIDController(0.005, 0.0000005, 0.0002);// (0.005, 0.0000005, 0.0002) good for target 300 (1.9, 0.014, 4.9)
     // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
 
-//    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
+    //    private PIDController pidControllerR = new PIDController(1.9, 0.014, 4.9); // Tune these values
 //private PIDController pidControllerL = new PIDController(1.9, 0.014, 4.9); // Tune these values  POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
     int controlMode = 1;
     ButtonHandler dpadDownHandler = new ButtonHandler();
@@ -96,11 +96,11 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
     private volatile boolean isRunning = true;
     ElapsedTime delayTimer = new ElapsedTime();
-/*
-package mypackage; // 与 Gyro 类的包名一致
-        Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
-        gyro.turn();            // 调用 turn() 方法
- */
+    /*
+    package mypackage; // 与 Gyro 类的包名一致
+            Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
+            gyro.turn();            // 调用 turn() 方法
+     */
     @Override
     public void runOpMode() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -122,7 +122,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //            telemetry.addData("Status", "All systems running...");
 //            telemetry.update();
 //            moveDriveTrain_RobotCentric(); // Select either RobotCentricDriveTrain() or FieldCentricDriveTrain() based on your requirements.
-            if (gamepad1BackHandler.isShortPress()) { //fix it later;
+            if (gamepad1.right_stick_button) { //fix it later;
                 DriveTrains_ReducePOWER = 0.25f;
                 telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
                 telemetry.update();
@@ -132,8 +132,8 @@ package mypackage; // 与 Gyro 类的包名一致
                     // Other tasks can be processed here
                 } // 防止快速连击导致模式快速切换
             }
-            if (gamepad1BackHandler.isLongPress()) { //fix it later;
-                DriveTrains_ReducePOWER = 0.75f;
+            if (gamepad1.left_stick_button) { //fix it later;
+                DriveTrains_ReducePOWER = 0.80f;
                 telemetry.addData("DriveTrains_ReducePOWER", DriveTrains_ReducePOWER);
                 telemetry.update();
                 // Non-blocking delay to prevent rapid mode switching
@@ -224,7 +224,7 @@ package mypackage; // 与 Gyro 类的包名一致
     }
 
 
-//Begin Definition and Initialization of intake()
+    //Begin Definition and Initialization of intake()
     public void intake() {
 
 //Begin Definition and Initialization of gamepad
@@ -264,7 +264,7 @@ package mypackage; // 与 Gyro 类的包名一致
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1.dpad_right) { //EXTRUDE_MORE
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+                    moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
                     gamepad1XHandler.reset();
                 }
 
@@ -335,6 +335,22 @@ package mypackage; // 与 Gyro 类的包名一致
                     //                    robot.OClaw.setPosition(OClawOpen); //open
                 }
 
+
+/*
+
+////one key ready for pick
+//            if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                robot.Wristxpitch.setPosition(0.65);
+//                sleep(200);
+//                robot.IClaw.setPosition(0.32);
+//                sleep(200);
+//                robot.IArmL.setPosition(0.7);
+//                robot.IArmR.setPosition(0.7);
+//            }
+//
+////one key ready for pick up
+
+*/
 //one key ready for pick up
 
 //one key ready for transfer
@@ -347,24 +363,27 @@ package mypackage; // 与 Gyro 类的包名一致
                     while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
                         // Other tasks can be processed here
                     } // 防止快速连击导致模式快速切换
-                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransfer);
+//                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    robot.IClaw.setPosition(OClawCloseSuperTight);
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
                     sleep(600);
                     robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
                     robot.IArmL.setPosition(IArmLUp);
                     robot.IArmR.setPosition(IArmRUp);
                     sleep(600);
-                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
+//                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
+                    robot.OClaw.setPosition(OClawCloseSuperTight); // close 0.543 hold
+
                     sleep(600);
                     robot.IClaw.setPosition(IClawOpen); //open
                     sleep(300);
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
-                    sleep(300);
+//                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+//                    sleep(300);
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
 //                    sleep(600);
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
-//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
+//                      startVSlidePIDControl(POSITION_Y_HIGHH);
 
                 }
 
@@ -402,20 +421,31 @@ package mypackage; // 与 Gyro 类的包名一致
                 // 左触发器双功能：轻按和深按
                 if (gamepad1.dpad_left) { //IN
                     startVSlidePIDControl(POSITION_A_BOTTOM);
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
-                    startVSlidePIDControl(POSITION_Y_LOW);
+                    startVSlidePIDControl(POSITION_Y_HIGHH);
+                    robot.OArmL.setPosition(OArmBucket);
+                    robot.OArmR.setPosition(OArmBucket);
+//                    delayTimer.reset();
+//                    while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
+//                        // Other tasks can be processed here
+//                    }
+
                     gamepad1XHandler.reset();
                 }
-                if (gamepad1.dpad_up) { //EXTRUDE_MORE/                    moveVSlideToPositionPID(POSITION_Y_HIGH);
+                if (gamepad1.dpad_up) { //EXTRUDE_MORE  //moveVSlideToPositionPID(POSITION_Y_HIGH);
                     startVSlidePIDControl(POSITION_Y_HIGH);
+                    robot.OArmL.setPosition(OArmTransferPosition);
+                    robot.OArmR.setPosition(OArmTransferPosition);
                     gamepad1XHandler.reset();
                 }
-                    if (gamepad1.dpad_right) { //EXTRUDE_MORE
-                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
-                        gamepad1XHandler.reset();
-                    }
+                if (gamepad1.dpad_right) { //EXTRUDE_MORE
+                    startVSlidePIDControl(POSITION_Y_HIGHHH);// very high
+                    gamepad1XHandler.reset();
+                }
                 /*
                 // 左触发器双功能：轻按和深按
                 if (gamepad1BHandler.isShortPress()) { //IN
@@ -450,17 +480,58 @@ package mypackage; // 与 Gyro 类的包名一致
                 //************End  moveVSlideToPosition***************
 
 //one key ready for pick
-                if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
-                    sleep(200);
+                    robot.OClaw.setPosition(OClawOpen); //
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    }
+                    robot.Wristxpitch.setPosition(WristxpitchDown);
                     robot.IClaw.setPosition(IClawOpen);
-                    sleep(200);
+                    robot.IArmL.setPosition(IArmLDown);
+                    robot.IArmR.setPosition(IArmRDown);
+                    //                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+//                    sleep(500);
+                    //                    robot.OClaw.setPosition(OClawOpen); //open
                 }
 
 //one key ready for pick up
 
+//one key ready for transfer
+                if (gamepad1.right_bumper) { //
+                    robot.OArmL.setPosition(OArmTransferPosition);//transfer position
+                    robot.OArmR.setPosition(OArmTransferPosition);
+                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust); // Wristxpitch
+//                    sleep(600);
+                    delayTimer.reset();
+                    while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
+                        // Other tasks can be processed here
+                    } // 防止快速连击导致模式快速切换
+//                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
+                    robot.IClaw.setPosition(OClawCloseSuperTight);
+                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+                    sleep(600);
+                    robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
+                    robot.IArmL.setPosition(IArmLUp);
+                    robot.IArmR.setPosition(IArmRUp);
+                    sleep(600);
+                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
+                    sleep(600);
+                    robot.IClaw.setPosition(IClawOpen); //open
+                    sleep(300);
+//                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
+//                    sleep(300);
+                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+//                    sleep(600);
+//                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                    moveVSlideToPositionPID(-POSITION_Y_HIGH);// high
 
+                }
+
+//one key ready for transfer
 
 //Begin  OArm L and R
 
@@ -502,12 +573,12 @@ package mypackage; // 与 Gyro 类的包名一致
 //End Definition and Initialization of intake()
 
 
-//Begin Definition and Initialization of outtake()
+    //Begin Definition and Initialization of outtake()
     public void outtake() {
     }
 //End Definition and Initialization of outtake()
 
-//Begin Definition and Initialization of steptestservo()
+    //Begin Definition and Initialization of steptestservo()
     public void servoGamepadControl() {
         //Begin debugging with a step increment of 0.05  SGC - servoGamepadControl
 
@@ -628,7 +699,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //
 
 
-//Temp *************************
+    //Temp *************************
     public void moveDriveTrain() {
         double y = gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
@@ -674,7 +745,7 @@ package mypackage; // 与 Gyro 类的包名一致
 
 //End Definition and Initialization of Horizontal Slides by gamepad2.left_stick_x
 
-//Begin Definition and Initialization of Vertical Slides
+    //Begin Definition and Initialization of Vertical Slides
     private void moveVSlideToPosition ( int targetPosition){
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -710,7 +781,7 @@ package mypackage; // 与 Gyro 类的包名一致
 //        holdSlidePosition(targetPosition);
         move = false;
     }
-//////////////////////////
+    //////////////////////////
     private void moveVSlideToPositionPID(int targetPosition) {
         // Set motors to use encoders
         robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -771,17 +842,17 @@ package mypackage; // 与 Gyro 类的包名一致
 
     //////////////////////////
 
- /// 初始化 PID 控制器
-        private void startVSlidePIDControl(int targetPosition) {
-            robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            pidController.reset();
-            pidController.enable();
-            pidController.setSetpoint(targetPosition);
-            pidController.setTolerance(10); // 允许误差范围
-            pidTargetPosition = targetPosition;
-            pidActive = true; // 激活 PID 控制
-        }
+    /// 初始化 PID 控制器
+    private void startVSlidePIDControl(int targetPosition) {
+        robot.VSMotorL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.VSMotorR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pidController.reset();
+        pidController.enable();
+        pidController.setSetpoint(targetPosition);
+        pidController.setTolerance(10); // 允许误差范围
+        pidTargetPosition = targetPosition;
+        pidActive = true; // 激活 PID 控制
+    }
     // 在主循环中调用的非阻塞 PID 控制逻辑
     private void updateVSlidePIDControl() {
         if (!pidActive) return; // 如果 PID 未激活，直接返回
@@ -818,86 +889,86 @@ package mypackage; // 与 Gyro 类的包名一致
 
 ///////////////////////////
 
-/*****
- // 状态变量
- private boolean pidActive = false; // PID 控制是否激活
- private int pidTargetPosition = 0; // PID 控制目标位置
+    /*****
+     // 状态变量
+     private boolean pidActive = false; // PID 控制是否激活
+     private int pidTargetPosition = 0; // PID 控制目标位置
 
- // 初始化 PID 控制器
- private void startVSlidePIDControl(int targetPosition) {
- pidController.reset();
- pidController.enable();
- pidController.setSetpoint(targetPosition);
- pidController.setTolerance(10); // 允许误差范围
- pidTargetPosition = targetPosition;
- pidActive = true; // 激活 PID 控制
- }
+     // 初始化 PID 控制器
+     private void startVSlidePIDControl(int targetPosition) {
+     pidController.reset();
+     pidController.enable();
+     pidController.setSetpoint(targetPosition);
+     pidController.setTolerance(10); // 允许误差范围
+     pidTargetPosition = targetPosition;
+     pidActive = true; // 激活 PID 控制
+     }
 
- // 在主循环中调用的非阻塞 PID 控制逻辑
- private void updateVSlidePIDControl() {
- if (!pidActive) return; // 如果 PID 未激活，直接返回
+     // 在主循环中调用的非阻塞 PID 控制逻辑
+     private void updateVSlidePIDControl() {
+     if (!pidActive) return; // 如果 PID 未激活，直接返回
 
- int currentPositionL = robot.VSMotorL.getCurrentPosition();
+     int currentPositionL = robot.VSMotorL.getCurrentPosition();
 
- // 计算 PID 输出
- double powerL = pidController.performPID(currentPositionL);
- robot.VSMotorL.setPower(powerL);
- robot.VSMotorR.setPower(powerL);
+     // 计算 PID 输出
+     double powerL = pidController.performPID(currentPositionL);
+     robot.VSMotorL.setPower(powerL);
+     robot.VSMotorR.setPower(powerL);
 
- // 输出 Telemetry 信息
- telemetry.addData("PID Target", pidTargetPosition);
- telemetry.addData("Current Position L", currentPositionL);
- telemetry.addData("Power L", powerL);
- telemetry.update();
+     // 输出 Telemetry 信息
+     telemetry.addData("PID Target", pidTargetPosition);
+     telemetry.addData("Current Position L", currentPositionL);
+     telemetry.addData("Power L", powerL);
+     telemetry.update();
 
- // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
- if (pidController.onTarget()) {
- robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
- robot.VSMotorR.setPower(0.1);
- pidActive = false; // 停止 PID 控制
- }
- }
-
-
- ///////***************************************
-
- @Override
- public void runOpMode() {
- robot.init(hardwareMap);
-
- waitForStart();
-
- while (opModeIsActive()) {
- // 定期更新滑轨的 PID 控制状态
- updateVSlidePIDControl();
-
- // 其他操作逻辑，例如按键控制机器人
- if (gamepad1.a) {
- startVSlidePIDControl(POSITION_Y_LOW); // 按下 A 键，移动滑轨到低位
- }
-
- if (gamepad1.b) {
- startVSlidePIDControl(POSITION_Y_HIGH); // 按下 B 键，移动滑轨到高位
- }
-
- // 继续处理其他操作
- moveDriveTrain_FieldCentric();
- intake();
- outtake();
- }
- }
-//***************************
- // 在 updateVSlidePIDControl 中加入抗重力逻辑
- if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
- double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
- robot.VSMotorL.setPower(holdPower);
- robot.VSMotorR.setPower(holdPower);
- }
+     // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
+     if (pidController.onTarget()) {
+     robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
+     robot.VSMotorR.setPower(0.1);
+     pidActive = false; // 停止 PID 控制
+     }
+     }
 
 
+     ///////***************************************
+
+     @Override
+     public void runOpMode() {
+     robot.init(hardwareMap);
+
+     waitForStart();
+
+     while (opModeIsActive()) {
+     // 定期更新滑轨的 PID 控制状态
+     updateVSlidePIDControl();
+
+     // 其他操作逻辑，例如按键控制机器人
+     if (gamepad1.a) {
+     startVSlidePIDControl(POSITION_Y_LOW); // 按下 A 键，移动滑轨到低位
+     }
+
+     if (gamepad1.b) {
+     startVSlidePIDControl(POSITION_Y_HIGH); // 按下 B 键，移动滑轨到高位
+     }
+
+     // 继续处理其他操作
+     moveDriveTrain_FieldCentric();
+     intake();
+     outtake();
+     }
+     }
+     //***************************
+     // 在 updateVSlidePIDControl 中加入抗重力逻辑
+     if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
+     double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
+     robot.VSMotorL.setPower(holdPower);
+     robot.VSMotorR.setPower(holdPower);
+     }
 
 
- */
+
+
+     */
 
 
 ///////////////////////////
@@ -934,7 +1005,7 @@ package mypackage; // 与 Gyro 类的包名一致
     }
 //End Definition and Initialization of Vertical Slides
 
-//Begin Definition and Initialization of Horizontal Slides
+    //Begin Definition and Initialization of Horizontal Slides
     private void moveHSlideToPosition ( int targetPosition){
         robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         telemetry.addData("targetPosition", targetPosition);

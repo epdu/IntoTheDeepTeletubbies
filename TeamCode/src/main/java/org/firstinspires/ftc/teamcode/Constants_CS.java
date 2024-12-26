@@ -5,16 +5,16 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 public class Constants_CS {
     public static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    public static final int POSITION_B_EXTRUDE = 600;//horizontal slides  out //600
+    public static final int POSITION_B_EXTRUDE = 300;//horizontal slides  out //600
     public static final int POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
     public static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
-    public static final int POSITION_B_EXTRUDE_MORE = 800; //horizontal slides all the way out 800
+    public static final int POSITION_B_EXTRUDE_MORE = 1300; //horizontal slides all the way out 800
     public static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     public static final int POSITION_Y_LOWForTest = 300; // Vertical slides up //800 //1000 too high
     public static final int POSITION_Y_LOW = 400; // Vertical slides up //800 //1000 too high
     public static final int POSITION_Y_HIGH = 800;// 1270Vertical slides all the way up
-    public static final int POSITION_Y_HIGHH = 1300;// 1300Vertical slides all the way up
-    public static final int POSITION_Y_HIGHHH = 1265;//Vertical slides all the way up
+    public static final int POSITION_Y_HIGHH = 2100;// 1300Vertical slides all the way up 1500 1900 still a little bit low
+    public static final int POSITION_Y_HIGHHH = 1270;//Vertical slides all the way up
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
     public static final double SLIDE_POWER_V = 0.8; // Adjust as needed
     public static final double IClawOpen = 0.32;
@@ -26,6 +26,7 @@ public class Constants_CS {
     public static final double OClawCloseSuperTight = 0.549;
     public static final double OArmTransferPosition = 0.99;
     public static final double OArmRearSpecimenPick = 0.06;
+    public static final double OArmBucket = 0.3;
     public static final double OClawSpecimenChambers = 0.548;
     public static final double WristzyawRight = 0.06;
     public static final double WristzyawLeft = 0.5;
