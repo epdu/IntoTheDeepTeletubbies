@@ -364,8 +364,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
                         // Other tasks can be processed here
                     } // 防止快速连击导致模式快速切换
-//                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
-                    robot.IClaw.setPosition(OClawCloseSuperTight);
+//                    robot.IClaw.setPosition(IClawCloseTight); //  0.543
+                    robot.IClaw.setPosition(IClawCloseSuperTight); //  0.544
                     moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
                     sleep(600);
                     robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
