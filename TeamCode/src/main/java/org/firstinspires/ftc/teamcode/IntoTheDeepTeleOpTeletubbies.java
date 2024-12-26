@@ -65,7 +65,7 @@ import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 import static org.firstinspires.ftc.teamcode.Constants_CS.WristzyawRight;
 @TeleOp(name = "AAAAA TeleOp 12252024 V1")
-//V1 with pid but not odo
+//V1 with pid but not  odo
 public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public float DriveTrains_ReducePOWER=0.75f;
     //   DriveTrains_ReducePOWER = 0.75f;
