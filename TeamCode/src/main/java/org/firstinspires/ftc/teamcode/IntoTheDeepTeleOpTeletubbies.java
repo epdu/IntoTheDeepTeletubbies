@@ -384,8 +384,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
                     sleep(600);
-                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
-                      startVSlidePIDControl(POSITION_Y_HIGHH);
+//                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
+//                      startVSlidePIDControl(POSITION_Y_HIGHH);
 
                 }
 
@@ -492,8 +492,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //one key ready for pick
                  if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
-                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     robot.OClaw.setPosition(OClawOpen); //
                     delayTimer.reset();
                     while (delayTimer.milliseconds() < 200 && opModeIsActive()) {

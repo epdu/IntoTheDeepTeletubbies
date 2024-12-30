@@ -19,7 +19,7 @@ public class Constants_CS {
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
     public static final double SLIDE_POWER_V = 0.8; // Adjust as needed
     public static final double IClawOpen = 0.32;
-    public static final double IClawCloseLose = 0.49;//was 0.54
+    public static final double IClawCloseLose = 0.48;//was 0.54
     public static final double IClawCloseTight = 0.543;
     public static final double IClawCloseSuperTight = 0.543;
     /*
