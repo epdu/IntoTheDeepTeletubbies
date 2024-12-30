@@ -7,7 +7,8 @@ public class Constants_CS {
     public static final int POSITION_X_IN = 0; // horizontal slides all the way in
     public static final int POSITION_B_EXTRUDE = 300;//horizontal slides  out //600
     public static final int POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
-    public static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
+    public static final int POSITION_B_EXTRUDETransferC= 690;//horizontal slides  out //600 is too much
+//    public static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
     public static final int POSITION_B_EXTRUDE_MORE = 1300; //horizontal slides all the way out 800
     public static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     public static final int POSITION_Y_LOWForTest = 300; // Vertical slides up //800 //1000 too high
@@ -18,9 +19,16 @@ public class Constants_CS {
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
     public static final double SLIDE_POWER_V = 0.8; // Adjust as needed
     public static final double IClawOpen = 0.32;
-    public static final double IClawCloseLose = 0.54;
+    public static final double IClawCloseLose = 0.49;//was 0.54
     public static final double IClawCloseTight = 0.543;
-    public static final double IClawCloseSuperTight = 0.544;
+    public static final double IClawCloseSuperTight = 0.543;
+    /*
+    public static final double IClawCloseLose = 0.53;//was 0.54
+    public static final double IClawCloseTight = 0.543;
+    public static final double IClawCloseSuperTight = 0.546;
+
+
+     */
     public static final double OClawOpen = 0.32;
     public static final double OClawCloseLose = 0.54;
     public static final double OClawCloseTight = 0.548;
