@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+//impor
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -145,7 +146,7 @@ public class HardwareTeletubbies
 
         // Set all motors to zero power
         setAllPower(0);
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
 //Begin Definition and Initialization of intake Claw Servo
 
                IClaw = hwMap.get(Servo.class, "IClaw");//control hub port 5
@@ -193,8 +194,8 @@ public class HardwareTeletubbies
                OArmL.setPosition(0.97);//  good
                OArmR.setPosition(0.97);//
 
-//End Definition and Initialization of outtake ArmL and ArmR Servos
-
+////End Definition and Initialization of outtake ArmL and ArmR Servos
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //Begin Definition and Initialization of Testing Motors and Servos
@@ -221,37 +222,12 @@ public class HardwareTeletubbies
 //End Definition and Initialization of Testing Motors and Servos
 
 //Old hardwire
-//Begin Definition and Initialization of V4B Servos
-
-//               V4BR = hwMap.get(Servo.class, "V4BR");//control hub port
-//               V4BL = hwMap.get(Servo.class, "V4BL");//control hub port
-//               V4BL.setDirection(Servo.Direction.REVERSE);
-//               V4BL.setPosition(0.32);//  good
-//               V4BR.setPosition(0.32);//
-
-//End Definition and Initialization of V4B Servos
-
-//               Drone = hwMap.get(Servo.class, "Drone");//expan  hub port 5
-//               Drone.setPosition(0);
-//               ClawR = hwMap.get(Servo.class, "ClawR");//control hub port 2
-//               ClawL = hwMap.get(Servo.class, "ClawL");//control hub port 3
-//               ClawR.setPosition(0.71);
-////        ClawL.setPosition(0.4);
-//               ClawL.setPosition(0.08);
-////        ClawL.setDirection(Servo.Direction.REVERSE);
-//               Wrist = hwMap.get(Servo.class, "wrist");//control hub port 5
-//               Wrist.setPosition(0.8);
-////        Wrist.setPosition(0.34);
-//               ArmL = hwMap.get(Servo.class, "ArmL");
-//               ArmR = hwMap.get(Servo.class, "ArmR");
-//               ArmL.setDirection(Servo.Direction.REVERSE);
-
 
 //inorder to reduce the ESD problems, we updated to be REV 9 axis imu with i2c port 1, imuinternal for the
 // REV control hub build in imu
 
 
-        imu = hwMap.get(IMU.class, "imu");
+        imu = hwMap.get(IMU.class, "imu");  //control I2C port 1
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
                 RevHubOrientationOnRobot.UsbFacingDirection.DOWN));

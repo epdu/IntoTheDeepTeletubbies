@@ -105,7 +105,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     public String armPositionCuzBorS ="NOLL"; //new variable for it and arm will go back of robo
 
     @Override
-    public void runOpMode() {
+ public void runOpMode() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot.init(hardwareMap);
         gyro.robot.init(hardwareMap);
@@ -256,10 +256,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
                 if (gamepad1.dpad_left) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
+//                     startVSlidePIDControl(POSITION_Y_HIGHHH);// very high//specimen high for testing 01152025
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
                     moveHSlideToPosition(POSITION_B_EXTRUDE);
+//                   startVSlidePIDControl(POSITION_A_BOTTOM);// very high//specimen high for testing 01152025
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1.dpad_up) { //EXTRUDE_MORE
