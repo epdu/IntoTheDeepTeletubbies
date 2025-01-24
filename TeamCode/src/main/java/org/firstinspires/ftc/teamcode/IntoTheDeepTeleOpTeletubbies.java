@@ -102,6 +102,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
             Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
             gyro.turn();            // 调用 turn() 方法
      */
+    public String armPositionCuzBorS ="NOLL"; //new variable for it and arm will go back of robo
+
     @Override
     public void runOpMode() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -254,10 +256,12 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
                 if (gamepad1.dpad_left) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
+//                     startVSlidePIDControl(POSITION_Y_HIGHHH);// very high//specimen high for testing 01152025
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
                     moveHSlideToPosition(POSITION_B_EXTRUDE);
+//                   startVSlidePIDControl(POSITION_A_BOTTOM);// very high//specimen high for testing 01152025
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1.dpad_up) { //EXTRUDE_MORE
@@ -320,8 +324,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 //one key ready for pick
                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
-                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     robot.OClaw.setPosition(OClawOpen); //
                     delayTimer.reset();
                     while (delayTimer.milliseconds() < 200 && opModeIsActive()) {
@@ -374,7 +378,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     sleep(600);
 //                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
                     robot.OClaw.setPosition(OClawCloseSuperTight); // close 0.543 hold
-
                     sleep(600);
                     robot.IClaw.setPosition(IClawOpen); //open
                     sleep(300);
@@ -382,7 +385,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 //                    sleep(300);
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
-//                    sleep(600);
+                    sleep(600);
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                      startVSlidePIDControl(POSITION_Y_HIGHH);
 
@@ -422,14 +425,21 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 // 左触发器双功能：轻按和深按
                 if (gamepad1.dpad_left) { //IN
                     startVSlidePIDControl(POSITION_A_BOTTOM);
-                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+                    if (armPositionCuzBorS =="POSITION_Y_HIGHHH") {
+                        robot.OArmL.setPosition(OArmRearSpecimenPick);//arm in back of robot
+                        robot.OArmR.setPosition(OArmRearSpecimenPick);
+                    }
+                    if (armPositionCuzBorS =="POSITION_Y_HIGHH") {
+                        robot.OArmL.setPosition(OArmTransferPosition);//arm in front of robot
+                        robot.OArmR.setPosition(OArmTransferPosition);
+                    }
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
-                    startVSlidePIDControl(POSITION_Y_HIGHH);
+                    startVSlidePIDControl(POSITION_Y_HIGHH);//bucket high
                     robot.OArmL.setPosition(OArmBucket);
                     robot.OArmR.setPosition(OArmBucket);
+                    armPositionCuzBorS = "POSITION_Y_HIGHH"; //arm is going to go front of robo
 //                    delayTimer.reset();
 //                    while (delayTimer.milliseconds() < 600 && opModeIsActive()) {
 //                        // Other tasks can be processed here
@@ -444,8 +454,10 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     gamepad1XHandler.reset();
                 }
                 if (gamepad1.dpad_right) { //EXTRUDE_MORE
-                    startVSlidePIDControl(POSITION_Y_HIGHHH);// very high
+                    startVSlidePIDControl(POSITION_Y_HIGHHH);// very high//specimen high
+                    armPositionCuzBorS = "POSITION_Y_HIGHHH"; //arm is going to go back of robo
                     gamepad1XHandler.reset();
+
                 }
                 /*
                 // 左触发器双功能：轻按和深按
@@ -481,9 +493,9 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 //************End  moveVSlideToPosition***************
 
 //one key ready for pick
-                 if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
-                    robot.OArmL.setPosition(OArmRearSpecimenPick);
-                    robot.OArmR.setPosition(OArmRearSpecimenPick);
+                if (gamepad1.left_bumper) { //up if arm is Horizontal, the the wrist is vertical up and down
+//                    robot.OArmL.setPosition(OArmRearSpecimenPick);
+//                    robot.OArmR.setPosition(OArmRearSpecimenPick);
                     robot.OClaw.setPosition(OClawOpen); //
                     delayTimer.reset();
                     while (delayTimer.milliseconds() < 200 && opModeIsActive()) {

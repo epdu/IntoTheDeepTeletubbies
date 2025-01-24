@@ -9,6 +9,8 @@
 //537 per revolution 11.87374348 inch
 */
 package org.firstinspires.ftc.teamcode;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -130,7 +132,9 @@ public class teleOtb extends LinearOpMode {
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.05f;
     boolean move = false;
-
+    Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
+    SparkFunOTOS myOtos;
+    SparkFunOTOSDrive drive;
     @Override
     public void runOpMode() throws InterruptedException {
         /*
@@ -138,6 +142,13 @@ public class teleOtb extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
+        gyro.robot.init(hardwareMap);
+//        myOtos.init(hardwareMap);
+
+        drive = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0, 0, 0)); // 初始化SparkFunOTOSDrive
+        myOtos = hardwareMap.get(SparkFunOTOS.class, "sensor_otos");
+        telemetry.addData("Status", "OTOS sensor initialized!");
+        telemetry.update();
 
         waitForStart();
 
