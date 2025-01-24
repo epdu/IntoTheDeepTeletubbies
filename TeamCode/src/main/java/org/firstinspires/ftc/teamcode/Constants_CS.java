@@ -61,7 +61,6 @@ public class Constants_CS {
     public static final float speedLimiterSlower = 0.45f;
 
 
-
 //    //  Set the GAIN constants to control the relationship between the measured position error, and how much power is
 //    //  applied to the drive motors to correct the error.
 //    //  Drive = Error * Gain    Make these values smaller for smoother control, or larger for a more aggressive response.
