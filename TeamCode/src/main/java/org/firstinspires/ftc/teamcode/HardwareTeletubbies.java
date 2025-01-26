@@ -166,7 +166,7 @@ public class HardwareTeletubbies
 //Begin Definition and Initialization of Wristxpitch Servo
 
         Wristxpitch = hwMap.get(Servo.class, "Wristxpitch");//control hub port 4
-        Wristxpitch.setDirection(Servo.Direction.REVERSE);
+//        Wristxpitch.setDirection(Servo.Direction.REVERSE); //moved servo from one side to the other side
         Wristxpitch.setPosition(0.05);//
 
 //End Definition and Initialization of Wristxpitch Servo
@@ -182,15 +182,15 @@ public class HardwareTeletubbies
 //End Definition and Initialization of intake ArmL and ArmR Servos
 
 //Begin Definition and Initialization of outtake Claw Servo
-        OClaw = hwMap.get(Servo.class, "OClaw");//expansion hub port  0
+        OClaw = hwMap.get(Servo.class, "OClaw");//expansion hub port  0==>5
 //               OClaw.setPosition(0.548);//  12122024
         OClaw.setPosition(OClawCloseInitialization);
 //End Definition and Initialization of outtake Claw Servo
 
 //Begin Definition and Initialization of outtake ArmL and ArmR Servos
 
-        OArmL = hwMap.get(ServoImplEx.class, "OArmL");//expansion hub port 5
-        OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//expansion hub port 2
+        OArmL = hwMap.get(ServoImplEx.class, "OArmL");//expansion hub port 5==>2
+        OArmR = hwMap.get(ServoImplEx.class, "OArmR");;//expansion hub port 2==>0
         OArmL.setPwmRange(new PwmControl.PwmRange(500, 2500));
         OArmR.setPwmRange(new PwmControl.PwmRange(500, 2500));
         OArmR.setDirection(Servo.Direction.REVERSE);
@@ -235,8 +235,11 @@ public class HardwareTeletubbies
                 RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
                 RevHubOrientationOnRobot.UsbFacingDirection.DOWN));
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-
         imu.initialize(parameters);
+// Gobilda IMU
+        // expansion hub I2C 1
+
+
 //        parameters.angleUnit           = IMU.AngleUnit.DEGREES;
 //        parameters.accelUnit           = IMU.AccelUnit.METERS_PERSEC_PERSEC;
 //        parameters.calibrationDataFile = "IMUCalibration.json"; // see the calibration sample opmode

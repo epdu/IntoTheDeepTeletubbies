@@ -134,7 +134,7 @@ public class teleOtb extends LinearOpMode {
     boolean move = false;
     Gyro gyro = new Gyro(); // 创建 Gyro 类的对象
     SparkFunOTOS myOtos;
-    SparkFunOTOSDrive drive;
+//    SparkFunOTOSDrive drive;
     @Override
     public void runOpMode() throws InterruptedException {
         /*
@@ -145,7 +145,7 @@ public class teleOtb extends LinearOpMode {
         gyro.robot.init(hardwareMap);
 //        myOtos.init(hardwareMap);
 
-        drive = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0, 0, 0)); // 初始化SparkFunOTOSDrive
+//        drive = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0, 0, 0)); // 初始化SparkFunOTOSDrive
         myOtos = hardwareMap.get(SparkFunOTOS.class, "sensor_otos");
         telemetry.addData("Status", "OTOS sensor initialized!");
         telemetry.update();

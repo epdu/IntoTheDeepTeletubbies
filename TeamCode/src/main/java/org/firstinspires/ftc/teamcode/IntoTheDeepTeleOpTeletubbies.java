@@ -251,16 +251,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 gamepad1BHandler.update(gamepad1.b);
                 gamepad1YHandler.update(gamepad1.y);
                 gamepad1AHandler.update(gamepad1.a);
+
                 gamepad1BackHandler.update(gamepad1.back);
                 //Begin  moveHSlideToPosition
 
                 if (gamepad1.dpad_left) { //IN
                     moveHSlideToPosition(POSITION_X_IN);
+//                    robot.Wristxpitch.setPosition(WristxpitchUp);
 //                     startVSlidePIDControl(POSITION_Y_HIGHHH);// very high//specimen high for testing 01152025
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
                     moveHSlideToPosition(POSITION_B_EXTRUDE);
+//                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust);
+                    //robot.Wristxpitch.setPosition(WristxpitchDown);
 //                   startVSlidePIDControl(POSITION_A_BOTTOM);// very high//specimen high for testing 01152025
                     gamepad1XHandler.reset();
                 }
