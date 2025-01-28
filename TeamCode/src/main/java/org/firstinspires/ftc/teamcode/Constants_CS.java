@@ -4,24 +4,24 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 public class Constants_CS {
-    public static final int POSITION_X_IN = 0; // horizontal slides all the way in
-    public static final int POSITION_B_EXTRUDE = 300;//horizontal slides  out //600
-    public static final int POSITION_B_EXTRUDETransfer = 600;//horizontal slides  out //600 is too much
-    public static final int POSITION_B_EXTRUDETransferC= 690;//horizontal slides  out //600 is too much
+    public static final int POSITION_X_IN = 30; // horizontal slides all the way in
+    public static final int POSITION_B_EXTRUDE = 100;//horizontal slides  out //600
+    public static final int POSITION_B_EXTRUDETransfer = 100;//horizontal slides  out //600 is too much
+    public static final int POSITION_B_EXTRUDETransferC= 250;//horizontal slides  out //600 is too much
     //    public static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
-    public static final int POSITION_B_EXTRUDE_MORE = 1300; //horizontal slides all the way out 800
+    public static final int POSITION_B_EXTRUDE_MORE = 380; //horizontal slides all the way out 800
     public static final int POSITION_A_BOTTOM = 0; //Vertical  slides all the way in
     public static final int POSITION_Y_LOWForTest = 300; // Vertical slides up //800 //1000 too high
     public static final int POSITION_Y_LOW = 400; // Vertical slides up //800 //1000 too high
     public static final int POSITION_Y_HIGH = 800;// 1270Vertical slides all the way up
-    public static final int POSITION_Y_HIGHH = 2100;// 1300Vertical slides all the way up 1500 1900 still a little bit low
-    public static final int POSITION_Y_HIGHHH = 1270;//Vertical slides all the way up
+    public static final int POSITION_Y_HIGHH = 2300;// 1300Vertical slides all the way up 1500 1900 still a little bit low//bucket
+    public static final int POSITION_Y_HIGHHH = 1340;//Vertical slides all the way up
     public static final double SLIDE_POWER_H = 0.6; // Adjust as needed
     public static final double SLIDE_POWER_V = 0.8; // Adjust as needed
     public static final double IClawOpen = 0.32;
-    public static final double IClawCloseLose = 0.48;//was 0.54
+    public static final double IClawCloseLose = 0.485;//was 0.54
     public static final double IClawCloseInitialization = 0.48;
-    public static final double IClawCloseTight = 0.543;
+    public static final double IClawCloseTight = 0.54;
     public static final double IClawCloseSuperTight = 0.543;
     /*
     public static final double IClawCloseLose = 0.53;//was 0.54
@@ -35,8 +35,9 @@ public class Constants_CS {
     public static final double OClawCloseLose = 0.54;
     public static final double OClawCloseTight = 0.548;
     public static final double OClawCloseSuperTight = 0.549;
-    public static final double OArmTransferPosition = 0.99;
-    public static final double OArmRearSpecimenPick = 0.06;
+    public static final double OArmTransferPosition = 0.999;
+    public static final double OArmRearSpecimenPick = 0.072;
+ //   public static final double OArmRearSpecimenPick = 0.06;//before 0126205
     public static final double OArmBucket = 0.3;
     public static final double OClawSpecimenChambers = 0.548;
     public static final double WristzyawRight = 0.06;
@@ -44,12 +45,12 @@ public class Constants_CS {
     public static final double WristxpitchDown = 0.65;
     public static final double WristxpitchIntermedia4PositionAdjust =0.5;
     public static final double  WristxpitchUp = 0.1;
-    public static final double IArmLDown = 0.7;
-    public static final double  IArmRDown = 0.7;
-    public static final double IArmLDownForPick = 0.725;
-    public static final double  IArmRDownForPick = 0.725;
-    public static final double IArmLUp = 0.6;
-    public static final double  IArmRUp = 0.6;
+    public static final double IArmLDown = 0.705;
+    public static final double  IArmRDown = 0.705;
+    public static final double IArmLDownForPick = 0.7295;
+    public static final double  IArmRDownForPick = 0.7295;
+    public static final double IArmLUp = 0.602;
+    public static final double  IArmRUp = 0.602;
     public static final double OArmLInitialization = 0.97;
     public static final double OArmRInitialization = 0.97;
     public static final double SERVO_STEP = 0.01; // 每次调整的伺服步长

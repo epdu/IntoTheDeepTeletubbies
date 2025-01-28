@@ -264,7 +264,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                 if (gamepad1.dpad_down) { //EXTRUDE
                     moveHSlideToPosition(POSITION_B_EXTRUDE);
 //                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust);
-                    //robot.Wristxpitch.setPosition(WristxpitchDown);
+//                    robot.Wristxpitch.setPosition(WristxpitchDown);
 //                   startVSlidePIDControl(POSITION_A_BOTTOM);// very high//specimen high for testing 01152025
                     gamepad1XHandler.reset();
                 }
@@ -374,22 +374,20 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     } // 防止快速连击导致模式快速切换
 //                    robot.IClaw.setPosition(IClawCloseTight); //  0.543
                     robot.IClaw.setPosition(IClawCloseSuperTight); //  0.544
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
-                    sleep(600);
-                    robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
-                    robot.IArmL.setPosition(IArmLUp);
-                    robot.IArmR.setPosition(IArmRUp);
-                    sleep(600);
-//                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
-                    robot.OClaw.setPosition(OClawCloseSuperTight); // close 0.543 hold
-                    sleep(600);
+                    moveHSlideToPosition(30);
+                    sleep(500);
+                    robot.Wristxpitch.setPosition(0.05); // Wristxpitch
+                    robot.IArmL.setPosition(0.65);
+                    robot.IArmR.setPosition(0.65);
+                    sleep(500);
+                    robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
+                    sleep(500);
                     robot.IClaw.setPosition(IClawOpen); //open
                     sleep(300);
 //                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
 //                    sleep(300);
                     robot.OArmL.setPosition(OArmRearSpecimenPick);
                     robot.OArmR.setPosition(OArmRearSpecimenPick);
-                    sleep(600);
 //                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
 //                      startVSlidePIDControl(POSITION_Y_HIGHH);
 
@@ -528,14 +526,14 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     } // 防止快速连击导致模式快速切换
 //                    robot.IClaw.setPosition(IClawCloseTight); //  0.54
                     robot.IClaw.setPosition(OClawCloseSuperTight);
-                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
-                    sleep(600);
-                    robot.Wristxpitch.setPosition(WristxpitchUp); // Wristxpitch
-                    robot.IArmL.setPosition(IArmLUp);
-                    robot.IArmR.setPosition(IArmRUp);
-                    sleep(600);
+                    moveHSlideToPosition(POSITION_X_IN);
+                    sleep(500);
+                    robot.Wristxpitch.setPosition(0.05); // Wristxpitch
+                    robot.IArmL.setPosition(0.65);
+                    robot.IArmR.setPosition(0.65);
+                    sleep(500);
                     robot.OClaw.setPosition(OClawCloseTight); // close 0.543 hold
-                    sleep(600);
+                    sleep(500);
                     robot.IClaw.setPosition(IClawOpen); //open
                     sleep(300);
 //                    moveHSlideToPosition(POSITION_B_EXTRUDETransferC);
