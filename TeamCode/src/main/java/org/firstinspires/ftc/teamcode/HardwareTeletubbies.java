@@ -190,11 +190,10 @@ public class HardwareTeletubbies
         OArmR.setPosition(0.97);//
 
 ////End Definition and Initialization of outtake ArmL and ArmR Servos
-////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////GoBildaPinpointDriver//////////////////////////////
         odo = hwMap.get(GoBildaPinpointDriver.class,"odo"); //expansion hub i2c port 1
-
          /*
         Set the odometry pod positions relative to the point that the odometry computer tracks around.
         The X pod offset refers to how far sideways from the tracking point the
@@ -204,9 +203,7 @@ public class HardwareTeletubbies
         backwards is a negative number.
          */
         //  odo.setOffsets(-84.0, -224.0); //these are tuned for 3110-0002-0001 Product Insight #1
-        //odo.setOffsets(-153.71, -215.019);
         odo.setOffsets(-210, -150);
-        //New Offsets (x-201.61, y-173.04)
         /*
         Set the kind of pods used by your robot. If you're using goBILDA odometry pods, select either
         the goBILDA_SWINGARM_POD, or the goBILDA_4_BAR_POD.
@@ -215,16 +212,12 @@ public class HardwareTeletubbies
          */
         odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         //odo.setEncoderResolution(13.26291192);
-
-
         /*
         Set the direction that each of the two odometry pods count. The X (forward) pod should
         increase when you move the robot forward. And the Y (strafe) pod should increase when
         you move the robot to the left.
          */
         odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.FORWARD);
-
-
         /*
         Before running the robot, recalibrate the IMU. This needs to happen when the robot is stationary
         The IMU will automatically calibrate when first powered on, but recalibrating before running
@@ -235,7 +228,9 @@ public class HardwareTeletubbies
          */
         //odo.recalibrateIMU();
         odo.resetPosAndIMU();
-///////////////////////////////////////GoBildaPinpointDriver//////////////////////////////
+///////////////////////////////////////GoBildaPinpointDriver/////////////////////////////
+
+
 //Begin Definition and Initialization of Testing Motors and Servos
 
 //               TServo= hwMap.get(Servo.class, "TS");//only for servo program testing
