@@ -283,31 +283,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     gamepad1XHandler.reset();
                 }
 
- /*
 
-                if (gamepad1BHandler.isShortPress()) { //IN
-                    moveHSlideToPosition(POSITION_X_IN);
-                    telemetry.addData("Status", "POSITION_X_IN");
-                    telemetry.update();
-                    gamepad1BHandler.reset();
-                }
-                if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-                    moveHSlideToPosition(POSITION_B_EXTRUDE);
-                    telemetry.addData("Status", "POSITION_B_EXTRUDE");
-                    telemetry.update();
-//                    sleep(600);
-//                    gyro.turn(90);// 调用 turn() 方法turn(90);
-//                    telemetry.addData("Status", "gyro.turn");
-//                    telemetry.update();
-//                    sleep(1000);
-                    gamepad1XHandler.reset();
-                }
-                if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-                    moveHSlideToPosition(POSITION_B_EXTRUDE_MORE);
-                    gamepad1XHandler.reset();
-                }
-
-                */
                 //End  moveHSlideToPosition
 
 //Begin  open and close of intakeclaw 12122024 finetuned
@@ -628,99 +604,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
 
 
-    //Begin  Wristxpitch do not use it any more
-//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-//            }
-//            if (gamepad1.dpad_down && !move) { //down
-//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
-//            }
-//End   Wristxpitch
-//            if (gamepad2.a && !move ) { //down
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad2.y && !move) { //up prepare forchameber
-//                moveVSlideToPosition(-POSITION_Y_LOW);
-//            }
-//            if (gamepad2.right_bumper && !move){ //upforchameber
-//                moveVSlideToPosition(-POSITION_Y_HIGH);
-//            }
 
-    //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
-    //for up
-    //for down
-
-    // ...（其他原始代码逻辑保持不变）
-//
-//
-    //Begin  Wristxpitch do not use it any more
-//            if (gamepad1.dpad_up && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-//                robot.Wristxpitch.setPosition(0.05); // Wristxpitch  12122024
-//            }
-//            if (gamepad1.dpad_down && !move) { //down
-//                robot.Wristxpitch.setPosition(0.65); // Wristxpitch 12122024 0.65
-//            }
-//End   Wristxpitch
-//            if (gamepad2.a && !move ) { //down
-//                moveVSlideToPosition(POSITION_A_BOTTOM);
-//            }
-//            if (gamepad2.y && !move) { //up prepare forchameber
-//                moveVSlideToPosition(-POSITION_Y_LOW);
-//            }
-//            if (gamepad2.right_bumper && !move){ //upforchameber
-//                moveVSlideToPosition(-POSITION_Y_HIGH);
-//            }
-
-    //      HAND SPECIALIST   48444442243  JULIA MAYBERRY
-    //for up
-    //for down
-//****************************************************************************************
-//
-
-/*
-
-////one key ready for pick
-//            if (gamepad1.right_bumper && !move) { //up if arm is Horizontal, the the wrist is vertical up and down
-//                robot.Wristxpitch.setPosition(0.65);
-//                sleep(200);
-//                robot.IClaw.setPosition(0.32);
-//                sleep(200);
-//                robot.IArmL.setPosition(0.7);
-//                robot.IArmR.setPosition(0.7);
-//            }
-//
-////one key ready for pick up
-
-*/
-//one key ready for pick up
-                /*
-                // 左触发器双功能：轻按和深按
-                if (gamepad1BHandler.isShortPress()) { //IN
-//                    moveVSlideToPositionPID(POSITION_A_BOTTOM);// slides down
-                    startVSlidePIDControl(POSITION_A_BOTTOM);
-//                    moveVSlideToPosition(POSITION_A_BOTTOM);// slides down
-                    gamepad1BHandler.reset();
-                }
-                if (gamepad1XHandler.isShortPress()) { //EXTRUDE
-//                    moveVSlideToPositionPID(POSITION_Y_LOW);
-                    startVSlidePIDControl(POSITION_Y_LOW);
-//                    moveVSlideToPositionPID(POSITION_Y_LOWForTest);
-//                moveVSlideToPosition(-POSITION_Y_LOW);// slides move to middle
-                    gamepad1XHandler.reset();
-                }
-                if (gamepad1XHandler.isShortPress() && gamepad1BHandler.isShortPress()) { //EXTRUDE_MORE/                    moveVSlideToPositionPID(POSITION_Y_HIGH);
-                    startVSlidePIDControl(POSITION_Y_HIGH);
-//                moveVSlideToPosition(-POSITION_Y_HIGHHH);// high
-//                    moveVSlideToPosition(-POSITION_Y_HIGH);// high
-//                    moveVSlideToPosition(-POSITION_Y_HIGHH);// high
-                    gamepad1XHandler.reset();
-                }
-//                    if (gamepad1XHandler.isLongPress()) { //EXTRUDE_MORE
-//                        moveVSlideToPosition(-POSITION_Y_HIGHH);// very high
-//                        gamepad1XHandler.reset();
-//                    }
-/////
-*/
 
 ///////////////////////////////////////
 
@@ -935,86 +819,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
     }
     //////////////////////////
 
-    /*****
-     // 状态变量
-     private boolean pidActive = false; // PID 控制是否激活
-     private int pidTargetPosition = 0; // PID 控制目标位置
 
-     // 初始化 PID 控制器
-     private void startVSlidePIDControl(int targetPosition) {
-     pidController.reset();
-     pidController.enable();
-     pidController.setSetpoint(targetPosition);
-     pidController.setTolerance(10); // 允许误差范围
-     pidTargetPosition = targetPosition;
-     pidActive = true; // 激活 PID 控制
-     }
-
-     // 在主循环中调用的非阻塞 PID 控制逻辑
-     private void updateVSlidePIDControl() {
-     if (!pidActive) return; // 如果 PID 未激活，直接返回
-
-     int currentPositionL = robot.VSMotorL.getCurrentPosition();
-
-     // 计算 PID 输出
-     double powerL = pidController.performPID(currentPositionL);
-     robot.VSMotorL.setPower(powerL);
-     robot.VSMotorR.setPower(powerL);
-
-     // 输出 Telemetry 信息
-     telemetry.addData("PID Target", pidTargetPosition);
-     telemetry.addData("Current Position L", currentPositionL);
-     telemetry.addData("Power L", powerL);
-     telemetry.update();
-
-     // 如果达到目标位置，停止滑轨运动，但保持抗重力功率
-     if (pidController.onTarget()) {
-     robot.VSMotorL.setPower(0.1); // 保持位置的最小功率
-     robot.VSMotorR.setPower(0.1);
-     pidActive = false; // 停止 PID 控制
-     }
-     }
-
-
-     ///////***************************************
-
-     @Override
-     public void runOpMode() {
-     robot.init(hardwareMap);
-
-     waitForStart();
-
-     while (opModeIsActive()) {
-     // 定期更新滑轨的 PID 控制状态
-     updateVSlidePIDControl();
-
-     // 其他操作逻辑，例如按键控制机器人
-     if (gamepad1.a) {
-     startVSlidePIDControl(POSITION_Y_LOW); // 按下 A 键，移动滑轨到低位
-     }
-
-     if (gamepad1.b) {
-     startVSlidePIDControl(POSITION_Y_HIGH); // 按下 B 键，移动滑轨到高位
-     }
-
-     // 继续处理其他操作
-     moveDriveTrain_FieldCentric();
-     intake();
-     outtake();
-     }
-     }
-     //***************************
-     // 在 updateVSlidePIDControl 中加入抗重力逻辑
-     if (!pidActive && Math.abs(robot.VSMotorL.getCurrentPosition() - pidTargetPosition) > 10) {
-     double holdPower = pidController.performPID(robot.VSMotorL.getCurrentPosition());
-     robot.VSMotorL.setPower(holdPower);
-     robot.VSMotorR.setPower(holdPower);
-     }
-
-
-
-
-     */
 
 
 ///////////////////////////
@@ -1125,36 +930,6 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
         robot.RBMotor.setPower(br * speedMultiplier);
 
     }
-
-//Begin Definition and Initialization of Horizontal Slides
-
-
-//    private void moveHSlideToPosition ( int targetPosition){
-//
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        telemetry.addData("targetPosition", targetPosition);
-//        telemetry.addData("liftMotorR.getCurrentPosition()",robot.HSMotor.getCurrentPosition());
-//        telemetry.update();
-//        robot.HSMotor.setTargetPosition(-targetPosition);
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        robot.HSMotor.setPower(+SLIDE_POWER_H);
-//
-//        move = true;
-//
-//        while (robot.HSMotor.isBusy() &&  move) {
-//            // Wait until the motor reaches the target position
-//        }
-//
-//        robot.HSMotor.setPower(0);
-//        robot.HSMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        robot.HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-//        move = false;
-//    }
-
-
-//End Definition and Initialization of Horizontal Slides
-
-
 
 
 }
