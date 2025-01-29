@@ -121,6 +121,7 @@ public class HardwareTeletubbies
         HSMotor = hwMap.get(DcMotor.class, "HSMotor");// expansion  hub  port 3
         int positionH = HSMotor.getCurrentPosition();
         HSMotor.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+        HSMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
 //End Definition and Initialization of Horizontal Slides  Motor
 
