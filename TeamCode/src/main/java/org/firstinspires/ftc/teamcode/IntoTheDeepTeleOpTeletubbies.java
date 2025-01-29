@@ -897,9 +897,9 @@ public void servoGamepadControl() {
             telemetry.update();
         }
     }
+
+
 //End Definition and Initialization of Vertical Slides
-
-
 //End Definition and Initialization of Horizontal Slides
 
 }
