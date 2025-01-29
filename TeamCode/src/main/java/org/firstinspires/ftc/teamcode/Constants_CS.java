@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 public class Constants_CS {
     public static final int POSITION_X_IN = 30; // horizontal slides all the way in
     public static final int POSITION_B_EXTRUDE = 100;//horizontal slides  out //600
+    public static final int POSITION_B_testing = 80;//horizontal slides  out //600
     public static final int POSITION_B_EXTRUDETransfer = 100;//horizontal slides  out //600 is too much
     public static final int POSITION_B_EXTRUDETransferC= 250;//horizontal slides  out //600 is too much
     //    public static final int POSITION_B_EXTRUDETransferC= 700;//horizontal slides  out //600 is too much
