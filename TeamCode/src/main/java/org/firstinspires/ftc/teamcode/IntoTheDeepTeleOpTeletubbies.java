@@ -262,8 +262,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
                     gamepad1BHandler.reset();
                 }
                 if (gamepad1.dpad_down) { //EXTRUDE
-/////                    startHSlidePIDControl(POSITION_B_EXTRUDE);
-                    startHSlidePIDControl(POSITION_B_testing);
+                    startHSlidePIDControl(POSITION_B_EXTRUDE);
+ //                   startHSlidePIDControl(POSITION_B_testing);
 //                moveHSlideToPosition(POSITION_B_EXTRUDE);
 //                    robot.Wristxpitch.setPosition(WristxpitchIntermedia4PositionAdjust);
 //                    robot.Wristxpitch.setPosition(WristxpitchDown);
@@ -643,8 +643,8 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
         // 计算 PID 输出
         double powerL = pidController.performPID(currentPositionL);
-        robot.VSMotorL.setPower(powerL*0.4); // change it to make it move faster both at the same time
-        robot.VSMotorR.setPower(powerL*0.4); // change it to make it move faster
+        robot.VSMotorL.setPower(powerL*0.8); // change it to make it move faster both at the same time
+        robot.VSMotorR.setPower(powerL*0.8); // change it to make it move faster
 
         // 输出 Telemetry 信息
         telemetry.addData("PID Target", pidTargetPosition);
@@ -693,7 +693,7 @@ public class IntoTheDeepTeleOpTeletubbies extends LinearOpMode {
 
         // 计算 PID 输出
         double powerH = pidController.performPID(currentPositionH);
-        robot.HSMotor.setPower(powerH*0.4);
+        robot.HSMotor.setPower(powerH*0.8);
 
 
         // 输出 Telemetry 信息
