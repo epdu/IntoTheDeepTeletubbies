@@ -65,7 +65,7 @@ For support, contact tech@gobilda.com
 -Ethan Doak
  */
 
-@Autonomous(name="SpecimanBlueRight", group="Linear OpMode")
+@Autonomous(name="AAAAA SpecimanBlueRight", group="Linear OpMode")
 //@Disabled
 //face to the bar right space for 4 of them only
 public class SpecimanBlueRight extends LinearOpMode {
